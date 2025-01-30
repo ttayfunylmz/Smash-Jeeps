@@ -1,0 +1,22 @@
+{
+    "name": "MessagePipe",
+    "references": [
+        "UniTask",
+        "UniTask.Linq"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "jp.hadashikick.vcontainer",
+            "expression": "1.14.0",
+            "define": "MESSAGEPIPE_OPENGENERICS_SUPPORT"
+        }
+    ],
+    "noEngineReferences": true
+}
