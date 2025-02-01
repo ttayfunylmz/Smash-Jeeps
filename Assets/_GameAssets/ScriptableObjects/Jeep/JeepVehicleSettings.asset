@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c36432a0b48584d947b27579a7ab13, type: 3}
   m_Name: JeepVehicleSettings
   m_EditorClassIdentifier: 
-  width: 1.9
-  height: 0.75
-  length: 3.4
-  wheelsPaddingX: 0.06
-  wheelsPaddingZ: 0.12
-  chassiMass: 60
-  tireMass: 1
-  springRestLength: 0.8
-  springStrength: 1200
-  springDamper: 75
-  acceleratePower: 300
-  brakesPower: 1.5
-  maxSpeed: 22
-  maxReverseSpeed: 12
-  steerAngle: 20
-  frontWheelsGripFactor: 0.8
-  rearWheelsGripFactor: 0.9
-  airResistance: 5
+  _width: 1.9
+  _height: 0.75
+  _length: 3.4
+  _wheelsPaddingX: 0.06
+  _wheelsPaddingZ: 0.12
+  _chassiMass: 60
+  _tireMass: 1
+  _springRestLength: 0.8
+  _springStrength: 1200
+  _springDamper: 75
+  _acceleratePower: 300
+  _brakesPower: 1.5
+  _maxSpeed: 22
+  _maxReverseSpeed: 12
+  _steerAngle: 20
+  _frontWheelsGripFactor: 0.8
+  _rearWheelsGripFactor: 0.9
+  _airResistance: 5
