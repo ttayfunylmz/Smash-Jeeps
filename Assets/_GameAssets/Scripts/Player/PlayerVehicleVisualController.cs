@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Unity.Netcode;
 
-public class JeepVisual : MonoBehaviour
+public class PlayerVehicleVisualController : NetworkBehaviour
 {
     [SerializeField] private Transform _wheelFrontLeft, _wheelFrontRight, _wheelBackLeft, _wheelBackRight;
     [SerializeField] private float _wheelsSpinSpeed, _wheelYWhenSpringMin, _wheelYWhenSpringMax;
 
-    private Vehicle _vehicle;
+    private PlayerVehicleController _playerVehicleController;
     private Quaternion _wheelFrontLeftRoll;
     private Quaternion _wheelFrontRightRoll;
 
@@ -25,20 +26,24 @@ public class JeepVisual : MonoBehaviour
 
     private void Awake()
     {
-        _vehicle = GetComponent<Vehicle>();
+        _playerVehicleController = GetComponent<PlayerVehicleController>();
     }
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
+        if(!IsOwner) return;
+
         _wheelFrontLeftRoll = _wheelFrontLeft.localRotation;
         _wheelFrontRightRoll = _wheelFrontRight.localRotation;
 
-        _springsRestLength = _vehicle.Settings.SpringRestLength;
-        _steerAngle = _vehicle.Settings.SteerAngle;
+        _springsRestLength = _playerVehicleController.Settings.SpringRestLength;
+        _steerAngle = _playerVehicleController.Settings.SteerAngle;
     }
 
     private void Update()
     {
+        if(!IsOwner) return;
+
         UpdateVisualStates();
         RotateWheels();
         SetSuspension();
@@ -98,12 +103,12 @@ public class JeepVisual : MonoBehaviour
     {
         _steerInput = Input.GetAxis("Horizontal");
 
-        float forwardSpeed = Vector3.Dot(_vehicle.Forward, _vehicle.Velocity);
+        float forwardSpeed = Vector3.Dot(_playerVehicleController.Forward, _playerVehicleController.Velocity);
         _forwardSpeed = forwardSpeed;
 
-        _springsCurrentLength[WheelType.FrontLeft] = _vehicle.GetSpringCurrentLength(WheelType.FrontLeft);
-        _springsCurrentLength[WheelType.FrontRight] = _vehicle.GetSpringCurrentLength(WheelType.FrontRight);
-        _springsCurrentLength[WheelType.BackLeft] = _vehicle.GetSpringCurrentLength(WheelType.BackLeft);
-        _springsCurrentLength[WheelType.BackRight] = _vehicle.GetSpringCurrentLength(WheelType.BackRight);
+        _springsCurrentLength[WheelType.FrontLeft] = _playerVehicleController.GetSpringCurrentLength(WheelType.FrontLeft);
+        _springsCurrentLength[WheelType.FrontRight] = _playerVehicleController.GetSpringCurrentLength(WheelType.FrontRight);
+        _springsCurrentLength[WheelType.BackLeft] = _playerVehicleController.GetSpringCurrentLength(WheelType.BackLeft);
+        _springsCurrentLength[WheelType.BackRight] = _playerVehicleController.GetSpringCurrentLength(WheelType.BackRight);
     }
 }

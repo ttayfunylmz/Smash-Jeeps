@@ -4,7 +4,7 @@ using DG.Tweening;
 using Unity.Netcode;
 using UnityEngine;
 
-public class Vehicle : NetworkBehaviour
+public class PlayerVehicleController : NetworkBehaviour
 {
     private class SpringData
     {
@@ -43,6 +43,14 @@ public class Vehicle : NetworkBehaviour
         foreach (WheelType wheel in _wheels)
         {
             _springDatas.Add(wheel, new());
+        }
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        if(!IsOwner)
+        {
+            _vehicleRigidbody.isKinematic = true;
         }
     }
 

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 58908109877594045a6f12d080e29eaa
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 96925
+  packageName: Smooth Sync
+  packageVersion: 3.41
+  assetPath: Assets/Smooth Sync/Common/Editor/UpdateConfirmationWindow.cs
+  uploadId: 559966

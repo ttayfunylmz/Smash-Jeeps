@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d31a2fafee7df734b802193884e6aea0
+timeCreated: 1503860865
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 96925
+  packageName: Smooth Sync
+  packageVersion: 3.41
+  assetPath: Assets/Smooth Sync/README.txt
+  uploadId: 559966

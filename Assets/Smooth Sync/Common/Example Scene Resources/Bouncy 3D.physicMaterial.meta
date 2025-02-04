@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c26db5cddf6841040bf8cb52e2c9f8b9
+timeCreated: 1539353527
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 96925
+  packageName: Smooth Sync
+  packageVersion: 3.41
+  assetPath: Assets/Smooth Sync/Common/Example Scene Resources/Bouncy 3D.physicMaterial
+  uploadId: 559966

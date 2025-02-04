@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4588ca2b39b41394e99a10aeb85f8c2b
+timeCreated: 1539353689
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 96925
+  packageName: Smooth Sync
+  packageVersion: 3.41
+  assetPath: Assets/Smooth Sync/Common/Example Scene Resources/Basketball Child.mat
+  uploadId: 559966

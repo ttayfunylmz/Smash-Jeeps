@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: ee361bac9fe97194788eb2199ce08535
+timeCreated: 1501453654
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 96925
+  packageName: Smooth Sync
+  packageVersion: 3.41
+  assetPath: Assets/Smooth Sync/Common/Required Internal Use Scripts/HalfHelper.cs
+  uploadId: 559966
