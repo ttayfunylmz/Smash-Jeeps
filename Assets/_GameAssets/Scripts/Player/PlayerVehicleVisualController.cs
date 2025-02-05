@@ -6,6 +6,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
 {
     [SerializeField] private Transform _wheelFrontLeft, _wheelFrontRight, _wheelBackLeft, _wheelBackRight;
     [SerializeField] private float _wheelsSpinSpeed, _wheelYWhenSpringMin, _wheelYWhenSpringMax;
+    [SerializeField] private MeshRenderer _baseMeshRenderer;
 
     private PlayerVehicleController _playerVehicleController;
     private Quaternion _wheelFrontLeftRoll;
@@ -110,5 +111,11 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         _springsCurrentLength[WheelType.FrontRight] = _playerVehicleController.GetSpringCurrentLength(WheelType.FrontRight);
         _springsCurrentLength[WheelType.BackLeft] = _playerVehicleController.GetSpringCurrentLength(WheelType.BackLeft);
         _springsCurrentLength[WheelType.BackRight] = _playerVehicleController.GetSpringCurrentLength(WheelType.BackRight);
+    }
+
+    public void SetBaseColor(Color color)
+    {
+        if(!IsOwner) return;
+        _baseMeshRenderer.material.color = color;
     }
 }

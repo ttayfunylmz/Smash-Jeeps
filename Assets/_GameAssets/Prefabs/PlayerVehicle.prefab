@@ -1451,6 +1451,7 @@ MonoBehaviour:
   _wheelsSpinSpeed: 70
   _wheelYWhenSpringMin: 0.6
   _wheelYWhenSpringMax: 0.3
+  _baseMeshRenderer: {fileID: 119184587465666424}
 --- !u!114 &867195426651295143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1463,6 +1464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472439a3e2fab6e489170f1d998d1faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!114 &8844893836073271083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1477,7 +1479,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _playerCinemachineCamera: {fileID: 4440187324846132007}
-  _baseMeshRenderer: {fileID: 119184587465666424}
 --- !u!114 &7492192518897444684
 MonoBehaviour:
   m_ObjectHideFlags: 0

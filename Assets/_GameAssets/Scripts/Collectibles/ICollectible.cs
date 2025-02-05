@@ -1,4 +1,5 @@
 public interface ICollectible
 {
-    void Collect();    
+    void Collect();
+    void OnCollectRpc();
 }
