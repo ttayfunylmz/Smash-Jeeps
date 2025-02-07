@@ -1,5 +1,7 @@
+using UnityEngine;
+
 public interface ICollectible
 {
-    void Collect();
+    void Collect(PlayerSkillController playerSkillController);
     void OnCollectRpc();
 }

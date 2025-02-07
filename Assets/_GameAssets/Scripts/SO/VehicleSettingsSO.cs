@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "VehicleSettings", menuName = "VehicleController/VehicleSettings")]
+[CreateAssetMenu(fileName = "Vehicle Settings", menuName = "Scriptable Objects/Vehicle Settings")]
 public class VehicleSettingsSO : ScriptableObject
 {
     [Header("Shape")]
