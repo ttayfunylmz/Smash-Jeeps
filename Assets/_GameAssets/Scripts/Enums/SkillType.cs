@@ -1,6 +1,8 @@
 public enum SkillType : byte
 {
-    None,
-    Amount,
-    Timer    
+    FakeBox,
+    Mine,
+    Rocket,
+    Shield,
+    Spike
 }

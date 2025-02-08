@@ -1,16 +1,41 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerSkillController : MonoBehaviour
+public class PlayerSkillController : NetworkBehaviour
 {
-    public void ActivateSkill(MysteryBoxSkillsSO skill)
+    [SerializeField] private bool _hasSkillAlready;
+
+    private MysteryBoxSkillsSO _mysteryBoxSkill;
+    private bool _isSkillUsed;
+
+    private void Update() 
     {
-        if(skill != null)
+        if(!IsOwner) { return; }
+        if(!_hasSkillAlready) { return ; }
+
+        if(Input.GetKeyDown(KeyCode.Space) && !_isSkillUsed)
         {
-            skill.SkillData.ActivateSkill(transform);
+            ActivateSkill();
+            _isSkillUsed = true;
         }
-        else
-        {
-            Debug.LogError("Skill not Assigned!");
-        }
+    }
+
+    public void SetupSkill(MysteryBoxSkillsSO skill)
+    {
+        _mysteryBoxSkill = skill;
+        _isSkillUsed = false;
+        _hasSkillAlready = true;
+    }
+
+    public void ActivateSkill()
+    {
+        if(!_hasSkillAlready) { return; }
+        SkillManager.Instance.ActivateSkill(_mysteryBoxSkill.SkillType, transform);
+        _hasSkillAlready = false;
+    }
+
+    public bool HasSkillAlready()
+    {
+        return _hasSkillAlready;
     }
 }

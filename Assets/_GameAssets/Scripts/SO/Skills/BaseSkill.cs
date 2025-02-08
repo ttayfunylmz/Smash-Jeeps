@@ -2,12 +2,10 @@ using UnityEngine;
 
 public abstract class BaseSkill : ScriptableObject
 {
-    [SerializeField] private GameObject _skillPrefab;
+    [SerializeField] private Transform _skillPrefab;
+    [SerializeField] private Vector3 _spawnOffset;
 
-    public GameObject SkillPrefab => _skillPrefab;
+    public Transform SkillPrefab => _skillPrefab;
+    public Vector3 SpawnOffset => _spawnOffset;
 
-    public virtual void ActivateSkill(Transform playerTransform)
-    {
-        Instantiate(_skillPrefab, playerTransform);
-    }
 }

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c0dbcfed3eed34ab914007cae4f9f6, type: 3}
   m_Name: SpikeSkillData
   m_EditorClassIdentifier: 
-  _skillPrefab: {fileID: 8547878680243117159, guid: f3273b2fa244c9e4180f3b7116357214, type: 3}
+  _skillPrefab: {fileID: 4574051478780769726, guid: f3273b2fa244c9e4180f3b7116357214, type: 3}
+  _spawnOffset: {x: 0, y: 0, z: 0}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ab85d7bcd59564388f04cf18c6f4c0, type: 3}
   m_Name: RocketSkill
   m_EditorClassIdentifier: 
-  _skillName: Rocket
+  _skillType: 2
   _skillIcon: {fileID: 0}
   _skillData: {fileID: 11400000, guid: 5db420666899c034390bde698c00f396, type: 2}

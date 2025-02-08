@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ab85d7bcd59564388f04cf18c6f4c0, type: 3}
   m_Name: SpikeSkill
   m_EditorClassIdentifier: 
-  _skillName: Thorns
+  _skillType: 4
   _skillIcon: {fileID: 0}
   _skillData: {fileID: 11400000, guid: 460ba937769177e49ad641e46baf9333, type: 2}

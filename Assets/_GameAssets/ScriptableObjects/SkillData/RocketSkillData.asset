@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2f48d34dbb3b94e8638c8fe161b943, type: 3}
   m_Name: RocketSkillData
   m_EditorClassIdentifier: 
-  _skillPrefab: {fileID: 5139264514495251472, guid: 5313287a8c8424e40ab1119be55d7da1, type: 3}
+  _skillPrefab: {fileID: 6660832954952942248, guid: 5313287a8c8424e40ab1119be55d7da1, type: 3}
+  _spawnOffset: {x: 0, y: 0, z: 0}
+  _rocketLauncherPrefab: {fileID: 6660832954952942248, guid: 5313287a8c8424e40ab1119be55d7da1, type: 3}
+  _rocketLauncherOffset: {x: 0, y: -0.927, z: 0}
