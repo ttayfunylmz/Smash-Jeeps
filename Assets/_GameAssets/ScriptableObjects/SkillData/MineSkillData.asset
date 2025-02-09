@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e090bde0122a5664ca3f3e1f74401e45, type: 3}
+  m_Script: {fileID: 11500000, guid: 721bb4a84b2520c4583edc578108aac0, type: 3}
   m_Name: MineSkillData
   m_EditorClassIdentifier: 
   _skillPrefab: {fileID: 735029788196151655, guid: 4f9f6ec5f14fcaa409f9c14eaf556ef0, type: 3}

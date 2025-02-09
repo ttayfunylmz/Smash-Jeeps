@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3797355004883671909}
   - component: {fileID: 8505778074092358394}
   - component: {fileID: 7446650080174833911}
+  - component: {fileID: 2044213317753341787}
   m_Layer: 0
   m_Name: MysteryBoxVisual
   m_TagString: Untagged
@@ -86,6 +87,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &2044213317753341787
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163275261211480156}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f0ea8be211d6d74f9854cd02682a535, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5217342949828390292
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +120,7 @@ GameObject:
   - component: {fileID: 4543965304027722592}
   - component: {fileID: 1124075251784830038}
   - component: {fileID: 2880216883891662034}
-  - component: {fileID: 5052700107409425783}
+  - component: {fileID: 4144577275025513726}
   - component: {fileID: 3677238319746565391}
   m_Layer: 0
   m_Name: MysteryBox
@@ -166,10 +189,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e7cbe36c98f4254aa9d5799f0579ed6, type: 2}
   - {fileID: 11400000, guid: b863f32725f5c20439e3a4c4b0dedd38, type: 2}
   - {fileID: 11400000, guid: 2c8b572e2647e614ca3053b816964264, type: 2}
+  _boxAnimator: {fileID: 2044213317753341787}
+  _collider: {fileID: 3677238319746565391}
   _respawnTimer: 5
-  _rotationDuration: 3
-  _scaleDuration: 0.35
---- !u!114 &5052700107409425783
+  _animationDelay: 0.2
+--- !u!114 &4144577275025513726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,33 +202,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 5217342949828390292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  NetworkTransformExpanded: 0
-  AuthorityMode: 0
-  TickSyncChildren: 0
-  UseUnreliableDeltas: 0
-  SyncPositionX: 0
-  SyncPositionY: 0
-  SyncPositionZ: 0
-  SyncRotAngleX: 0
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 0
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  UseQuaternionSynchronization: 0
-  UseQuaternionCompression: 0
-  UseHalfFloatPrecision: 0
-  InLocalSpace: 0
-  SwitchTransformSpaceWhenParented: 0
-  Interpolate: 1
-  SlerpPosition: 0
+  TransitionStateInfoList:
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 598370456
+    DestinationState: 1937637293
+    TransitionDuration: 0
+    TriggerNameHash: 2145687175
+    TransitionIndex: 0
+  - IsCrossFadeExit: 0
+    Layer: 0
+    OriginatingState: 1937637293
+    DestinationState: 1073030454
+    TransitionDuration: 0.2
+    TriggerNameHash: -1957187052
+    TransitionIndex: 0
+  m_Animator: {fileID: 2044213317753341787}
 --- !u!65 &3677238319746565391
 BoxCollider:
   m_ObjectHideFlags: 0

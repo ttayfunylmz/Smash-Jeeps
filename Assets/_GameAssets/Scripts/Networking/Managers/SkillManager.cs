@@ -21,33 +21,27 @@ public class SkillManager : NetworkBehaviour
         }
     }
 
-    public void ActivateSkill(SkillType skillType, Transform playerTransform)
+    public void ActivateSkill(SkillType skillType, Transform playerTransform, ulong spawnerClientId)
     {
-        if (!skillsDictionary.TryGetValue(skillType, out MysteryBoxSkillsSO skillData))
-        {
-            Debug.LogError($"SkillManager: {skillType} not found!");
-            return;
-        }
-
         SkillTransformDataSerializable skillTransformData 
-            = new SkillTransformDataSerializable(playerTransform.position, playerTransform.rotation, skillType);
+            = new SkillTransformDataSerializable(playerTransform.position, playerTransform.rotation, skillType, playerTransform.GetComponent<NetworkObject>());
 
         if (!IsServer)
         {
-            RequestSpawnRpc(skillTransformData);
+            RequestSpawnRpc(skillTransformData, spawnerClientId);
             return;
         }
 
-        SpawnSkill(skillTransformData);
+        SpawnSkill(skillTransformData, spawnerClientId);
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void RequestSpawnRpc(SkillTransformDataSerializable skillTransformDataSerializable)
+    private void RequestSpawnRpc(SkillTransformDataSerializable skillTransformDataSerializable, ulong spawnerClientId)
     {
-        SpawnSkill(skillTransformDataSerializable);
+        SpawnSkill(skillTransformDataSerializable, spawnerClientId);
     }
 
-    private void SpawnSkill(SkillTransformDataSerializable skillTransformDataSerializable)
+    private void SpawnSkill(SkillTransformDataSerializable skillTransformDataSerializable, ulong spawnerClientId)
     {
         if (!skillsDictionary.TryGetValue(skillTransformDataSerializable.SkillType, out MysteryBoxSkillsSO skillData))
         {
@@ -55,12 +49,44 @@ public class SkillManager : NetworkBehaviour
             return;
         }
 
-        Transform skillInstance = Instantiate(skillData.SkillData.SkillPrefab);
-        skillInstance.SetPositionAndRotation(skillTransformDataSerializable.Position, skillTransformDataSerializable.Rotation);
-
         if(IsServer)
         {
-            skillInstance.GetComponent<NetworkObject>().Spawn(true);
+            Transform skillInstance = Instantiate(skillData.SkillData.SkillPrefab);
+            skillInstance.SetPositionAndRotation(skillTransformDataSerializable.Position, skillTransformDataSerializable.Rotation);
+            var networkObject = skillInstance.GetComponent<NetworkObject>();
+            networkObject.Spawn(true);
+
+            if(NetworkManager.Singleton.ConnectedClients.TryGetValue(spawnerClientId, out var client))
+            {
+                networkObject.TrySetParent(client.PlayerObject);
+
+                skillInstance.transform.localPosition += skillData.SkillData.SkillOffset;
+
+                if(!skillData.SkillData.ShouldBeAttachedToParent)
+                {
+                    networkObject.TryRemoveParent();
+                }
+
+                if(skillData.SkillType == SkillType.FakeBox)
+                {
+                    PositionDataSerializable positionDataSerializable 
+                        = new PositionDataSerializable(new Vector3(
+                            skillInstance.transform.position.x, 
+                            0f + skillData.SkillData.SkillOffset.y,
+                            skillInstance.transform.position.z));
+
+                    UpdateFakeBoxPositionRpc(networkObject.NetworkObjectId, positionDataSerializable);
+                }
+            }
+        }
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void UpdateFakeBoxPositionRpc(ulong objectId, PositionDataSerializable positionDataSerializable)
+    {
+        if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(objectId, out var networkObject))
+        {
+            networkObject.transform.position = positionDataSerializable.Position;
         }
     }
 }

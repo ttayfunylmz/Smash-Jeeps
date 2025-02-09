@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class PlayerSkillController : NetworkBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Transform _rocketLauncherTransform;
+
+    [Header("Settings")]
     [SerializeField] private bool _hasSkillAlready;
 
     private MysteryBoxSkillsSO _mysteryBoxSkill;
@@ -23,14 +27,27 @@ public class PlayerSkillController : NetworkBehaviour
     public void SetupSkill(MysteryBoxSkillsSO skill)
     {
         _mysteryBoxSkill = skill;
+
+        if(_mysteryBoxSkill.SkillType == SkillType.Rocket)
+        {
+            SetRocketLauncherActiveRpc(true);
+        }
+
         _isSkillUsed = false;
         _hasSkillAlready = true;
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void SetRocketLauncherActiveRpc(bool active)
+    {
+        _rocketLauncherTransform.gameObject.SetActive(active);
     }
 
     public void ActivateSkill()
     {
         if(!_hasSkillAlready) { return; }
-        SkillManager.Instance.ActivateSkill(_mysteryBoxSkill.SkillType, transform);
+
+        SkillManager.Instance.ActivateSkill(_mysteryBoxSkill.SkillType, transform, OwnerClientId);
         _hasSkillAlready = false;
     }
 

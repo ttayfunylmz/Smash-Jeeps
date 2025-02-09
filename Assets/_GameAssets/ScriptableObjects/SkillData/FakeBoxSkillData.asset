@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51274a4abc9b3d74199c1a491c6c9ef8, type: 3}
+  m_Script: {fileID: 11500000, guid: 721bb4a84b2520c4583edc578108aac0, type: 3}
   m_Name: FakeBoxSkillData
   m_EditorClassIdentifier: 
   _skillPrefab: {fileID: 5369454563640570373, guid: 098a707ad6b7b014f9e526cb78a3a427, type: 3}
-  _spawnOffset: {x: 0, y: 0.75, z: -2.5}
+  _skillOffset: {x: 0, y: 1.5, z: -2.5}
+  _shouldBeAttachedToParent: 0
+  _setupPrefab: {fileID: 0}
+  _setupOffset: {x: 0, y: 0, z: 0}

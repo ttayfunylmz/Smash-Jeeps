@@ -5,9 +5,9 @@ public class MysteryBoxSkillsSO : ScriptableObject
 {
     [SerializeField] private SkillType _skillType;
     [SerializeField] private Sprite _skillIcon;
-    [SerializeField] private BaseSkill _skillData;
+    [SerializeField] private SkillDataSO _skillData;
 
     public SkillType SkillType => _skillType;
     public Sprite SkillIcon => _skillIcon;
-    public BaseSkill SkillData => _skillData;
+    public SkillDataSO SkillData => _skillData;
 }

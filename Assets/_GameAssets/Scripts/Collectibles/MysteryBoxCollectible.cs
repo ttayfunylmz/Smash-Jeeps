@@ -6,23 +6,12 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
 {
     [Header("References")]
     [SerializeField] private MysteryBoxSkillsSO[] _mysteryBoxSkills;
+    [SerializeField] private Animator _boxAnimator;
+    [SerializeField] private Collider _collider;
 
     [Header("Settings")]
     [SerializeField] private float _respawnTimer;
-    [SerializeField] private float _rotationDuration;
-    [SerializeField] private float _scaleDuration;
-
-    public override void OnNetworkSpawn()
-    {
-        if(!IsHost) { return; }
-
-        AnimateMysteryBox();
-    }
-
-    private void AnimateMysteryBox()
-    {
-        transform.DORotate(new Vector3(0f, 360f, 0f), _rotationDuration, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
-    }
+    [SerializeField] private float _animationDelay;
 
     public void Collect(PlayerSkillController playerSkillController)
     {
@@ -39,11 +28,8 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
     [Rpc(SendTo.ClientsAndHost)]
     public void OnCollectRpc()
     {
-        transform.DOScale(0f, _scaleDuration).SetEase(Ease.InBack).OnComplete(() =>
-        {
-            SetMysteryBoxActive(false);
-            Invoke(nameof(SetMysteryBoxActiveTrueRpc), _respawnTimer);
-        });
+        AnimateCollection();
+        Invoke(nameof(Show), _respawnTimer);
     }
 
     private MysteryBoxSkillsSO GetRandomSkill()
@@ -52,14 +38,25 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
         return _mysteryBoxSkills[randomIndex];
     }
 
-    private void SetMysteryBoxActiveTrueRpc()
+    private void AnimateCollection()
     {
-        SetMysteryBoxActive(true);
-        transform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack);
+        Invoke(nameof(Hide), _animationDelay);
+        _boxAnimator.SetTrigger(Consts.BoxAnimations.IS_COLLECTED);
     }
 
-    private void SetMysteryBoxActive(bool active)
+    private void Show()
     {
-        gameObject.SetActive(active);
+        _boxAnimator.SetTrigger(Consts.BoxAnimations.IS_RESPAWNED);
+        SetColliderEnabled(true);
+    }
+
+    private void Hide()
+    {
+        SetColliderEnabled(false);
+    }
+
+    private void SetColliderEnabled(bool enabled)
+    {
+        _collider.enabled = enabled;
     }
 }

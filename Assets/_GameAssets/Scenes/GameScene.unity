@@ -379,7 +379,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.21785024, y: 0.000000015039117, z: -0.0000000033568999, w: 0.97598225}
-  m_LocalPosition: {x: -2.0214462, y: 7.74, z: -11.656082}
+  m_LocalPosition: {x: 34.728554, y: 10.49, z: -11.656082}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2945,7 +2945,11 @@ PrefabInstance:
     - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: '_mysteryBoxSkills.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 6e7cbe36c98f4254aa9d5799f0579ed6, type: 2}
+      objectReference: {fileID: 11400000, guid: aa9cf2010d3b1374ca26683173254b94, type: 2}
+    - target: {fileID: 3797355004883671909, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4543965304027722592, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.25
