@@ -1496,6 +1496,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   _rocketLauncherTransform: {fileID: 5812693837593385773}
   _hasSkillAlready: 0
+  _resetDelay: 0.5
 --- !u!114 &7492192518897444684
 MonoBehaviour:
   m_ObjectHideFlags: 0

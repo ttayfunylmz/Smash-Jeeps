@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721bb4a84b2520c4583edc578108aac0, type: 3}
   m_Name: RocketSkillData
   m_EditorClassIdentifier: 
-  _skillPrefab: {fileID: 6660832954952942248, guid: 5313287a8c8424e40ab1119be55d7da1, type: 3}
-  _skillOffset: {x: 0, y: 0, z: 0}
+  _skillPrefab: {fileID: 2265796870044290382, guid: d21855f8393474249b816c910bb967be, type: 3}
+  _skillOffset: {x: 0, y: 0.5, z: 2.3}
+  _spawnAmount: 1
   _shouldBeAttachedToParent: 0
-  _setupPrefab: {fileID: 6660832954952942248, guid: 5313287a8c8424e40ab1119be55d7da1, type: 3}
-  _setupOffset: {x: 0, y: -0.927, z: 0}

@@ -1,16 +1,20 @@
+using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Unity.Netcode;
 using UnityEngine;
 
 public class SkillManager : NetworkBehaviour
 {
+    public event Action OnMineCountReduced;
+
     public static SkillManager Instance { get; private set; }
 
     [SerializeField] private MysteryBoxSkillsSO[] mysteryBoxSkills;
 
     private Dictionary<SkillType, MysteryBoxSkillsSO> skillsDictionary;
 
-    private void Awake() 
+    private void Awake()
     {
         Instance = this;
 
@@ -23,7 +27,7 @@ public class SkillManager : NetworkBehaviour
 
     public void ActivateSkill(SkillType skillType, Transform playerTransform, ulong spawnerClientId)
     {
-        SkillTransformDataSerializable skillTransformData 
+        SkillTransformDataSerializable skillTransformData
             = new SkillTransformDataSerializable(playerTransform.position, playerTransform.rotation, skillType, playerTransform.GetComponent<NetworkObject>());
 
         if (!IsServer)
@@ -41,7 +45,7 @@ public class SkillManager : NetworkBehaviour
         SpawnSkill(skillTransformDataSerializable, spawnerClientId);
     }
 
-    private void SpawnSkill(SkillTransformDataSerializable skillTransformDataSerializable, ulong spawnerClientId)
+    private async void SpawnSkill(SkillTransformDataSerializable skillTransformDataSerializable, ulong spawnerClientId)
     {
         if (!skillsDictionary.TryGetValue(skillTransformDataSerializable.SkillType, out MysteryBoxSkillsSO skillData))
         {
@@ -49,44 +53,75 @@ public class SkillManager : NetworkBehaviour
             return;
         }
 
-        if(IsServer)
+        if (skillTransformDataSerializable.SkillType == SkillType.Mine)
+        {
+            Vector3 spawnPosition = skillTransformDataSerializable.Position;
+            Vector3 spawnDirection = skillTransformDataSerializable.Rotation * Vector3.forward;
+
+            for (int i = 0; i < skillData.SkillData.SpawnAmountOrTimer; ++i)
+            {
+                Vector3 offset = spawnDirection * (i * 3f);
+                skillTransformDataSerializable.Position = spawnPosition + offset;
+
+                Spawn(skillTransformDataSerializable, spawnerClientId, skillData);
+                await UniTask.Delay(200);
+                OnMineCountReduced?.Invoke();
+            }
+        }
+        else
+        {
+            Spawn(skillTransformDataSerializable, spawnerClientId, skillData);
+        }
+    }
+
+    private void Spawn(SkillTransformDataSerializable skillTransformDataSerializable, ulong spawnerClientId, MysteryBoxSkillsSO skillData)
+    {
+        if (IsServer)
         {
             Transform skillInstance = Instantiate(skillData.SkillData.SkillPrefab);
             skillInstance.SetPositionAndRotation(skillTransformDataSerializable.Position, skillTransformDataSerializable.Rotation);
             var networkObject = skillInstance.GetComponent<NetworkObject>();
             networkObject.Spawn(true);
 
-            if(NetworkManager.Singleton.ConnectedClients.TryGetValue(spawnerClientId, out var client))
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(spawnerClientId, out var client))
             {
                 networkObject.TrySetParent(client.PlayerObject);
 
-                skillInstance.transform.localPosition += skillData.SkillData.SkillOffset;
+                PositionDataSerializable positionDataSerializable = new PositionDataSerializable(skillInstance.transform.localPosition + skillData.SkillData.SkillOffset);
+                UpdateSkillPositionRpc(networkObject.NetworkObjectId, positionDataSerializable, false);
 
-                if(!skillData.SkillData.ShouldBeAttachedToParent)
+                if (!skillData.SkillData.ShouldBeAttachedToParent)
                 {
                     networkObject.TryRemoveParent();
                 }
 
-                if(skillData.SkillType == SkillType.FakeBox)
+                if (skillData.SkillType == SkillType.FakeBox)
                 {
-                    PositionDataSerializable positionDataSerializable 
+                    positionDataSerializable
                         = new PositionDataSerializable(new Vector3(
-                            skillInstance.transform.position.x, 
+                            skillInstance.transform.position.x,
                             0f + skillData.SkillData.SkillOffset.y,
                             skillInstance.transform.position.z));
 
-                    UpdateFakeBoxPositionRpc(networkObject.NetworkObjectId, positionDataSerializable);
+                    UpdateSkillPositionRpc(networkObject.NetworkObjectId, positionDataSerializable, true);
                 }
             }
         }
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void UpdateFakeBoxPositionRpc(ulong objectId, PositionDataSerializable positionDataSerializable)
+    private void UpdateSkillPositionRpc(ulong objectId, PositionDataSerializable positionDataSerializable, bool isSpecialPosition)
     {
         if (NetworkManager.Singleton.SpawnManager.SpawnedObjects.TryGetValue(objectId, out var networkObject))
         {
-            networkObject.transform.position = positionDataSerializable.Position;
+            if (isSpecialPosition)
+            {
+                networkObject.transform.position = positionDataSerializable.Position;
+            }
+            else
+            {
+                networkObject.transform.localPosition = positionDataSerializable.Position;
+            }
         }
     }
 }

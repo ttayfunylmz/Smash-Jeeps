@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ab85d7bcd59564388f04cf18c6f4c0, type: 3}
   m_Name: FakeBoxSkill
   m_EditorClassIdentifier: 
-  _skillType: 0
-  _skillIcon: {fileID: 0}
+  _skillName: Fake Box
+  _skillType: 1
+  _skillIcon: {fileID: 95911951, guid: 6f5111872d5cbc4439d87fca51b73b54, type: 3}
   _skillData: {fileID: 11400000, guid: 175bae87c331f72438a29de0422d9d8a, type: 2}

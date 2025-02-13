@@ -18,7 +18,7 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
         if(playerSkillController.HasSkillAlready()) { return; }
 
         MysteryBoxSkillsSO skill = GetRandomSkill();
-        SkillsUI.Instance.SetSkill(skill.SkillIcon, skill.SkillType.ToString());
+        SkillsUI.Instance.SetSkill(skill.SkillIcon, skill.SkillName, skill.SkillUsageType, skill.SkillData.SpawnAmountOrTimer);
 
         playerSkillController.SetupSkill(skill);
 

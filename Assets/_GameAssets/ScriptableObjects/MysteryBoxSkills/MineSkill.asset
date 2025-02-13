@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ab85d7bcd59564388f04cf18c6f4c0, type: 3}
   m_Name: MineSkill
   m_EditorClassIdentifier: 
-  _skillType: 1
-  _skillIcon: {fileID: 0}
+  _skillName: Mine
+  _skillType: 2
+  _skillUsageType: 1
+  _skillIcon: {fileID: -1020996379, guid: 82b6d27f59b43ef46a28283b52be8dd4, type: 3}
   _skillData: {fileID: 11400000, guid: e506ef1625a39aa469f783adac9afa8d, type: 2}

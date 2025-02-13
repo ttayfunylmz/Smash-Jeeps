@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ab85d7bcd59564388f04cf18c6f4c0, type: 3}
   m_Name: ShieldSkill
   m_EditorClassIdentifier: 
-  _skillType: 3
-  _skillIcon: {fileID: 0}
+  _skillName: Shield
+  _skillType: 4
+  _skillUsageType: 2
+  _skillIcon: {fileID: 1881444746, guid: ff93dfeadfcfec348be9431d335e289b, type: 3}
   _skillData: {fileID: 11400000, guid: a931c4e861e7bce4dade0f8cf1ed13a5, type: 2}
