@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Unity.Netcode;
 using UnityEngine;
@@ -48,10 +50,8 @@ public class PlayerVehicleController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if(!IsOwner)
-        {
-            _vehicleRigidbody.isKinematic = true;
-        }
+        _vehicleRigidbody.isKinematic = true;
+        SetOwnerRigidbodyKinematicAsync();
     }
 
     private void Update()
@@ -73,14 +73,23 @@ public class PlayerVehicleController : NetworkBehaviour
         UpdateAirResistance();
     }
 
+    private async void SetOwnerRigidbodyKinematicAsync()
+    {
+        if(IsOwner)
+        {
+            await UniTask.DelayFrame(1);
+            _vehicleRigidbody.isKinematic = false;
+        }
+    }
+
     public void SetSteerInput(float steerInput)
     {
-        this._steerInput = Mathf.Clamp(steerInput, -1.0f, 1.0f);
+        _steerInput = Mathf.Clamp(steerInput, -1.0f, 1.0f);
     }
 
     public void SetAccelerateInput(float accelerateInput)
     {
-        this._accelerateInput = Mathf.Clamp(accelerateInput, -1.0f, 1.0f);
+        _accelerateInput = Mathf.Clamp(accelerateInput, -1.0f, 1.0f);
     }
 
     public float GetSpringCurrentLength(WheelType wheel)
