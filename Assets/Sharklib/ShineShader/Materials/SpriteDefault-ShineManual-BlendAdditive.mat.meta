@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a7b9a2cc0b0c1c449b4908084c4b18aa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82710
+  packageName: Shine Highlight Shader for Sprites & UI
+  packageVersion: 1.0
+  assetPath: Assets/Sharklib/ShineShader/Materials/SpriteDefault-ShineManual-BlendAdditive.mat
+  uploadId: 559144

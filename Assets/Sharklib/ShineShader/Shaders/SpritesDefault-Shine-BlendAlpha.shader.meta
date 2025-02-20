@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 901e004777175344ebd17b495f99ec8b
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82710
+  packageName: Shine Highlight Shader for Sprites & UI
+  packageVersion: 1.0
+  assetPath: Assets/Sharklib/ShineShader/Shaders/SpritesDefault-Shine-BlendAlpha.shader
+  uploadId: 559144

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1eca4650eb305184ba2f337ad26ffbcb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82710
+  packageName: Shine Highlight Shader for Sprites & UI
+  packageVersion: 1.0
+  assetPath: Assets/Sharklib/ShineShader/Materials/UI-ShineManual-BlendAlpha.mat
+  uploadId: 559144

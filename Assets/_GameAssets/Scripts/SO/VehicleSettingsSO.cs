@@ -16,7 +16,7 @@ public class VehicleSettingsSO : ScriptableObject
     [SerializeField] private float _chassiMass;
     [SerializeField] private float _tireMass;
 
-    [Header("Susupension")]
+    [Header("Suspension")]
     [SerializeField] private float _springRestLength;
     [SerializeField] private float _springStrength;
     [SerializeField] private float _springDamper;

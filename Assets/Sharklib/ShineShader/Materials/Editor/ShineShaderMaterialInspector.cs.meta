@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 315286949ad17c44c8fc45e3a90e583f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82710
+  packageName: Shine Highlight Shader for Sprites & UI
+  packageVersion: 1.0
+  assetPath: Assets/Sharklib/ShineShader/Materials/Editor/ShineShaderMaterialInspector.cs
+  uploadId: 559144

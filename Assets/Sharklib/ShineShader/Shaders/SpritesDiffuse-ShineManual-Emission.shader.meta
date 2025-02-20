@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 59196a40dbc68a341a962d12c98a0e92
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82710
+  packageName: Shine Highlight Shader for Sprites & UI
+  packageVersion: 1.0
+  assetPath: Assets/Sharklib/ShineShader/Shaders/SpritesDiffuse-ShineManual-Emission.shader
+  uploadId: 559144

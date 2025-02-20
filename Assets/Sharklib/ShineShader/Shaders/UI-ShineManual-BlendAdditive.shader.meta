@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: eb447557c206d154aa94841b09856d89
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82710
+  packageName: Shine Highlight Shader for Sprites & UI
+  packageVersion: 1.0
+  assetPath: Assets/Sharklib/ShineShader/Shaders/UI-ShineManual-BlendAdditive.shader
+  uploadId: 559144

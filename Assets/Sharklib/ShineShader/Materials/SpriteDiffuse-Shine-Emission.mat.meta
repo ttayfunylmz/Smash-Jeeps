@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9f29deee4155e9d459511c5a56420dcb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82710
+  packageName: Shine Highlight Shader for Sprites & UI
+  packageVersion: 1.0
+  assetPath: Assets/Sharklib/ShineShader/Materials/SpriteDiffuse-Shine-Emission.mat
+  uploadId: 559144

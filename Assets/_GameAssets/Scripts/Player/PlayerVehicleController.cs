@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 using DG.Tweening;
 using Unity.Netcode;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class PlayerVehicleController : NetworkBehaviour
         public float currentLength;
         public float currentVelocity;
     }
+
+    public event Action OnVehicleCrashed;
 
     private static readonly WheelType[] _wheels = new WheelType[]
     {
@@ -26,6 +29,10 @@ public class PlayerVehicleController : NetworkBehaviour
     [SerializeField] private VehicleSettingsSO _vehicleSettings;
     [SerializeField] private Rigidbody _vehicleRigidbody;
     [SerializeField] private BoxCollider _vehicleCollider;
+
+    [Header("Settings")]
+    [SerializeField] private float _crashForce;
+    [SerializeField] private float _crashTorque; 
 
     private Transform _vehicleTransform;
     private Dictionary<WheelType, SpringData> _springDatas;
@@ -60,6 +67,11 @@ public class PlayerVehicleController : NetworkBehaviour
 
         SetSteerInput(Input.GetAxis("Horizontal"));
         SetAccelerateInput(Input.GetAxis("Vertical"));
+
+        if(Input.GetKeyDown(KeyCode.Y))
+        {
+            CrashVehicle();
+        }
     }
 
     private void FixedUpdate()
@@ -82,12 +94,12 @@ public class PlayerVehicleController : NetworkBehaviour
         }
     }
 
-    public void SetSteerInput(float steerInput)
+    private void SetSteerInput(float steerInput)
     {
         _steerInput = Mathf.Clamp(steerInput, -1.0f, 1.0f);
     }
 
-    public void SetAccelerateInput(float accelerateInput)
+    private void SetAccelerateInput(float accelerateInput)
     {
         _accelerateInput = Mathf.Clamp(accelerateInput, -1.0f, 1.0f);
     }
@@ -328,6 +340,15 @@ public class PlayerVehicleController : NetworkBehaviour
     private void UpdateAirResistance()
     {
         _vehicleRigidbody.AddForce(_vehicleCollider.size.magnitude * _vehicleSettings.AirResistance * -_vehicleRigidbody.linearVelocity);
+    }
+
+    public void CrashVehicle()
+    {
+        OnVehicleCrashed?.Invoke();
+
+        _vehicleRigidbody.AddForce(Vector3.up * _crashForce, ForceMode.Impulse);
+        _vehicleRigidbody.AddTorque(Vector3.forward * _crashTorque, ForceMode.Impulse);
+        this.enabled = false;
     }
 
 #if UNITY_EDITOR

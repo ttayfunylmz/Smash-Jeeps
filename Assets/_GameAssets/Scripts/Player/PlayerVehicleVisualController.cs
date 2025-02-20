@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Unity.Netcode;
+using System;
 
 public class PlayerVehicleVisualController : NetworkBehaviour
 {
@@ -39,6 +40,8 @@ public class PlayerVehicleVisualController : NetworkBehaviour
 
         _springsRestLength = _playerVehicleController.Settings.SpringRestLength;
         _steerAngle = _playerVehicleController.Settings.SteerAngle;
+
+        _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
     }
 
     private void Update()
@@ -48,6 +51,11 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         UpdateVisualStates();
         RotateWheels();
         SetSuspension();
+    }
+
+    private void PlayerVehicleController_OnVehicleCrashed()
+    {
+        this.enabled = false;
     }
 
     private void RotateWheels()

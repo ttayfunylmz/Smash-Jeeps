@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 312e3685a30b17745aeb2bcf62826ea4
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 82710
+  packageName: Shine Highlight Shader for Sprites & UI
+  packageVersion: 1.0
+  assetPath: Assets/Sharklib/ShineShader/license.txt
+  uploadId: 559144
