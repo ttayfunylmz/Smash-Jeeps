@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 735029788196151655}
   - component: {fileID: 4017092192144803896}
   - component: {fileID: 8254702110780603509}
+  - component: {fileID: 7242609696751205570}
   - component: {fileID: 6575723676936234507}
   - component: {fileID: 5631582979353365484}
   - component: {fileID: 334775650962962036}
@@ -75,11 +76,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _mineCollider: {fileID: 5631582979353365484}
   _fallSpeed: 3
   _raycastDistance: 0.5
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &7242609696751205570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2737969715486526129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5522c1297be7e8940ac5d24a85501633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _mysteryBoxSkill: {fileID: 11400000, guid: 5a5b18dc7424b3d4f8f8b5c1a14b2626, type: 2}
 --- !u!114 &6575723676936234507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,8 +151,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.31859228, z: 1}
-  m_Center: {x: 0, y: 0.13258924, z: 0}
+  m_Size: {x: 1, y: 1.1500307, z: 1}
+  m_Center: {x: 0, y: 0.54830855, z: 0}
 --- !u!114 &334775650962962036
 MonoBehaviour:
   m_ObjectHideFlags: 0

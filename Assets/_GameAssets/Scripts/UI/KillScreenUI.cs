@@ -1,9 +1,12 @@
+using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
 public class KillScreenUI : MonoBehaviour
 {
+    public event Action OnRespawnTimerFinished;
+
     public static KillScreenUI Instance { get; private set; }
 
     [Header("Smash UI")]
@@ -18,6 +21,9 @@ public class KillScreenUI : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _scaleDuration;
 
+    [SerializeField] private float _timer;
+    private bool _isTimerActive;
+
     private void Awake()
     {
         Instance = this;        
@@ -31,14 +37,19 @@ public class KillScreenUI : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
+        if (_isTimerActive)
         {
-            SetSmashUI("Player 1");
-        }
+            _timer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            SetSmashedUI("Player 2", 5);
+            int timer = (int)_timer;
+            _respawnTimerText.text = timer.ToString();
+
+            if(_timer <= 0f)
+            {
+                _isTimerActive = false;
+                _smashedUITransform.localScale = Vector3.zero;
+                OnRespawnTimerFinished?.Invoke();
+            }
         }
     }
 
@@ -55,5 +66,8 @@ public class KillScreenUI : MonoBehaviour
 
         _smashedByPlayerText.text = playerName;
         _respawnTimerText.text = respawnTimeCounter.ToString();
+        
+        _isTimerActive = true;
+        _timer = respawnTimeCounter;
     }
 }

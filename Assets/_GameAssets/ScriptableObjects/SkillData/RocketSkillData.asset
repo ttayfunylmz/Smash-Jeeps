@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillPrefab: {fileID: 2265796870044290382, guid: d21855f8393474249b816c910bb967be, type: 3}
   _skillOffset: {x: 0, y: 0.5, z: 2.3}
-  _spawnAmount: 1
+  _spawnAmountOrTimer: 0
   _shouldBeAttachedToParent: 0
+  _respawnTimer: 5

@@ -3,11 +3,23 @@ using UnityEngine;
 
 public class MineController : NetworkBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Collider _mineCollider;
+
+    [Header("Settings")]
     [SerializeField] private float _fallSpeed = 5f;
     [SerializeField] private float _raycastDistance = 0.5f;
     [SerializeField] private LayerMask _groundLayer;
 
     private bool _hasLanded;
+
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner)
+        {
+            SetOwnerVisualsRpc();
+        }
+    }
 
     private void Update()
     {
@@ -31,5 +43,11 @@ public class MineController : NetworkBehaviour
     {
         if (IsServer) return;
         transform.position = newPosition;
+    }
+
+    [Rpc(SendTo.Owner)]
+    public void SetOwnerVisualsRpc()
+    {
+        _mineCollider.enabled = false;
     }
 }

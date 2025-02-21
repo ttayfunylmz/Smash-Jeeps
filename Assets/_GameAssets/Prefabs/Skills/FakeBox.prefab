@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _mysteryBoxSkill: {fileID: 11400000, guid: aa9cf2010d3b1374ca26683173254b94, type: 2}
 --- !u!65 &2789111619808441850
 BoxCollider:
   m_ObjectHideFlags: 0

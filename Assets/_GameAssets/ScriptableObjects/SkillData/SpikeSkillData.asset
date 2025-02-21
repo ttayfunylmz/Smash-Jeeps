@@ -16,3 +16,4 @@ MonoBehaviour:
   _skillOffset: {x: 0, y: -0.75, z: 0}
   _spawnAmountOrTimer: 7
   _shouldBeAttachedToParent: 1
+  _respawnTimer: 5
