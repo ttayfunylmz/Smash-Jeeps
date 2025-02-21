@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackerSettings:
-    BindingMode: 3
+    BindingMode: 1
     PositionDamping: {x: 0.5, y: 0, z: 1}
     AngularDampingMode: 1
     RotationDamping: {x: 1, y: 1, z: 1}

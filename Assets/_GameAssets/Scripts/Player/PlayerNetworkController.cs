@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.Cinemachine;
 using Unity.Collections;
@@ -16,7 +17,6 @@ public class PlayerNetworkController : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         _playerCinemachineCamera.gameObject.SetActive(IsOwner);
-
         // SetPlayerText();
     }
 

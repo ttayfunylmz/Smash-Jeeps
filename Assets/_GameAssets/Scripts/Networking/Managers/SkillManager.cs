@@ -81,7 +81,7 @@ public class SkillManager : NetworkBehaviour
             Transform skillInstance = Instantiate(skillData.SkillData.SkillPrefab);
             skillInstance.SetPositionAndRotation(skillTransformDataSerializable.Position, skillTransformDataSerializable.Rotation);
             var networkObject = skillInstance.GetComponent<NetworkObject>();
-            networkObject.Spawn(true);
+            networkObject.SpawnWithOwnership(spawnerClientId);
 
             if (NetworkManager.Singleton.ConnectedClients.TryGetValue(spawnerClientId, out var client))
             {
