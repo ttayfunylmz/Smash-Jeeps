@@ -15,12 +15,20 @@ public class PlayerSkillController : NetworkBehaviour
     [SerializeField] private float _resetDelay;
 
     private MysteryBoxSkillsSO _mysteryBoxSkill;
+    private PlayerInteractionController _playerInteractionController;
 
     private bool _isSkillUsed;
     private bool _hasTimerStarted;
     private float _timer;
     private float _timerMax;
     private int _amountCounter;
+
+    public override void OnNetworkSpawn()
+    {
+        if(!IsOwner) { return; }
+
+        _playerInteractionController = GetComponent<PlayerInteractionController>();
+    }
 
     private void Update() 
     {
@@ -43,6 +51,11 @@ public class PlayerSkillController : NetworkBehaviour
                 SkillsUI.Instance.SetSkillToNone();
                 _hasTimerStarted = false;
                 _hasSkillAlready = false;
+
+                if(_mysteryBoxSkill.SkillType == SkillType.Shield)
+                {
+                    _playerInteractionController.SetShieldActive(false);
+                }
             }
         }
     }
@@ -77,6 +90,11 @@ public class PlayerSkillController : NetworkBehaviour
         if(_mysteryBoxSkill.SkillType == SkillType.Rocket)
         {
             StartCoroutine(ResetRocketLauncher());
+        }
+
+        if(_mysteryBoxSkill.SkillType == SkillType.Shield)
+        {
+            _playerInteractionController.SetShieldActive(true);
         }
     }
 

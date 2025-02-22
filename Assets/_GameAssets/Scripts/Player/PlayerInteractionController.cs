@@ -6,6 +6,8 @@ public class PlayerInteractionController : NetworkBehaviour
     private PlayerVehicleController _playerVehicleController;
     private PlayerSkillController _playerSkillController;
 
+    private bool _isShieldActive;
+
     public override void OnNetworkSpawn()
     {
         if(!IsOwner) return;
@@ -25,10 +27,18 @@ public class PlayerInteractionController : NetworkBehaviour
 
         if(other.gameObject.TryGetComponent(out IDamageable damageable))
         {
+            if(_isShieldActive)
+            {
+                Debug.Log("Shield Active: Damage Blocked");
+                return;
+            }
+
             damageable.Damage(_playerVehicleController);
             
             int respawnTimer = damageable.GetRespawnTimer();
             SpawnManager.Instance.RespawnPlayer(respawnTimer, OwnerClientId);
         }
     }
+
+    public void SetShieldActive(bool isActive) => _isShieldActive = isActive;
 }

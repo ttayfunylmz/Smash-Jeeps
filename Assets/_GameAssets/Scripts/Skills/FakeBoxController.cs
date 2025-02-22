@@ -21,7 +21,7 @@ public class FakeBoxController : NetworkBehaviour
             SetOwnerVisualsRpc();
         }
     }
-
+    
     [Rpc(SendTo.Owner)]
     public void SetOwnerVisualsRpc()
     {

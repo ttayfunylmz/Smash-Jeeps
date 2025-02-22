@@ -5,6 +5,14 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
 {
     [SerializeField] private MysteryBoxSkillsSO _mysteryBoxSkill;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent(out ShieldController shieldController))
+        {
+            DestroyRpc();
+        }
+    }
+
     public void Damage(PlayerVehicleController playerVehicleController)
     {
         playerVehicleController.CrashVehicle();

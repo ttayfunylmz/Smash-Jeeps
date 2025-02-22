@@ -876,6 +876,14 @@ PrefabInstance:
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 2866968273
       objectReference: {fileID: 0}
+    - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
+      propertyPath: _mysteryBoxSkills.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
+      propertyPath: '_mysteryBoxSkills.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e7cbe36c98f4254aa9d5799f0579ed6, type: 2}
     - target: {fileID: 4543965304027722592, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.25
