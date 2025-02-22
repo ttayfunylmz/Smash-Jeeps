@@ -1755,6 +1755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _jeepVisualTransform: {fileID: 3442369558037732817}
   _wheelFrontLeft: {fileID: 5552004314922858055}
   _wheelFrontRight: {fileID: 6928456608931619067}
   _wheelBackLeft: {fileID: 7037115062268279987}
@@ -1762,7 +1763,6 @@ MonoBehaviour:
   _wheelsSpinSpeed: 70
   _wheelYWhenSpringMin: 0.6
   _wheelYWhenSpringMax: 0.3
-  _baseMeshRenderer: {fileID: 119184587465666424}
 --- !u!114 &867195426651295143
 MonoBehaviour:
   m_ObjectHideFlags: 0

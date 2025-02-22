@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using Unity.Netcode;
 using System;
+using Cysharp.Threading.Tasks;
 
 public class PlayerVehicleVisualController : NetworkBehaviour
 {
+    [SerializeField] private Transform _jeepVisualTransform;
     [SerializeField] private Transform _wheelFrontLeft, _wheelFrontRight, _wheelBackLeft, _wheelBackRight;
     [SerializeField] private float _wheelsSpinSpeed, _wheelYWhenSpringMin, _wheelYWhenSpringMax;
-    [SerializeField] private MeshRenderer _baseMeshRenderer;
 
     private PlayerVehicleController _playerVehicleController;
     private Quaternion _wheelFrontLeftRoll;
@@ -56,7 +57,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
 
     private void SpawnManager_OnPlayerRespawned()
     {
-        enabled = true;   
+        SetVehicleVisualActiveAsync();
     }
 
     private void PlayerVehicleController_OnVehicleCrashed()
@@ -127,9 +128,19 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         _springsCurrentLength[WheelType.BackRight] = _playerVehicleController.GetSpringCurrentLength(WheelType.BackRight);
     }
 
-    public void SetBaseColor(Color color)
+    [Rpc(SendTo.ClientsAndHost)]
+    public void SetJeepVisualActiveRpc(bool isActive)
     {
-        if(!IsOwner) return;
-        _baseMeshRenderer.material.color = color;
+        _jeepVisualTransform.gameObject.SetActive(isActive);
+    }
+
+    private async void SetVehicleVisualActiveAsync()
+    {
+        SetJeepVisualActiveRpc(false);
+
+        await UniTask.Delay(200);
+
+        SetJeepVisualActiveRpc(true);
+        enabled = true;
     }
 }

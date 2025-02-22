@@ -15,6 +15,7 @@ public class PlayerSkillController : NetworkBehaviour
     [SerializeField] private float _resetDelay;
 
     private MysteryBoxSkillsSO _mysteryBoxSkill;
+    private PlayerVehicleController _playerVehicleController;
     private PlayerInteractionController _playerInteractionController;
 
     private bool _isSkillUsed;
@@ -27,6 +28,7 @@ public class PlayerSkillController : NetworkBehaviour
     {
         if(!IsOwner) { return; }
 
+        _playerVehicleController = GetComponent<PlayerVehicleController>();
         _playerInteractionController = GetComponent<PlayerInteractionController>();
     }
 

@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 125411671
-  InScenePlacedSourceGlobalObjectIdHash: 238193624
+  GlobalObjectIdHash: 2868393929
+  InScenePlacedSourceGlobalObjectIdHash: 2866968273
   DeferredDespawnTick: 0
   Ownership: 8
   AlwaysReplicateAsRoot: 0
@@ -184,11 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _mysteryBoxSkills:
-  - {fileID: 11400000, guid: aa9cf2010d3b1374ca26683173254b94, type: 2}
-  - {fileID: 11400000, guid: 5a5b18dc7424b3d4f8f8b5c1a14b2626, type: 2}
   - {fileID: 11400000, guid: 6e7cbe36c98f4254aa9d5799f0579ed6, type: 2}
-  - {fileID: 11400000, guid: b863f32725f5c20439e3a4c4b0dedd38, type: 2}
-  - {fileID: 11400000, guid: 2c8b572e2647e614ca3053b816964264, type: 2}
   _boxAnimator: {fileID: 2044213317753341787}
   _collider: {fileID: 3677238319746565391}
   _respawnTimer: 5
@@ -218,7 +214,7 @@ MonoBehaviour:
     Layer: 0
     OriginatingState: 1937637293
     DestinationState: 1073030454
-    TransitionDuration: 0.2
+    TransitionDuration: 0
     TriggerNameHash: -1957187052
     TransitionIndex: 0
   m_Animator: {fileID: 2044213317753341787}
