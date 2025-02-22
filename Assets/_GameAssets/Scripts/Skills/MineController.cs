@@ -33,7 +33,7 @@ public class MineController : NetworkBehaviour
         }
         else
         {
-            transform.position += Vector3.down * _fallSpeed * Time.deltaTime;
+            transform.position += _fallSpeed * Time.deltaTime * Vector3.down;
             SyncPositionClientRpc(transform.position);
         }
     }

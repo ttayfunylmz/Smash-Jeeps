@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class SpikeController : NetworkBehaviour
 {
+    [SerializeField] private Collider _spikeCollider;
+
     public override void OnNetworkSpawn()
     {
         PlayerSkillController.OnTimerFinished += PlayerSkillController_OnTimerFinished;
+
+        if (IsOwner)
+        {
+            SetOwnerVisualsRpc();
+        }
     }
 
     private void PlayerSkillController_OnTimerFinished()
@@ -20,6 +27,12 @@ public class SpikeController : NetworkBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    [Rpc(SendTo.Owner)]
+    public void SetOwnerVisualsRpc()
+    {
+        _spikeCollider.enabled = false;
     }
 
     public override void OnNetworkDespawn()

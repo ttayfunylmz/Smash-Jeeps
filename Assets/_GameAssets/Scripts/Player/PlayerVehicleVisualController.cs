@@ -42,6 +42,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         _steerAngle = _playerVehicleController.Settings.SteerAngle;
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
+        SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
     }
 
     private void Update()
@@ -53,9 +54,14 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         SetSuspension();
     }
 
+    private void SpawnManager_OnPlayerRespawned()
+    {
+        enabled = true;   
+    }
+
     private void PlayerVehicleController_OnVehicleCrashed()
     {
-        this.enabled = false;
+        enabled = false;
     }
 
     private void RotateWheels()

@@ -46,9 +46,9 @@ public class KillScreenUI : MonoBehaviour
 
             if(_timer <= 0f)
             {
-                _isTimerActive = false;
                 _smashedUITransform.localScale = Vector3.zero;
                 OnRespawnTimerFinished?.Invoke();
+                _isTimerActive = false;
             }
         }
     }

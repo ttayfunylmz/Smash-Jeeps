@@ -26,6 +26,9 @@ public class PlayerInteractionController : NetworkBehaviour
         if(other.gameObject.TryGetComponent(out IDamageable damageable))
         {
             damageable.Damage(_playerVehicleController);
+            
+            int respawnTimer = damageable.GetRespawnTimer();
+            SpawnManager.Instance.RespawnPlayer(respawnTimer, OwnerClientId);
         }
     }
 }

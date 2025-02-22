@@ -413,8 +413,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4574051478780769726}
   - component: {fileID: 333543458253041358}
+  - component: {fileID: 3589031611096304806}
   - component: {fileID: 5103659492971306358}
   - component: {fileID: 4729670282130641872}
+  - component: {fileID: 2866420328953187083}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -463,6 +465,20 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
+--- !u!114 &3589031611096304806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547878680243117159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68779778f870f1b44ab29017fef2c76d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _mysteryBoxSkill: {fileID: 11400000, guid: 2c8b572e2647e614ca3053b816964264, type: 2}
 --- !u!114 &5103659492971306358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,6 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _spikeCollider: {fileID: 2866420328953187083}
 --- !u!114 &4729670282130641872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +508,27 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   TransitionStateInfoList: []
   m_Animator: {fileID: 7418455912019593182}
+--- !u!65 &2866420328953187083
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547878680243117159}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.410448, y: 1.5548809, z: 5.1610923}
+  m_Center: {x: -0.002860546, y: 0.71791327, z: 0.1573112}
 --- !u!1 &8583763916943178319
 GameObject:
   m_ObjectHideFlags: 0

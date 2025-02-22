@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 208785849024670409}
   - component: {fileID: 6711396028521782714}
   - component: {fileID: 5225911587855457300}
+  - component: {fileID: 4068894361933437231}
   - component: {fileID: 3173932339035180970}
   - component: {fileID: 6268477750406069445}
   m_Layer: 0
@@ -220,8 +221,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  _rocketCollider: {fileID: 6268477750406069445}
   _movementSpeed: 20
   _rotationSpeed: 300
+--- !u!114 &4068894361933437231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7972374259047879277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38aa9b6f1f4bb1d488a77b6d20a4f0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _mysteryBoxSkill: {fileID: 11400000, guid: 6e7cbe36c98f4254aa9d5799f0579ed6, type: 2}
 --- !u!114 &3173932339035180970
 MonoBehaviour:
   m_ObjectHideFlags: 0

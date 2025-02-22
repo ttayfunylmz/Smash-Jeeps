@@ -87,6 +87,11 @@ public class SkillManager : NetworkBehaviour
             {
                 networkObject.TrySetParent(client.PlayerObject);
 
+                if(skillData.SkillData.ShouldBeAttachedToParent)
+                {
+                    networkObject.transform.localPosition = Vector3.zero;
+                }
+
                 PositionDataSerializable positionDataSerializable = new PositionDataSerializable(skillInstance.transform.localPosition + skillData.SkillData.SkillOffset);
                 UpdateSkillPositionRpc(networkObject.NetworkObjectId, positionDataSerializable, false);
 

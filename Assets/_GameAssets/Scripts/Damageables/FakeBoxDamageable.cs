@@ -12,6 +12,11 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
         DestroyRpc();
     }
 
+    public int GetRespawnTimer()
+    {
+        return _mysteryBoxSkill.SkillData.RespawnTimer;
+    }
+
     [Rpc(SendTo.ClientsAndHost)]
     private void DestroyRpc()
     {

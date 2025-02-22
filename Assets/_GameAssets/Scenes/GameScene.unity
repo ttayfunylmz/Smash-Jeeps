@@ -4879,6 +4879,11 @@ MonoBehaviour:
   - {fileID: 1997576187}
   - {fileID: 1073434631}
   - {fileID: 1748591964}
+  _respawnPointTransformList:
+  - {fileID: 159807749}
+  - {fileID: 1997576187}
+  - {fileID: 1073434631}
+  - {fileID: 1748591964}
   _playerPrefab: {fileID: 8746238663559865331, guid: 8f35c22d3c3ba1a4998e311cdf9a5fa9, type: 3}
 --- !u!114 &2068711944
 MonoBehaviour:
@@ -5317,7 +5322,7 @@ PrefabInstance:
     - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: '_mysteryBoxSkills.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 5a5b18dc7424b3d4f8f8b5c1a14b2626, type: 2}
+      objectReference: {fileID: 11400000, guid: b863f32725f5c20439e3a4c4b0dedd38, type: 2}
     - target: {fileID: 4543965304027722592, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.25

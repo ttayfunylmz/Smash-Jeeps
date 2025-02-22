@@ -59,6 +59,8 @@ public class PlayerVehicleController : NetworkBehaviour
     {
         _vehicleRigidbody.isKinematic = true;
         SetOwnerRigidbodyKinematicAsync();
+
+        SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
     }
 
     private void Update()
@@ -92,6 +94,11 @@ public class PlayerVehicleController : NetworkBehaviour
             await UniTask.DelayFrame(1);
             _vehicleRigidbody.isKinematic = false;
         }
+    }
+
+    private void SpawnManager_OnPlayerRespawned()
+    {
+        enabled = true;
     }
 
     private void SetSteerInput(float steerInput)
@@ -348,7 +355,7 @@ public class PlayerVehicleController : NetworkBehaviour
 
         _vehicleRigidbody.AddForce(Vector3.up * _crashForce, ForceMode.Impulse);
         _vehicleRigidbody.AddTorque(Vector3.forward * _crashTorque, ForceMode.Impulse);
-        this.enabled = false;
+        enabled = false;
     }
 
 #if UNITY_EDITOR

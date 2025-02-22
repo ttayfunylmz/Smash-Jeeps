@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class MineDamageable : NetworkBehaviour, IDamageable
+public class RocketDamageable : NetworkBehaviour, IDamageable
 {
     [SerializeField] private MysteryBoxSkillsSO _mysteryBoxSkill;
 
