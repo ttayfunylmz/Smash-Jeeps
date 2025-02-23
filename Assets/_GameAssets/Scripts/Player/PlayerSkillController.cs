@@ -30,6 +30,21 @@ public class PlayerSkillController : NetworkBehaviour
 
         _playerVehicleController = GetComponent<PlayerVehicleController>();
         _playerInteractionController = GetComponent<PlayerInteractionController>();
+
+        _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
+        SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
+    }
+
+    private void SpawnManager_OnPlayerRespawned()
+    {
+        enabled = true;
+    }
+
+    private void PlayerVehicleController_OnVehicleCrashed()
+    {
+        SkillsUI.Instance.SetSkillToNone();
+        _hasSkillAlready = false;
+        enabled = false;
     }
 
     private void Update() 

@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class FakeBoxController : NetworkBehaviour
 {
@@ -21,7 +22,7 @@ public class FakeBoxController : NetworkBehaviour
             SetOwnerVisualsRpc();
         }
     }
-    
+
     [Rpc(SendTo.Owner)]
     public void SetOwnerVisualsRpc()
     {

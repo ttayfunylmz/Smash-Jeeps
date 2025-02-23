@@ -1,3 +1,4 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -5,9 +6,27 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
 {
     [SerializeField] private MysteryBoxSkillsSO _mysteryBoxSkill;
 
+    public override void OnNetworkSpawn()
+    {
+        if (IsOwner)
+        {
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(OwnerClientId, out var client))
+            {
+                NetworkObject ownerNetworkObject = client.PlayerObject;
+                PlayerVehicleController playerVehicleController = ownerNetworkObject.GetComponent<PlayerVehicleController>();
+                playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
+            }
+        }
+    }
+
+    private void PlayerVehicleController_OnVehicleCrashed()
+    {
+        DestroyRpc();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out ShieldController shieldController))
+        if (other.TryGetComponent(out ShieldController shieldController))
         {
             DestroyRpc();
         }
@@ -28,7 +47,7 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
     [Rpc(SendTo.ClientsAndHost)]
     private void DestroyRpc()
     {
-        if(IsServer)
+        if (IsServer)
         {
             Destroy(gameObject);
         }
