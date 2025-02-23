@@ -51,4 +51,22 @@ public class RocketDamageable : NetworkBehaviour, IDamageable
             Destroy(gameObject);
         }
     }
+
+    public ulong GetKillerClientId()
+    {
+        return OwnerClientId;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsOwner)
+        {
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(OwnerClientId, out var client))
+            {
+                NetworkObject ownerNetworkObject = client.PlayerObject;
+                PlayerVehicleController playerVehicleController = ownerNetworkObject.GetComponent<PlayerVehicleController>();
+                playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
+            }
+        }
+    }
 }

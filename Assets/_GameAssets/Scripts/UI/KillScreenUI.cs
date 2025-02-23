@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class KillScreenUI : MonoBehaviour
     [SerializeField] private TMP_Text _smashedByPlayerText;
 
     [Header("Settings")]
+    [SerializeField] private float _smashUIStayDuration;
     [SerializeField] private float _scaleDuration;
 
     [SerializeField] private float _timer;
@@ -47,6 +49,7 @@ public class KillScreenUI : MonoBehaviour
             if(_timer <= 0f)
             {
                 _smashedUITransform.localScale = Vector3.zero;
+                _smashedUITransform.gameObject.SetActive(false);
                 OnRespawnTimerFinished?.Invoke();
                 _isTimerActive = false;
             }
@@ -55,13 +58,24 @@ public class KillScreenUI : MonoBehaviour
 
     public void SetSmashUI(string playerName)
     {
+        StartCoroutine(SetSmashUICoroutine(playerName));
+    }
+
+    private IEnumerator SetSmashUICoroutine(string playerName)
+    {
+        _smashUITransform.gameObject.SetActive(true);
         _smashUITransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack);
-        
         _smashedPlayerText.text = playerName;
+
+        yield return new WaitForSeconds(_smashUIStayDuration);
+
+        _smashUITransform.gameObject.SetActive(false);
+        _smashUITransform.localScale = Vector3.zero;
     }
 
     public void SetSmashedUI(string playerName, int respawnTimeCounter)
     {
+        _smashedUITransform.gameObject.SetActive(true);
         _smashedUITransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack);
 
         _smashedByPlayerText.text = playerName;

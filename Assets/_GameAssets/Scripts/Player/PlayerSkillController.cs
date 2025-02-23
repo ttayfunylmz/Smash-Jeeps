@@ -45,6 +45,7 @@ public class PlayerSkillController : NetworkBehaviour
         SkillsUI.Instance.SetSkillToNone();
         _hasSkillAlready = false;
         enabled = false;
+        SetRocketLauncherActiveRpc(false);
     }
 
     private void Update() 

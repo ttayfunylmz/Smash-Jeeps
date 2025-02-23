@@ -86,7 +86,12 @@ public class SpawnManager : NetworkBehaviour
 
         OnPlayerRespawned?.Invoke();
 
+        playerNetworkObject.transform.GetComponent<Rigidbody>().isKinematic = true;
+
+        yield return null;
+
         playerNetworkObject.transform.SetPositionAndRotation(respawnPoint.position, respawnPoint.rotation);
+        playerNetworkObject.transform.GetComponent<Rigidbody>().isKinematic = false;
     }
 
 }

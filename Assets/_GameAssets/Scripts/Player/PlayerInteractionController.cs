@@ -23,13 +23,13 @@ public class PlayerInteractionController : NetworkBehaviour
 
     private void SpawnManager_OnPlayerRespawned()
     {
-        enabled = true;
+        // enabled = true;
         _isCrashed = false;
     }
 
     private void PlayerVehicleController_OnVehicleCrashed()
     {
-        enabled = false;
+        // enabled = false;
         _isCrashed = true;
     }
 
@@ -51,12 +51,24 @@ public class PlayerInteractionController : NetworkBehaviour
                 return;
             }
 
+            SetKillerUIClientRpc(damageable.GetKillerClientId());
             damageable.Damage(_playerVehicleController);
-            
             int respawnTimer = damageable.GetRespawnTimer();
             SpawnManager.Instance.RespawnPlayer(respawnTimer, OwnerClientId);
         }
     }
 
+    [Rpc(SendTo.ClientsAndHost)]
+    private void SetKillerUIClientRpc(ulong killerClientId)
+    {
+        if(IsOwner) return;
+
+        if(NetworkManager.Singleton.ConnectedClients.TryGetValue(killerClientId, out var killerClient))
+        {
+            KillScreenUI.Instance.SetSmashUI("Tayfs");
+        }
+    }
+
     public void SetShieldActive(bool isActive) => _isShieldActive = isActive;
+
 }
