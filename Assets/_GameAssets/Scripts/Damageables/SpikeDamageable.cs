@@ -60,4 +60,9 @@ public class SpikeDamageable : NetworkBehaviour, IDamageable
             }
         }
     }
+
+    public int GetDamageAmount()
+    {
+        return _mysteryBoxSkill.SkillData.DamageAmount;   
+    }
 }

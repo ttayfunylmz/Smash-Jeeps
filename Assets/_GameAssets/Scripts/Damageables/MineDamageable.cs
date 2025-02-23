@@ -69,4 +69,9 @@ public class MineDamageable : NetworkBehaviour, IDamageable
             }
         }
     }
+
+    public int GetDamageAmount()
+    {
+        return _mysteryBoxSkill.SkillData.DamageAmount;
+    }
 }
