@@ -4501,7 +4501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBarTransform: {fileID: 6801402}
-  _animationDuration: 0.5
+  _animationDuration: 1
 --- !u!1001 &1816476714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5403,7 +5403,7 @@ SceneRoots:
   - {fileID: 1459661339}
   - {fileID: 1797837352}
   - {fileID: 1572191339}
+  - {fileID: 1062986296}
   - {fileID: 6550999423484404636}
   - {fileID: 350664394}
   - {fileID: 2122084525}
-  - {fileID: 1062986296}

@@ -27,14 +27,11 @@ public class PlayerVehicleVisualController : NetworkBehaviour
             { WheelType.BackRight, 0.0f }
         };
 
-    private void Awake()
-    {
-        _playerVehicleController = GetComponent<PlayerVehicleController>();
-    }
-
     public override void OnNetworkSpawn()
     {
-        if(!IsOwner) return;
+        if (!IsOwner) return;
+
+        _playerVehicleController = GetComponent<PlayerVehicleController>();
 
         _wheelFrontLeftRoll = _wheelFrontLeft.localRotation;
         _wheelFrontRightRoll = _wheelFrontRight.localRotation;
@@ -48,7 +45,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
 
     private void Update()
     {
-        if(!IsOwner) return;
+        if (!IsOwner) return;
 
         UpdateVisualStates();
         RotateWheels();
