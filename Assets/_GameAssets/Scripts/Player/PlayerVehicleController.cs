@@ -70,10 +70,7 @@ public class PlayerVehicleController : NetworkBehaviour
         SetSteerInput(Input.GetAxis("Horizontal"));
         SetAccelerateInput(Input.GetAxis("Vertical"));
 
-        if(Input.GetKeyDown(KeyCode.Y))
-        {
-            CrashVehicle();
-        }
+        
     }
 
     private void FixedUpdate()

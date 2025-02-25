@@ -9,6 +9,8 @@ public class PlayerVehicleVisualController : NetworkBehaviour
     [SerializeField] private Transform _jeepVisualTransform;
     [SerializeField] private Transform _wheelFrontLeft, _wheelFrontRight, _wheelBackLeft, _wheelBackRight;
     [SerializeField] private float _wheelsSpinSpeed, _wheelYWhenSpringMin, _wheelYWhenSpringMax;
+    [SerializeField] private ParticleSystem[] _skidParticles;
+    [SerializeField] private TrailRenderer[] _skidMarkTrails;
 
     private PlayerVehicleController _playerVehicleController;
     private Quaternion _wheelFrontLeftRoll;
@@ -50,6 +52,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         UpdateVisualStates();
         RotateWheels();
         SetSuspension();
+        SetSkidMarksAndParticles();
     }
 
     private void SpawnManager_OnPlayerRespawned()
@@ -60,6 +63,24 @@ public class PlayerVehicleVisualController : NetworkBehaviour
     private void PlayerVehicleController_OnVehicleCrashed()
     {
         enabled = false;
+    }
+
+    private void SetSkidMarksAndParticles()
+    {
+        if(Input.GetAxis("Vertical") != 0f && Input.GetAxis("Horizontal") != 0f)
+        {
+            foreach (TrailRenderer trail in _skidMarkTrails)
+            {
+                trail.emitting = true;
+            }
+        }
+        else
+        {
+            foreach (TrailRenderer trail in _skidMarkTrails)
+            {
+                trail.emitting = false;
+            }
+        }
     }
 
     private void RotateWheels()
