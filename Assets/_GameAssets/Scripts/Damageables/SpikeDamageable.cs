@@ -34,13 +34,10 @@ public class SpikeDamageable : NetworkBehaviour, IDamageable
         return _mysteryBoxSkill.SkillData.RespawnTimer;
     }
 
-    [Rpc(SendTo.ClientsAndHost)]
+    [Rpc(SendTo.Server)]
     private void DestroyRpc()
     {
-        if (IsServer)
-        {
-            Destroy(gameObject);
-        }
+        GetComponent<NetworkObject>().Despawn();
     }
 
     public ulong GetKillerClientId()

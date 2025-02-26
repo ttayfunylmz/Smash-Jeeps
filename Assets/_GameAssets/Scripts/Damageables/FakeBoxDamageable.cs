@@ -40,13 +40,10 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
         DestroyRpc();
     }
 
-    [Rpc(SendTo.ClientsAndHost)]
+    [Rpc(SendTo.Server)]
     private void DestroyRpc()
     {
-        if (IsServer)
-        {
-            Destroy(gameObject);
-        }
+        GetComponent<NetworkObject>().Despawn();
     }
 
     public int GetRespawnTimer()

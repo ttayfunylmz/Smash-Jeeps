@@ -58,11 +58,21 @@ public class PlayerVehicleVisualController : NetworkBehaviour
     private void SpawnManager_OnPlayerRespawned()
     {
         SetVehicleVisualActiveAsync();
+
+        foreach(TrailRenderer trail in _skidMarkTrails)
+        {
+            trail.gameObject.SetActive(true);
+        }
     }
 
     private void PlayerVehicleController_OnVehicleCrashed()
     {
         enabled = false;
+
+        foreach(TrailRenderer trail in _skidMarkTrails)
+        {
+            trail.gameObject.SetActive(false);
+        }
     }
 
     private void SetSkidMarksAndParticles()

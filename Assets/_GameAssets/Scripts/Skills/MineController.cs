@@ -12,6 +12,7 @@ public class MineController : NetworkBehaviour
     [SerializeField] private LayerMask _groundLayer;
 
     private bool _hasLanded;
+    private Vector3 _lastSentPosition;
 
     public override void OnNetworkSpawn()
     {
@@ -29,12 +30,21 @@ public class MineController : NetworkBehaviour
         {
             _hasLanded = true;
             transform.position = hit.point;
-            SyncPositionClientRpc(transform.position);
+            if (_lastSentPosition != transform.position)
+            {
+                SyncPositionClientRpc(transform.position);
+                _lastSentPosition = transform.position;
+            }
         }
         else
         {
             transform.position += _fallSpeed * Time.deltaTime * Vector3.down;
-            SyncPositionClientRpc(transform.position);
+
+            if (_lastSentPosition != transform.position)
+            {
+                SyncPositionClientRpc(transform.position);
+                _lastSentPosition = transform.position;
+            }
         }
     }
 

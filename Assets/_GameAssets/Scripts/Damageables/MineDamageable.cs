@@ -4,6 +4,7 @@ using UnityEngine;
 public class MineDamageable : NetworkBehaviour, IDamageable
 {
     [SerializeField] private MysteryBoxSkillsSO _mysteryBoxSkill;
+    [SerializeField] private GameObject _explosionParticlesPrefab;
 
     public override void OnNetworkSpawn()
     {
@@ -43,13 +44,13 @@ public class MineDamageable : NetworkBehaviour, IDamageable
         return _mysteryBoxSkill.SkillData.RespawnTimer;
     }
 
-    [Rpc(SendTo.ClientsAndHost)]
+    [Rpc(SendTo.Server)]
     private void DestroyRpc()
     {
-        if (IsServer)
-        {
-            Destroy(gameObject);
-        }
+        GameObject explosionParticlesInstance = Instantiate(_explosionParticlesPrefab, transform.position, Quaternion.identity);
+        explosionParticlesInstance.GetComponent<NetworkObject>().Spawn();
+
+        GetComponent<NetworkObject>().Despawn();
     }
 
     public ulong GetKillerClientId()

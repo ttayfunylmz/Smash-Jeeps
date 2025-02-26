@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _mysteryBoxSkill: {fileID: 11400000, guid: 5a5b18dc7424b3d4f8f8b5c1a14b2626, type: 2}
+  _explosionParticlesPrefab: {fileID: 2944386803500525170, guid: 28ab08187dca2964bb9f7a2cfb69824c, type: 3}
 --- !u!114 &6575723676936234507
 MonoBehaviour:
   m_ObjectHideFlags: 0
