@@ -60,7 +60,7 @@ public class PlayerVehicleController : NetworkBehaviour
         _vehicleRigidbody.isKinematic = true;
         SetOwnerRigidbodyKinematicAsync();
 
-        SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
+        // SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
     }
 
     private void Update()

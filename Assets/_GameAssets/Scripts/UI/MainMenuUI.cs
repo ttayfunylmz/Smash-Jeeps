@@ -1,30 +1,26 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField _nameInputField;
-    [SerializeField] private Button _startButton;
+    [SerializeField] private Button _hostButton;
+    [SerializeField] private Button _clientButton;
+    [SerializeField] private TMP_InputField _joinCodeInputField;
 
     private void Awake()
     {
-        _startButton.onClick.AddListener(OnStartButtonClicked);
+        _hostButton.onClick.AddListener(StartHost);
+        _clientButton.onClick.AddListener(StartClient);
     }
 
-    private void OnStartButtonClicked()
+    private async void StartHost()
     {
-        if(_nameInputField.text == string.Empty)
-        {
-            Debug.Log("CAN NOT BE EMPTY");
-            return;
-        }
+        await HostSingleton.Instance.HostManager.StartHostAsync();
+    }
 
-        string playerName = _nameInputField.text;
-        PlayerPrefs.SetString(Consts.PlayerData.PLAYER_NAME, playerName);
-
-        SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE);
+    private async void StartClient()
+    {
+        await ClientSingleton.Instance.ClientManager.StartClientAsync(_joinCodeInputField.text);
     }
 }

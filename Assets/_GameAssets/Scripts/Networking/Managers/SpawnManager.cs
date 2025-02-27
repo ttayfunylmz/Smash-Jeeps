@@ -23,7 +23,7 @@ public class SpawnManager : NetworkBehaviour
         Instance = this;
     }
 
-    public override void OnNetworkSpawn()
+    protected override void OnNetworkPreSpawn(ref NetworkManager networkManager)
     {
         if(!IsServer) { return; }
 

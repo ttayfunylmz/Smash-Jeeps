@@ -1016,6 +1016,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1152025984
+      objectReference: {fileID: 0}
+    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 2866968273
+      objectReference: {fileID: 0}
     - target: {fileID: 1124075251784830038, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2868393929
@@ -1617,111 +1625,6 @@ Transform:
   - {fileID: 1711282055}
   - {fileID: 112043370}
   - {fileID: 1832462837}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &455958954
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 455958957}
-  - component: {fileID: 455958956}
-  - component: {fileID: 455958955}
-  m_Layer: 0
-  m_Name: NetworkManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &455958955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455958954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ProtocolType: 0
-  m_UseWebSockets: 0
-  m_UseEncryption: 0
-  m_MaxPacketQueueSize: 128
-  m_MaxPayloadSize: 6144
-  m_HeartbeatTimeoutMS: 500
-  m_ConnectTimeoutMS: 1000
-  m_MaxConnectAttempts: 60
-  m_DisconnectTimeoutMS: 30000
-  ConnectionData:
-    Address: 127.0.0.1
-    Port: 7777
-    ServerListenAddress: 127.0.0.1
-  DebugSimulator:
-    PacketDelayMS: 0
-    PacketJitterMS: 0
-    PacketDropRate: 0
---- !u!114 &455958956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455958954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 593a2fe42fa9d37498c96f9a383b6521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NetworkManagerExpanded: 0
-  NetworkConfig:
-    ProtocolVersion: 0
-    NetworkTransport: {fileID: 455958955}
-    PlayerPrefab: {fileID: 0}
-    Prefabs:
-      NetworkPrefabsLists:
-      - {fileID: 11400000, guid: 5f7b0aa7fb91b6a4694ad077bebe50ba, type: 2}
-    TickRate: 30
-    ClientConnectionBufferTimeout: 10
-    ConnectionApproval: 0
-    ConnectionData: 
-    EnableTimeResync: 0
-    TimeResyncInterval: 30
-    EnsureNetworkVariableLengthSafety: 0
-    EnableSceneManagement: 1
-    ForceSamePrefabs: 0
-    RecycleNetworkIds: 1
-    NetworkIdRecycleDelay: 120
-    RpcHashSize: 0
-    LoadSceneTimeOut: 120
-    SpawnTimeout: 10
-    EnableNetworkLogs: 1
-    NetworkTopology: 0
-    UseCMBService: 0
-    AutoSpawnPlayerPrefabClientSide: 1
-    NetworkMessageMetrics: 1
-    NetworkProfilingMetrics: 1
-    OldPrefabList: []
-  RunInBackground: 1
-  LogLevel: 1
---- !u!4 &455958957
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455958954}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &602951907
@@ -3550,7 +3453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1226171219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4207,7 +4110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: bf93f105884ab1f43bb10473c2e7e2f0, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -5724,7 +5627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2068711942
 Transform:
   m_ObjectHideFlags: 0
@@ -5872,18 +5775,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 280291388
+      objectReference: {fileID: 0}
+    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 2866968273
+      objectReference: {fileID: 0}
     - target: {fileID: 1124075251784830038, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 684869014
       objectReference: {fileID: 0}
-    - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: _mysteryBoxSkills.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: '_mysteryBoxSkills.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: aa9cf2010d3b1374ca26683173254b94, type: 2}
     - target: {fileID: 4543965304027722592, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.25
@@ -5927,10 +5830,6 @@ PrefabInstance:
     - target: {fileID: 5217342949828390292, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: m_Name
       value: MysteryBox
-      objectReference: {fileID: 0}
-    - target: {fileID: 7414892616042270977, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6342,6 +6241,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 816229569
+      objectReference: {fileID: 0}
+    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 2866968273
+      objectReference: {fileID: 0}
     - target: {fileID: 1124075251784830038, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 125411671
@@ -6353,7 +6260,7 @@ PrefabInstance:
     - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: '_mysteryBoxSkills.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 5a5b18dc7424b3d4f8f8b5c1a14b2626, type: 2}
+      objectReference: {fileID: 11400000, guid: 6e7cbe36c98f4254aa9d5799f0579ed6, type: 2}
     - target: {fileID: 4543965304027722592, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.25
@@ -6410,7 +6317,6 @@ SceneRoots:
   - {fileID: 313526145}
   - {fileID: 130945618}
   - {fileID: 781489561}
-  - {fileID: 455958957}
   - {fileID: 1048421638}
   - {fileID: 2068711942}
   - {fileID: 1908157110}

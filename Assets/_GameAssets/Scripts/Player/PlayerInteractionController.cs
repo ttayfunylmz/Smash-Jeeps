@@ -20,7 +20,7 @@ public class PlayerInteractionController : NetworkBehaviour
         _playerHealthController = GetComponent<PlayerHealthController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
-        SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
+        // SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
     }
 
     private void SpawnManager_OnPlayerRespawned()

@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class FakeBoxDamageable : NetworkBehaviour, IDamageable
 {
     [SerializeField] private MysteryBoxSkillsSO _mysteryBoxSkill;
+    [SerializeField] private GameObject _explosionParticlesPrefab;
 
     public override void OnNetworkSpawn()
     {
@@ -43,6 +44,9 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
     [Rpc(SendTo.Server)]
     private void DestroyRpc()
     {
+        GameObject explosionParticlesInstance = Instantiate(_explosionParticlesPrefab, transform.position, Quaternion.identity);
+        explosionParticlesInstance.GetComponent<NetworkObject>().Spawn();
+
         GetComponent<NetworkObject>().Despawn();
     }
 
@@ -56,6 +60,11 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
         return OwnerClientId;
     }
 
+    public int GetDamageAmount()
+    {
+        return _mysteryBoxSkill.SkillData.DamageAmount;
+    }
+
     public override void OnNetworkDespawn()
     {
         if (IsOwner)
@@ -67,10 +76,5 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
                 playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
             }
         }
-    }
-
-    public int GetDamageAmount()
-    {
-        return _mysteryBoxSkill.SkillData.DamageAmount;
     }
 }

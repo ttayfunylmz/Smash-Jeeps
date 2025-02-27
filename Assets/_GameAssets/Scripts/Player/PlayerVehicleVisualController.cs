@@ -9,7 +9,6 @@ public class PlayerVehicleVisualController : NetworkBehaviour
     [SerializeField] private Transform _jeepVisualTransform;
     [SerializeField] private Transform _wheelFrontLeft, _wheelFrontRight, _wheelBackLeft, _wheelBackRight;
     [SerializeField] private float _wheelsSpinSpeed, _wheelYWhenSpringMin, _wheelYWhenSpringMax;
-    [SerializeField] private ParticleSystem[] _skidParticles;
     [SerializeField] private TrailRenderer[] _skidMarkTrails;
 
     private PlayerVehicleController _playerVehicleController;
@@ -42,7 +41,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         _steerAngle = _playerVehicleController.Settings.SteerAngle;
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
-        SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
+        // SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
     }
 
     private void Update()

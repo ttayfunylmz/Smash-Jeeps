@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5552004314922858055}
   - component: {fileID: 6647287188909720689}
   - component: {fileID: 1632789691940508302}
-  - component: {fileID: 4038584141205912482}
+  - component: {fileID: 542600783040649969}
   m_Layer: 0
   m_Name: Wheel_Front_Left
   m_TagString: Untagged
@@ -87,7 +87,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4038584141205912482
+--- !u!114 &542600783040649969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,11 +96,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 620445705650283230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  NetworkTransformExpanded: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   UseHalfFloatPrecision: 1
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
-  Interpolate: 0
+  Interpolate: 1
   SlerpPosition: 0
 --- !u!1 &1092396820479660162
 GameObject:
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 8707718580413562044}
   - component: {fileID: 1597063947321020390}
   - component: {fileID: 8644869166410848107}
-  - component: {fileID: 8104785277482302587}
+  - component: {fileID: 1546626346697690690}
   m_Layer: 0
   m_Name: Wheel_Back_Right
   m_TagString: Untagged
@@ -386,7 +386,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8104785277482302587
+--- !u!114 &1546626346697690690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,11 +395,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1525255477435999138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  NetworkTransformExpanded: 1
+  NetworkTransformExpanded: 0
   AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
@@ -420,7 +420,7 @@ MonoBehaviour:
   UseHalfFloatPrecision: 1
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
-  Interpolate: 0
+  Interpolate: 1
   SlerpPosition: 0
 --- !u!1 &1611543164116134443
 GameObject:
@@ -710,7 +710,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2899945201493933433}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21784978, y: 0.000007464481, z: -0.0000016661525, w: 0.97598237}
+  m_LocalRotation: {x: 0.21784978, y: 0.0000075097287, z: -0.0000016762523, w: 0.97598237}
   m_LocalPosition: {x: 0, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 7037115062268279987}
   - component: {fileID: 789048637453177794}
   - component: {fileID: 485925938464626641}
-  - component: {fileID: 3051438841121001381}
+  - component: {fileID: 2345704064946894165}
   m_Layer: 0
   m_Name: Wheel_Back_Left
   m_TagString: Untagged
@@ -1084,7 +1084,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3051438841121001381
+--- !u!114 &2345704064946894165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3745425407173496444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   UseHalfFloatPrecision: 1
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
-  Interpolate: 0
+  Interpolate: 1
   SlerpPosition: 0
 --- !u!1 &3943170320670826024
 GameObject:
@@ -1217,7 +1217,7 @@ GameObject:
   - component: {fileID: 6928456608931619067}
   - component: {fileID: 4138550873260526645}
   - component: {fileID: 5437928731168936627}
-  - component: {fileID: 3712869067497547409}
+  - component: {fileID: 3452359281118378712}
   m_Layer: 0
   m_Name: Wheel_Front_Right
   m_TagString: Untagged
@@ -1293,7 +1293,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3712869067497547409
+--- !u!114 &3452359281118378712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5645204329912763738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   UseHalfFloatPrecision: 1
   InLocalSpace: 0
   SwitchTransformSpaceWhenParented: 0
-  Interpolate: 0
+  Interpolate: 1
   SlerpPosition: 0
 --- !u!1 &5849503396021131934
 GameObject:
@@ -2256,9 +2256,6 @@ MonoBehaviour:
   _wheelsSpinSpeed: 70
   _wheelYWhenSpringMin: 0.6
   _wheelYWhenSpringMax: 0.3
-  _skidParticles:
-  - {fileID: 0}
-  - {fileID: 0}
   _skidMarkTrails:
   - {fileID: 9021226213306000096}
   - {fileID: 455962664074079000}

@@ -32,7 +32,7 @@ public class PlayerNetworkController : NetworkBehaviour
         _playerVehicleController = GetComponent<PlayerVehicleController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
-        SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
+        // SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
     }
 
     private void SpawnManager_OnPlayerRespawned()

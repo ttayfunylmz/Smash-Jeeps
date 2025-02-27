@@ -10,7 +10,7 @@ public class Consts
     public struct SceneNames
     {
         public const string GAME_SCENE = "GameScene";
-        public const string MENU_SCENE = "MenuScene";
+        public const string MAIN_MENU_SCENE = "MainMenuScene";
     }
 
     public struct BoxAnimations

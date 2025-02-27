@@ -8,6 +8,7 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
     [SerializeField] private MysteryBoxSkillsSO[] _mysteryBoxSkills;
     [SerializeField] private Animator _boxAnimator;
     [SerializeField] private Collider _collider;
+    [SerializeField] private ParticleSystem _wowParticleSystem;
 
     [Header("Settings")]
     [SerializeField] private float _respawnTimer;
@@ -21,7 +22,7 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
         SkillsUI.Instance.SetSkill(skill.SkillIcon, skill.SkillName, skill.SkillUsageType, skill.SkillData.SpawnAmountOrTimer);
 
         playerSkillController.SetupSkill(skill);
-
+        _wowParticleSystem.Play();
         OnCollectRpc();
     }
 

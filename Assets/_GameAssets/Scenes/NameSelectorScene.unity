@@ -684,9 +684,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 491297065}
-  - component: {fileID: 491297066}
   m_Layer: 5
-  m_Name: MainMenuUI
+  m_Name: NameSelectorUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -714,20 +713,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &491297066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491297064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3428bf9f63531814e9aec1dab2e7913c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nameInputField: {fileID: 438855307}
-  _startButton: {fileID: 159262912}
 --- !u!1 &773469899
 GameObject:
   m_ObjectHideFlags: 0
