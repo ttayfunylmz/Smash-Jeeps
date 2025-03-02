@@ -48,10 +48,10 @@ public class PlayerNetworkController : NetworkBehaviour
         _playerVehicleController = GetComponent<PlayerVehicleController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
-        // SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
+        SpawnerManager.Instance.OnPlayerRespawned += SpawnerManager_OnPlayerRespawned;
     }
 
-    private void SpawnManager_OnPlayerRespawned()
+    private void SpawnerManager_OnPlayerRespawned()
     {
         OnHealthBarChangedRpc(1f);
     }
@@ -78,6 +78,12 @@ public class PlayerNetworkController : NetworkBehaviour
         if(IsServer)
         {
             OnPlayerDespawned?.Invoke(this);
+        }
+
+        if(IsOwner)
+        {
+            _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
+            SpawnerManager.Instance.OnPlayerRespawned -= SpawnerManager_OnPlayerRespawned;
         }
     }
 }

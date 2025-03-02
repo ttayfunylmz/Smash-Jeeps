@@ -5326,12 +5326,12 @@ GameObject:
   - component: {fileID: 2068711944}
   - component: {fileID: 2068711943}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: SpawnerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2068711942
 Transform:
   m_ObjectHideFlags: 0

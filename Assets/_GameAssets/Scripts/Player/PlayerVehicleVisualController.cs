@@ -30,7 +30,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if (!IsOwner) return;
+        if (!IsOwner) { return; }
 
         _playerVehicleController = GetComponent<PlayerVehicleController>();
 
@@ -41,7 +41,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         _steerAngle = _playerVehicleController.Settings.SteerAngle;
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
-        // SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
+        SpawnerManager.Instance.OnPlayerRespawned += SpawnerManager_OnPlayerRespawned;
     }
 
     private void Update()
@@ -54,7 +54,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         SetSkidMarksAndParticles();
     }
 
-    private void SpawnManager_OnPlayerRespawned()
+    private void SpawnerManager_OnPlayerRespawned()
     {
         SetVehicleVisualActiveAsync();
 
@@ -169,5 +169,13 @@ public class PlayerVehicleVisualController : NetworkBehaviour
 
         SetJeepVisualActiveRpc(true);
         enabled = true;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if(!IsOwner) { return; }
+
+        _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
+        SpawnerManager.Instance.OnPlayerRespawned -= SpawnerManager_OnPlayerRespawned;
     }
 }

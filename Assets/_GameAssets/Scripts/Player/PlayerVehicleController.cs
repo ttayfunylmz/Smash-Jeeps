@@ -60,7 +60,10 @@ public class PlayerVehicleController : NetworkBehaviour
         _vehicleRigidbody.isKinematic = true;
         SetOwnerRigidbodyKinematicAsync();
 
-        // SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
+        if(IsOwner)
+        {
+            SpawnerManager.Instance.OnPlayerRespawned += SpawnerManager_OnPlayerRespawned;
+        }
     }
 
     private void Update()
@@ -69,8 +72,6 @@ public class PlayerVehicleController : NetworkBehaviour
 
         SetSteerInput(Input.GetAxis("Horizontal"));
         SetAccelerateInput(Input.GetAxis("Vertical"));
-
-        
     }
 
     private void FixedUpdate()
@@ -93,7 +94,7 @@ public class PlayerVehicleController : NetworkBehaviour
         }
     }
 
-    private void SpawnManager_OnPlayerRespawned()
+    private void SpawnerManager_OnPlayerRespawned()
     {
         enabled = true;
     }
@@ -353,6 +354,14 @@ public class PlayerVehicleController : NetworkBehaviour
         _vehicleRigidbody.AddForce(Vector3.up * _crashForce, ForceMode.Impulse);
         _vehicleRigidbody.AddTorque(Vector3.forward * _crashTorque, ForceMode.Impulse);
         enabled = false;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if(IsOwner)
+        {
+            SpawnerManager.Instance.OnPlayerRespawned -= SpawnerManager_OnPlayerRespawned;
+        }
     }
 
 #if UNITY_EDITOR

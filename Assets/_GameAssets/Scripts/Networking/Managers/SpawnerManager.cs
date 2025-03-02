@@ -6,11 +6,11 @@ using Smooth;
 using Unity.Netcode;
 using UnityEngine;
 
-public class SpawnManager : NetworkBehaviour
+public class SpawnerManager : NetworkBehaviour
 {
     public event Action OnPlayerRespawned;
 
-    public static SpawnManager Instance { get; private set; }
+    public static SpawnerManager Instance { get; private set; }
 
     [SerializeField] private List<Transform> _spawnPointTransformList;
     [SerializeField] private List<Transform> _respawnPointTransformList;
@@ -23,7 +23,7 @@ public class SpawnManager : NetworkBehaviour
         Instance = this;
     }
 
-    protected override void OnNetworkPreSpawn(ref NetworkManager networkManager)
+    public override void OnNetworkSpawn()
     {
         if(!IsServer) { return; }
 
@@ -33,6 +33,12 @@ public class SpawnManager : NetworkBehaviour
         }
 
         NetworkManager.OnClientConnectedCallback += SpawnPlayer;
+
+        // CLIENT CONNECTED CALLBACK IS WORKING FOR NEWLY JOINING CLIENTS
+        if(IsHost)
+        {
+            SpawnPlayer(NetworkManager.LocalClientId);
+        }
     }
 
     private void SpawnPlayer(ulong clientId)
