@@ -7,6 +7,7 @@ public class PlayerInteractionController : NetworkBehaviour
     private PlayerVehicleController _playerVehicleController;
     private PlayerSkillController _playerSkillController;
     private PlayerHealthController _playerHealthController;
+    private PlayerScoreController _playerScoreController;
 
     private bool _isShieldActive;
     private bool _isCrashed;
@@ -18,6 +19,7 @@ public class PlayerInteractionController : NetworkBehaviour
         _playerVehicleController = GetComponent<PlayerVehicleController>();
         _playerSkillController = GetComponent<PlayerSkillController>();
         _playerHealthController = GetComponent<PlayerHealthController>();
+        _playerScoreController = GetComponent<PlayerScoreController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
         // SpawnManager.Instance.OnPlayerRespawned += SpawnManager_OnPlayerRespawned;
@@ -58,7 +60,7 @@ public class PlayerInteractionController : NetworkBehaviour
             damageable.Damage(_playerVehicleController);
             _playerHealthController.TakeDamage(damageable.GetDamageAmount());
             int respawnTimer = damageable.GetRespawnTimer();
-            SpawnManager.Instance.RespawnPlayer(respawnTimer, OwnerClientId);
+            // SpawnManager.Instance.RespawnPlayer(respawnTimer, OwnerClientId);
         }
     }
 
@@ -70,6 +72,7 @@ public class PlayerInteractionController : NetworkBehaviour
         if(NetworkManager.Singleton.ConnectedClients.TryGetValue(killerClientId, out var killerClient))
         {
             KillScreenUI.Instance.SetSmashUI("Tayfs");
+            killerClient.PlayerObject.GetComponent<PlayerScoreController>().AddScore(1);
         }
     }
 

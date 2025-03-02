@@ -9,8 +9,12 @@ using UnityEngine.UI;
 
 public class PlayerNetworkController : NetworkBehaviour
 {
+    public static event Action<PlayerNetworkController> OnPlayerSpawned;
+    public static event Action<PlayerNetworkController> OnPlayerDespawned;
+
     [Header("References")]
     [SerializeField] private CinemachineCamera _playerCinemachineCamera;
+    [SerializeField] private PlayerScoreController _playerScoreController;
 
     [Header("Canvas References")]
     [SerializeField] private Canvas _playerCanvas;
@@ -23,9 +27,21 @@ public class PlayerNetworkController : NetworkBehaviour
 
     private PlayerVehicleController _playerVehicleController;
 
+    public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
+
     public override void OnNetworkSpawn()
     {
         _playerCinemachineCamera.gameObject.SetActive(IsOwner);
+
+        if(IsServer)
+        {
+            UserData userData 
+                = HostSingleton.Instance.HostManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
+            
+            PlayerName.Value = userData.UserName;
+
+            OnPlayerSpawned?.Invoke(this);
+        }
 
         if(!IsOwner) return;
 
@@ -53,5 +69,15 @@ public class PlayerNetworkController : NetworkBehaviour
         {
             _healthBarBackgroundGameObject.SetActive(false);
         });
+    }
+
+    public PlayerScoreController GetPlayerScoreController() => _playerScoreController;
+
+    public override void OnNetworkDespawn()
+    {
+        if(IsServer)
+        {
+            OnPlayerDespawned?.Invoke(this);
+        }
     }
 }

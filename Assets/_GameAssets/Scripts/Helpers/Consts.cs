@@ -9,8 +9,11 @@ public class Consts
 
     public struct SceneNames
     {
-        public const string GAME_SCENE = "GameScene";
+        public const string NAME_SELECTOR_SCENE = "NameSelectorScene";
+        public const string LOADING_SCENE = "LoadingScene";
         public const string MAIN_MENU_SCENE = "MainMenuScene";
+        public const string GAME_SCENE = "GameScene";
+        
     }
 
     public struct BoxAnimations

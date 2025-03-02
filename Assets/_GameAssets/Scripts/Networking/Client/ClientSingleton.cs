@@ -22,4 +22,9 @@ public class ClientSingleton : MonoBehaviour
         ClientManager = new ClientManager();
         return await ClientManager.InitAsync();
     }
+
+    private void OnDestroy()
+    {
+        ClientManager?.Dispose();
+    }
 }

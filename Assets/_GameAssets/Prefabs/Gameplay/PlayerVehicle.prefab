@@ -157,10 +157,10 @@ RectTransform:
   - {fileID: 321029643779826161}
   m_Father: {fileID: 1905687884134518700}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.375}
-  m_SizeDelta: {x: 4, y: 0.75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8759239316742287027
 CanvasRenderer:
@@ -903,6 +903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1905687884134518700}
+  - component: {fileID: 2404092233979835552}
   - component: {fileID: 6122298173261379068}
   - component: {fileID: 6509663684549143464}
   - component: {fileID: 5077212870982206611}
@@ -934,6 +935,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2.5}
   m_SizeDelta: {x: 4, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2404092233979835552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3529095267632905788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbaefbf36668c9a41a1796f62777c7f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerNetworkController: {fileID: 8844893836073271083}
+  _playerNameText: {fileID: 8549876677512358628}
 --- !u!223 &6122298173261379068
 Canvas:
   m_ObjectHideFlags: 0
@@ -1519,7 +1534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7518184686377840550
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1534,10 +1549,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1905687884134518700}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.375}
-  m_SizeDelta: {x: 4, y: 0.75}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8545768284486390900
 CanvasRenderer:
@@ -1567,7 +1582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sk\u0131nnydev"
+  m_text: SKINNYDEV
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98978308b1b4ffd4883b4ad3ac95acca, type: 2}
   m_sharedMaterial: {fileID: 2373436273158219859, guid: 98978308b1b4ffd4883b4ad3ac95acca, type: 2}
@@ -1598,8 +1613,8 @@ MonoBehaviour:
   m_fontSizeBase: 0.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 0.3
+  m_fontSizeMax: 0.7
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
@@ -2111,6 +2126,7 @@ GameObject:
   - component: {fileID: 8844893836073271083}
   - component: {fileID: 4861560575287391435}
   - component: {fileID: 3250303055340857997}
+  - component: {fileID: 6222879369837485560}
   - component: {fileID: 4680741916097499708}
   - component: {fileID: 6663467821765859628}
   - component: {fileID: 4170567031219807926}
@@ -2286,11 +2302,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _playerCinemachineCamera: {fileID: 4440187324846132007}
+  _playerScoreController: {fileID: 6222879369837485560}
   _playerCanvas: {fileID: 6122298173261379068}
   _playerNameText: {fileID: 8549876677512358628}
   _healthBarBackgroundGameObject: {fileID: 1092396820479660162}
   _healthBarImage: {fileID: 1255366210934103391}
   _animationDuration: 1
+  PlayerName:
+    m_InternalValue:
+      utf8LengthInBytes: 0
+      bytes:
+        offset0000:
+          byte0000: 0
+          byte0001: 0
+          byte0002: 0
+          byte0003: 0
+          byte0004: 0
+          byte0005: 0
+          byte0006: 0
+          byte0007: 0
+          byte0008: 0
+          byte0009: 0
+          byte0010: 0
+          byte0011: 0
+          byte0012: 0
+          byte0013: 0
+          byte0014: 0
+          byte0015: 0
+        byte0016: 0
+        byte0017: 0
+        byte0018: 0
+        byte0019: 0
+        byte0020: 0
+        byte0021: 0
+        byte0022: 0
+        byte0023: 0
+        byte0024: 0
+        byte0025: 0
+        byte0026: 0
+        byte0027: 0
+        byte0028: 0
+        byte0029: 0
 --- !u!114 &4861560575287391435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2320,8 +2372,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  _health: 0
+  _health: 100
   _maxHealth: 100
+--- !u!114 &6222879369837485560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8746238663559865331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49117e4e3332ea0469e49065f60e9d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  PlayerScore:
+    m_InternalValue: 0
 --- !u!135 &4680741916097499708
 SphereCollider:
   m_ObjectHideFlags: 0

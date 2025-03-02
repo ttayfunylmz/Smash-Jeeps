@@ -21,4 +21,9 @@ public class HostSingleton : MonoBehaviour
     {
         HostManager = new HostManager();
     }
+
+    private void OnDestroy()
+    {
+        HostManager?.Dispose();
+    }
 }
