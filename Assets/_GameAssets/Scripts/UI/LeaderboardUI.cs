@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LeaderboardUI : NetworkBehaviour
@@ -127,7 +128,7 @@ public class LeaderboardUI : NetworkBehaviour
         {
             ClientId = playerNetworkController.OwnerClientId,
             PlayerName = playerNetworkController.PlayerName.Value,
-            Score = 0
+            Score = 0,
         });
 
         playerNetworkController.GetPlayerScoreController().PlayerScore.OnValueChanged
@@ -162,7 +163,7 @@ public class LeaderboardUI : NetworkBehaviour
             {
                 ClientId = _leaderboardEntityList[i].ClientId,
                 PlayerName = _leaderboardEntityList[i].PlayerName,
-                Score = newScore
+                Score = newScore,
             };
 
             UpdatePlayerRankText();
@@ -193,6 +194,18 @@ public class LeaderboardUI : NetworkBehaviour
             3 => "rd",
             _ => "th"
         };
+    }
+
+    public List<LeaderboardEntitiesSerializable> GetLeaderboardData()
+    {
+        List<LeaderboardEntitiesSerializable> leaderboardData = new List<LeaderboardEntitiesSerializable>();
+
+        foreach (var entity in _leaderboardEntityList)
+        {
+            leaderboardData.Add(entity);
+        }
+
+        return leaderboardData;
     }
 
     public override void OnNetworkDespawn()
