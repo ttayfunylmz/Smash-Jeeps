@@ -12,7 +12,6 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
 
     [Header("Settings")]
     [SerializeField] private float _respawnTimer;
-    [SerializeField] private float _animationDelay;
 
     public void Collect(PlayerSkillController playerSkillController)
     {
@@ -41,7 +40,7 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
 
     private void AnimateCollection()
     {
-        Invoke(nameof(Hide), _animationDelay);
+        SetColliderEnabled(false);
         _boxAnimator.SetTrigger(Consts.BoxAnimations.IS_COLLECTED);
     }
 
@@ -49,11 +48,6 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
     {
         _boxAnimator.SetTrigger(Consts.BoxAnimations.IS_RESPAWNED);
         SetColliderEnabled(true);
-    }
-
-    private void Hide()
-    {
-        SetColliderEnabled(false);
     }
 
     private void SetColliderEnabled(bool enabled)
