@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ed85ba9ced5534563b349fc6ced07deb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Prefabs/_Primitives/BurstWithNoise.prefab
+  uploadId: 620919

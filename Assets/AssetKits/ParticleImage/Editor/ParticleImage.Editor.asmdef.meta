@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c8aa17a47843644c9922a0ded70a2e87
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Editor/ParticleImage.Editor.asmdef
+  uploadId: 620919

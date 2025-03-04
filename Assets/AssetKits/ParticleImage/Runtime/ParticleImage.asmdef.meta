@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4ffe3249bc841464abc6ec7cdd53b4f4
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Runtime/ParticleImage.asmdef
+  uploadId: 620919

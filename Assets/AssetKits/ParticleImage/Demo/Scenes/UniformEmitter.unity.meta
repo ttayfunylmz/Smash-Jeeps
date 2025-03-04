@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 83c65299d4eca4b8ba17a8124424ef4f
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Scenes/UniformEmitter.unity
+  uploadId: 620919

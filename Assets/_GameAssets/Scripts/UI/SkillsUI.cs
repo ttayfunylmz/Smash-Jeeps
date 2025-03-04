@@ -10,6 +10,7 @@ public class SkillsUI : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Image _skillImage;
+    [SerializeField] private GameObject _skillParent;
     [SerializeField] private Transform _timerCounterBackgroundTransform;
     [SerializeField] private TMP_Text _skillNameText;
     [SerializeField] private TMP_Text _timerCounterText;
@@ -32,7 +33,7 @@ public class SkillsUI : MonoBehaviour
 
     public void SetSkill(Sprite skillSprite, string skillName, SkillUsageType skillUsageType, int timerCounter)
     {
-        _skillImage.gameObject.SetActive(true);
+        _skillParent.SetActive(true);
         _skillImage.sprite = skillSprite;
         _skillNameText.text = skillName;
 
@@ -53,7 +54,7 @@ public class SkillsUI : MonoBehaviour
     public void SetSkillToNone()
     {
         _skillNameText.text = string.Empty;
-        _skillImage.gameObject.SetActive(false);
+        _skillParent.SetActive(false);
         
         if(_timerCounterBackgroundTransform.gameObject.activeInHierarchy)
         {

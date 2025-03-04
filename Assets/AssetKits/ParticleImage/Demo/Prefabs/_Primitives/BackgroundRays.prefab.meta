@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6002ae6f078084e74a46b1878c3abc33
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Prefabs/_Primitives/BackgroundRays.prefab
+  uploadId: 620919

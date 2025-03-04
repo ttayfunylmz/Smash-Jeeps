@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ea3bb9071306c45d48453b6486bb9fbc
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Scenes/Masking.unity
+  uploadId: 620919

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bb818bcd1f8fc4170ad421ddfa84c1e9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Prefabs/ConfettiBurst.prefab
+  uploadId: 620919

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c6c85293c52124c14b4c06b49316db4e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Editor/PropertyDrawer/ModuleDrawer.cs
+  uploadId: 620919

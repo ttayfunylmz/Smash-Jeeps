@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9c81da273688841f395e042114057167
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Scenes/Scroll.unity
+  uploadId: 620919

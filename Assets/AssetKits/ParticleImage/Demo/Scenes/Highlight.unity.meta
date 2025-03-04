@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c36273161138f43f49e46f4d2ae3c7af
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Scenes/Highlight.unity
+  uploadId: 620919

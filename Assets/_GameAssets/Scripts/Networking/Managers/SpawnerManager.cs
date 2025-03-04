@@ -83,15 +83,27 @@ public class SpawnerManager : NetworkBehaviour
         Transform respawnPoint = _respawnPointTransformList[randomIndex];
 
         NetworkObject playerNetworkObject = NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject;
-        
+
         if (playerNetworkObject == null)
         {
             Debug.LogError($"Player object for Client {clientId} not found!");
             yield break;
         }
 
-        OnPlayerRespawned?.Invoke();
-        playerNetworkObject.transform.SetPositionAndRotation(respawnPoint.position, respawnPoint.rotation);
-    }
+        if (playerNetworkObject.TryGetComponent<Rigidbody>(out var playerRigidbody))
+        {
+            playerRigidbody.isKinematic = true;
+        }
 
+        playerNetworkObject.transform.SetPositionAndRotation(respawnPoint.position, respawnPoint.rotation);
+
+        yield return new WaitForSeconds(0.01f);
+
+        if (playerRigidbody != null)
+        {
+            playerRigidbody.isKinematic = false;
+        }
+
+        OnPlayerRespawned?.Invoke();
+    }
 }

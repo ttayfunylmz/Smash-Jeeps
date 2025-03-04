@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1a328448d7d714323b2b9ba2835d1724
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Prefabs/Puff.prefab
+  uploadId: 620919

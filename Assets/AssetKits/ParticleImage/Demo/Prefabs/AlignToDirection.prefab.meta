@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 02d82efb191c5423aa2451b3223340c1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Prefabs/AlignToDirection.prefab
+  uploadId: 620919

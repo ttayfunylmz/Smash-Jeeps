@@ -12,6 +12,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private RectTransform _gameOverTransform;
     [SerializeField] private RectTransform _scoreTableTransform;
     [SerializeField] private TMP_Text _winnerText;
+    [SerializeField] private GameObject _confettiParticles;
     
     [Header("Buttons")]
     [SerializeField] private Button _mainMenuButton;
@@ -74,7 +75,10 @@ public class GameOverUI : MonoBehaviour
             {
                 _oneMoreButtonTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
-                    _winnerTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack);
+                    _winnerTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                    {
+                        _confettiParticles.SetActive(true);
+                    });
                 });
             });
         });

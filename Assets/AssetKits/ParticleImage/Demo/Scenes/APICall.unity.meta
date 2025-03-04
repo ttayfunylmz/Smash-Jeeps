@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0eaf96758291646bca76373428a82b48
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Scenes/APICall.unity
+  uploadId: 620919

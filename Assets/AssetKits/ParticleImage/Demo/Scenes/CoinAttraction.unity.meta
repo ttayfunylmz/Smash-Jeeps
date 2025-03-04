@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1b3950b9883f248519f78307eb0c80cb
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Scenes/CoinAttraction.unity
+  uploadId: 620919

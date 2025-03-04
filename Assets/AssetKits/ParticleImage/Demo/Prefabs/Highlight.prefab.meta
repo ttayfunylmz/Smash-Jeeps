@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: da164d9c8e3d743f982375327aab0086
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Prefabs/Highlight.prefab
+  uploadId: 620919

@@ -66,19 +66,6 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
         return _mysteryBoxSkill.SkillData.DamageAmount;
     }
 
-    public override void OnNetworkDespawn()
-    {
-        if (IsOwner)
-        {
-            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(OwnerClientId, out var client))
-            {
-                NetworkObject ownerNetworkObject = client.PlayerObject;
-                PlayerVehicleController playerVehicleController = ownerNetworkObject.GetComponent<PlayerVehicleController>();
-                playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
-            }
-        }
-    }
-
     public string GetKillerName()
     {
         ulong killerClientId = GetKillerClientId();
@@ -90,5 +77,18 @@ public class FakeBoxDamageable : NetworkBehaviour, IDamageable
         }
 
         return string.Empty;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsOwner)
+        {
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(OwnerClientId, out var client))
+            {
+                NetworkObject ownerNetworkObject = client.PlayerObject;
+                PlayerVehicleController playerVehicleController = ownerNetworkObject.GetComponent<PlayerVehicleController>();
+                playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
+            }
+        }
     }
 }

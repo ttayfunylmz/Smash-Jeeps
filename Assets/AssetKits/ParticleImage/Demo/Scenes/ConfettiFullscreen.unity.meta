@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 80859c687deca425aba3f54462936dc2
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Scenes/ConfettiFullscreen.unity
+  uploadId: 620919

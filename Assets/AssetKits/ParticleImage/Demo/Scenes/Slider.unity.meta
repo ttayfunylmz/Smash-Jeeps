@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 493b0b5a3b6224ce99113c8c360cd0ac
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Scenes/Slider.unity
+  uploadId: 620919

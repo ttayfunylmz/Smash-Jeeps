@@ -46,19 +46,6 @@ public class SpikeDamageable : NetworkBehaviour, IDamageable
         return OwnerClientId;
     }
 
-    public override void OnNetworkDespawn()
-    {
-        if (IsOwner)
-        {
-            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(OwnerClientId, out var client))
-            {
-                NetworkObject ownerNetworkObject = client.PlayerObject;
-                PlayerVehicleController playerVehicleController = ownerNetworkObject.GetComponent<PlayerVehicleController>();
-                playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
-            }
-        }
-    }
-
     public int GetDamageAmount()
     {
         return _mysteryBoxSkill.SkillData.DamageAmount;   
@@ -75,5 +62,18 @@ public class SpikeDamageable : NetworkBehaviour, IDamageable
         }
 
         return string.Empty;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsOwner)
+        {
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(OwnerClientId, out var client))
+            {
+                NetworkObject ownerNetworkObject = client.PlayerObject;
+                PlayerVehicleController playerVehicleController = ownerNetworkObject.GetComponent<PlayerVehicleController>();
+                playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
+            }
+        }
     }
 }

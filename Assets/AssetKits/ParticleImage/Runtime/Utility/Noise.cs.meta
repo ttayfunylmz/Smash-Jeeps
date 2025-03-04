@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 92ed274779ca24ec5b1c2d8906c85cce
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Runtime/Utility/Noise.cs
+  uploadId: 620919

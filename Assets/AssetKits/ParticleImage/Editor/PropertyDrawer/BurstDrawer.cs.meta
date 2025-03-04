@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f484146c3b3924ed1a48ed87f2083cea
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Editor/PropertyDrawer/BurstDrawer.cs
+  uploadId: 620919

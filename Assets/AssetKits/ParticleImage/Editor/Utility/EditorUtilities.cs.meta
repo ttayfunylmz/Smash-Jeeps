@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b2d993233918c4ad594b87f1b2fb4a0d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Editor/Utility/EditorUtilities.cs
+  uploadId: 620919

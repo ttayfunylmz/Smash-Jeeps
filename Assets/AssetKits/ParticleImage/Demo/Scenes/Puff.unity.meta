@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c138ea63a764b47059fe4fcfbd4e9b0b
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 235001
+  packageName: UI Particle Image
+  packageVersion: 1.2.2
+  assetPath: Assets/AssetKits/ParticleImage/Demo/Scenes/Puff.unity
+  uploadId: 620919
