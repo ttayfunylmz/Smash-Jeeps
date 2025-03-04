@@ -1,4 +1,5 @@
 using System;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -38,8 +39,9 @@ public class PlayerInteractionController : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        if(!IsOwner) return;
-        if(_isCrashed) return;
+        if(!IsOwner) { return; }
+        if(_isCrashed) { return; }
+        if(GameManager.Instance.GetGameState() != GameState.Playing) { return; }
 
         if(other.gameObject.TryGetComponent(out ICollectible collectible))
         {
@@ -54,8 +56,10 @@ public class PlayerInteractionController : NetworkBehaviour
                 return;
             }
 
-            SetKillerUIClientRpc(damageable.GetKillerClientId());
-            damageable.Damage(_playerVehicleController);
+            var playerName = GetComponent<PlayerNetworkController>().PlayerName.Value;
+
+            SetKillerUIClientRpc(damageable.GetKillerClientId(), playerName.ToString());
+            damageable.Damage(_playerVehicleController, damageable.GetKillerName());
             _playerHealthController.TakeDamage(damageable.GetDamageAmount());
             int respawnTimer = damageable.GetRespawnTimer();
             SpawnerManager.Instance.RespawnPlayer(respawnTimer, OwnerClientId);
@@ -63,13 +67,13 @@ public class PlayerInteractionController : NetworkBehaviour
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    private void SetKillerUIClientRpc(ulong killerClientId)
+    private void SetKillerUIClientRpc(ulong killerClientId, FixedString32Bytes playerName)
     {
         if(IsOwner) return;
 
         if(NetworkManager.Singleton.ConnectedClients.TryGetValue(killerClientId, out var killerClient))
         {
-            KillScreenUI.Instance.SetSmashUI("Tayfs");
+            KillScreenUI.Instance.SetSmashUI(playerName.ToString());
             killerClient.PlayerObject.GetComponent<PlayerScoreController>().AddScore(1);
         }
     }

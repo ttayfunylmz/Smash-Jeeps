@@ -18,11 +18,6 @@ public class LobbiesListUI : MonoBehaviour
         _refreshButton.onClick.AddListener(RefreshList);
     }
 
-    private void OnEnable()
-    {
-        RefreshList();
-    }
-
     public async void RefreshList()
     {
         if (_isRefreshing) { return; }

@@ -6,6 +6,7 @@ using DG.Tweening;
 public class MainMenuUI : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private LobbiesListUI _lobbiesListUI;
     [SerializeField] private Button _hostButton;
     [SerializeField] private Button _clientButton;
     [SerializeField] private Button _lobbiesButton;
@@ -14,9 +15,8 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject _lobbiesParentGameObject;
     [SerializeField] private RectTransform _lobbiesBackgroundTransform;
 
-    [Header("References")]
+    [Header("Settings")]
     [SerializeField] private float _animationDuration = 1f;
-
 
     private void Awake()
     {
@@ -24,7 +24,6 @@ public class MainMenuUI : MonoBehaviour
         _clientButton.onClick.AddListener(StartClient);
         _lobbiesButton.onClick.AddListener(OpenLobbies);
         _closeButton.onClick.AddListener(CloseLobbies);
-
     }
 
     private async void StartHost()
@@ -41,6 +40,8 @@ public class MainMenuUI : MonoBehaviour
     {
         _lobbiesParentGameObject.SetActive(true);
         _lobbiesBackgroundTransform.DOAnchorPosX(-650f, _animationDuration).SetEase(Ease.OutBack);
+
+        _lobbiesListUI.RefreshList();
     }
 
     private void CloseLobbies()

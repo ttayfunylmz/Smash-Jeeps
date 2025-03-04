@@ -11,6 +11,7 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private Image _gameOverBackgroundImage;
     [SerializeField] private RectTransform _gameOverTransform;
     [SerializeField] private RectTransform _scoreTableTransform;
+    [SerializeField] private TMP_Text _winnerText;
     
     [Header("Buttons")]
     [SerializeField] private Button _mainMenuButton;
@@ -27,11 +28,13 @@ public class GameOverUI : MonoBehaviour
 
     private RectTransform _mainMenuButtonTransform;
     private RectTransform _oneMoreButtonTransform;
+    private RectTransform _winnerTransform;
 
     private void Awake()
     {
         _mainMenuButtonTransform = _mainMenuButton.GetComponent<RectTransform>();
         _oneMoreButtonTransform = _oneMoreButton.GetComponent<RectTransform>();
+        _winnerTransform = _winnerText.GetComponent<RectTransform>();
     }
 
     private void Start()
@@ -69,7 +72,10 @@ public class GameOverUI : MonoBehaviour
         {
             _mainMenuButtonTransform.DOScale(1f,_scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
             {
-                _oneMoreButtonTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack);
+                _oneMoreButtonTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                {
+                    _winnerTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack);
+                });
             });
         });
 
@@ -78,7 +84,6 @@ public class GameOverUI : MonoBehaviour
 
     private void PopulateGameOverLeaderboard()
     {
-
         foreach (Transform child in _contentTransform)
         {
             Destroy(child.gameObject);
@@ -98,5 +103,13 @@ public class GameOverUI : MonoBehaviour
             int rank = i + 1; 
             scoreTableInstance.SetScoreTableData(rank.ToString(), entry.PlayerName, entry.Score.ToString(), isOwner);
         }
+
+        SetWinnersName();
+    }
+
+    private void SetWinnersName()
+    {
+        string winnersName = _leaderboardUI.GetWinnersName();
+        _winnerText.text = winnersName + " SMASHED Y'ALL!";
     }
 }

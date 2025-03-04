@@ -16,7 +16,7 @@ public class GameManager : NetworkBehaviour
         NetworkVariableWritePermission.Owner
     );
 
-    private GameState _currentGameState;
+    [SerializeField] private GameState _currentGameState;
 
     private void Awake()
     {

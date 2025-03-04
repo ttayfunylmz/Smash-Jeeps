@@ -208,6 +208,16 @@ public class LeaderboardUI : NetworkBehaviour
         return leaderboardData;
     }
 
+    public string GetWinnersName()
+    {
+        if(_leaderboardRankingList.Count > 0)
+        {
+            return _leaderboardRankingList[0].GetPlayerName();
+        }
+
+        return "No Winner";
+    }
+
     public override void OnNetworkDespawn()
     {
         if (IsClient)

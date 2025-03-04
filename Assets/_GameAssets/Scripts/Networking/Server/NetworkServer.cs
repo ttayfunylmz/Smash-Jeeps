@@ -30,8 +30,6 @@ public class NetworkServer : IDisposable
         _authIdToUserDataDictionary[userData.UserAuthId] = userData;
 
         response.Approved = true;
-        // response.Position = SpawnPoint.GetRandomSpawnPosition();
-        // response.Rotation = SpawnPoint.GetSpawnRotation();
         response.CreatePlayerObject = true;
     }
 
