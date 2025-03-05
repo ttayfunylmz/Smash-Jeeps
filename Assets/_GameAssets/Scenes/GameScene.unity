@@ -449,7 +449,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 112043369}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 38f1f8a20f557da44ab6b366492896c6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1145,26 +1145,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 1152025984
-      objectReference: {fileID: 0}
-    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 2866968273
-      objectReference: {fileID: 0}
     - target: {fileID: 1124075251784830038, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 2868393929
       objectReference: {fileID: 0}
-    - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: _mysteryBoxSkills.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: '_mysteryBoxSkills.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: b863f32725f5c20439e3a4c4b0dedd38, type: 2}
     - target: {fileID: 4543965304027722592, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.25
@@ -5460,7 +5444,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711282054}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 38f1f8a20f557da44ab6b366492896c6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -5903,7 +5887,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832462836}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 38f1f8a20f557da44ab6b366492896c6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6695,14 +6679,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 280291388
-      objectReference: {fileID: 0}
-    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 2866968273
-      objectReference: {fileID: 0}
     - target: {fileID: 1124075251784830038, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 684869014
@@ -6799,7 +6775,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125265572}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 38f1f8a20f557da44ab6b366492896c6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7147,26 +7123,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 816229569
-      objectReference: {fileID: 0}
-    - target: {fileID: 315650746317792728, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 2866968273
-      objectReference: {fileID: 0}
     - target: {fileID: 1124075251784830038, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 125411671
       objectReference: {fileID: 0}
-    - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: _mysteryBoxSkills.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2880216883891662034, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
-      propertyPath: '_mysteryBoxSkills.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 6e7cbe36c98f4254aa9d5799f0579ed6, type: 2}
     - target: {fileID: 4543965304027722592, guid: c615555531856cd4cb1e1c4e9bbbeea7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.25

@@ -21,14 +21,14 @@ public class MineDamageable : NetworkBehaviour, IDamageable
 
     private void PlayerVehicleController_OnVehicleCrashed()
     {
-        DestroyRpc();
+        DestroyRpc(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out ShieldController shieldController))
         {
-            DestroyRpc();
+            DestroyRpc(true);
         }
     }
 
@@ -37,7 +37,7 @@ public class MineDamageable : NetworkBehaviour, IDamageable
         playerVehicleController.CrashVehicle();
 
         KillScreenUI.Instance.SetSmashedUI(playerName, _mysteryBoxSkill.SkillData.RespawnTimer);
-        DestroyRpc();
+        DestroyRpc(true);
     }
 
     public int GetRespawnTimer()
@@ -46,10 +46,13 @@ public class MineDamageable : NetworkBehaviour, IDamageable
     }
 
     [Rpc(SendTo.Server)]
-    private void DestroyRpc()
+    private void DestroyRpc(bool isExploded)
     {
-        GameObject explosionParticlesInstance = Instantiate(_explosionParticlesPrefab, transform.position, Quaternion.identity);
-        explosionParticlesInstance.GetComponent<NetworkObject>().Spawn();
+        if (isExploded)
+        {
+            GameObject explosionParticlesInstance = Instantiate(_explosionParticlesPrefab, transform.position, Quaternion.identity);
+            explosionParticlesInstance.GetComponent<NetworkObject>().Spawn();
+        }
 
         GetComponent<NetworkObject>().Despawn();
     }

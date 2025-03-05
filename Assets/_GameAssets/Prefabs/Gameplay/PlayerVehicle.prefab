@@ -928,11 +928,11 @@ RectTransform:
   m_Children:
   - {fileID: 7518184686377840550}
   - {fileID: 6906314965501079267}
-  m_Father: {fileID: 2641773949469185361}
+  m_Father: {fileID: 3442369558037732817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.5}
+  m_AnchoredPosition: {x: 0, y: 3.427}
   m_SizeDelta: {x: 4, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2404092233979835552
@@ -1881,6 +1881,7 @@ Transform:
   - {fileID: 5552004314922858055}
   - {fileID: 6928456608931619067}
   - {fileID: 3359392522586653577}
+  - {fileID: 1905687884134518700}
   m_Father: {fileID: 2641773949469185361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7787597530623028871
@@ -2152,7 +2153,6 @@ Transform:
   m_Children:
   - {fileID: 4931362138835584740}
   - {fileID: 3442369558037732817}
-  - {fileID: 1905687884134518700}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5055597450274314545
@@ -2265,6 +2265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _jeepVisualTransform: {fileID: 3442369558037732817}
+  _playerCollider: {fileID: 6663467821765859628}
   _wheelFrontLeft: {fileID: 5552004314922858055}
   _wheelFrontRight: {fileID: 6928456608931619067}
   _wheelBackLeft: {fileID: 7037115062268279987}
@@ -2417,7 +2418,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8746238663559865331}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7ef12d936f0bd184c8aaff326990a18a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

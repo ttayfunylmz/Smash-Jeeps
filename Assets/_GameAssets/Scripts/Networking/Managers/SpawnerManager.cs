@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Smooth;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 
 public class SpawnerManager : NetworkBehaviour
@@ -95,14 +96,22 @@ public class SpawnerManager : NetworkBehaviour
             playerRigidbody.isKinematic = true;
         }
 
+        if(playerNetworkObject.TryGetComponent<NetworkTransform>(out var playerNetworkTransform))
+        {
+            playerNetworkTransform.Interpolate = false;
+        }
+
+        if(playerNetworkObject.TryGetComponent<PlayerVehicleVisualController>(out var playerVehicleVisualController))
+        {
+            playerVehicleVisualController.SetVehicleVisualActive(0.1f);
+        }
+
         playerNetworkObject.transform.SetPositionAndRotation(respawnPoint.position, respawnPoint.rotation);
 
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.1f);
 
-        if (playerRigidbody != null)
-        {
-            playerRigidbody.isKinematic = false;
-        }
+        playerRigidbody.isKinematic = false;
+        playerNetworkTransform.Interpolate = true;
 
         OnPlayerRespawned?.Invoke();
     }

@@ -52,6 +52,7 @@ public class KillScreenUI : MonoBehaviour
                 _smashedUITransform.gameObject.SetActive(false);
                 OnRespawnTimerFinished?.Invoke();
                 _isTimerActive = false;
+                _smashedByPlayerText.text = string.Empty;
             }
         }
     }
@@ -71,6 +72,7 @@ public class KillScreenUI : MonoBehaviour
 
         _smashUITransform.gameObject.SetActive(false);
         _smashUITransform.localScale = Vector3.zero;
+        _smashedPlayerText.text = string.Empty;
     }
 
     public void SetSmashedUI(string playerName, int respawnTimeCounter)

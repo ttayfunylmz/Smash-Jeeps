@@ -39,6 +39,16 @@ public class PlayerInteractionController : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
+        CheckCollision(other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        CheckCollision(other);
+    }
+
+    private void CheckCollision(Collider other)
+    {
         if(!IsOwner) { return; }
         if(_isCrashed) { return; }
         if(GameManager.Instance.GetGameState() != GameState.Playing) { return; }

@@ -6,8 +6,6 @@ public class RocketDamageable : NetworkBehaviour, IDamageable
     [SerializeField] private MysteryBoxSkillsSO _mysteryBoxSkill;
     [SerializeField] private GameObject _explosionParticlesPrefab;
 
-    private bool _isDestroyed;
-
     public override void OnNetworkSpawn()
     {
         if (IsOwner)
@@ -23,19 +21,19 @@ public class RocketDamageable : NetworkBehaviour, IDamageable
 
     private void PlayerVehicleController_OnVehicleCrashed()
     {
-        DestroyRpc();
+        DestroyRpc(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out ShieldController shieldController))
         {
-            DestroyRpc();
+            DestroyRpc(true);
         }
 
         if (other.TryGetComponent(out HittableWall hittableWall))
         {
-            DestroyRpc();
+            DestroyRpc(true);
         }
     }
 
@@ -44,7 +42,7 @@ public class RocketDamageable : NetworkBehaviour, IDamageable
         playerVehicleController.CrashVehicle();
 
         KillScreenUI.Instance.SetSmashedUI(playerName, _mysteryBoxSkill.SkillData.RespawnTimer);
-        DestroyRpc();
+        DestroyRpc(true);
     }
 
     public int GetRespawnTimer()
@@ -53,10 +51,13 @@ public class RocketDamageable : NetworkBehaviour, IDamageable
     }
 
     [Rpc(SendTo.Server)]
-    private void DestroyRpc()
+    private void DestroyRpc(bool isExploded)
     {
-        GameObject explosionParticlesInstance = Instantiate(_explosionParticlesPrefab, transform.position, Quaternion.identity);
-        explosionParticlesInstance.GetComponent<NetworkObject>().Spawn();
+        if(isExploded)
+        {
+            GameObject explosionParticlesInstance = Instantiate(_explosionParticlesPrefab, transform.position, Quaternion.identity);
+            explosionParticlesInstance.GetComponent<NetworkObject>().Spawn();
+        }
 
         GetComponent<NetworkObject>().Despawn();
     }

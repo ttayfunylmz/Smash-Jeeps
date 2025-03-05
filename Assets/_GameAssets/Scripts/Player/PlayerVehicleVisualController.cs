@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using System;
 using Cysharp.Threading.Tasks;
+using System.Collections;
 
 public class PlayerVehicleVisualController : NetworkBehaviour
 {
     [SerializeField] private Transform _jeepVisualTransform;
+    [SerializeField] private Collider _playerCollider;
     [SerializeField] private Transform _wheelFrontLeft, _wheelFrontRight, _wheelBackLeft, _wheelBackRight;
     [SerializeField] private float _wheelsSpinSpeed, _wheelYWhenSpringMin, _wheelYWhenSpringMax;
     [SerializeField] private TrailRenderer[] _skidMarkTrails;
@@ -57,8 +59,6 @@ public class PlayerVehicleVisualController : NetworkBehaviour
 
     private void SpawnerManager_OnPlayerRespawned()
     {
-        SetVehicleVisualActiveAsync();
-
         foreach(TrailRenderer trail in _skidMarkTrails)
         {
             trail.gameObject.SetActive(true);
@@ -157,19 +157,26 @@ public class PlayerVehicleVisualController : NetworkBehaviour
     }
 
     [Rpc(SendTo.ClientsAndHost)]
-    public void SetJeepVisualActiveRpc(bool isActive)
+    private void SetJeepVisualActiveRpc(bool isActive)
     {
         _jeepVisualTransform.gameObject.SetActive(isActive);
     }
 
-    private async void SetVehicleVisualActiveAsync()
+    private IEnumerator SetVehicleVisualActiveCoroutine(float delay)
     {
         SetJeepVisualActiveRpc(false);
+        _playerCollider.enabled = false;
 
-        await UniTask.Delay(200);
+        yield return new WaitForSeconds(delay);
 
         SetJeepVisualActiveRpc(true);
+        _playerCollider.enabled = true;
         enabled = true;
+    }
+
+    public void SetVehicleVisualActive(float delay)
+    {
+        StartCoroutine(SetVehicleVisualActiveCoroutine(delay));
     }
 
     public override void OnNetworkDespawn()
