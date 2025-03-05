@@ -148,4 +148,9 @@ public class HostManager : IDisposable
 
         NetworkServer?.Dispose();
     }
+
+    public string GetJoinCode()
+    {
+        return _joinCode;
+    }
 }
