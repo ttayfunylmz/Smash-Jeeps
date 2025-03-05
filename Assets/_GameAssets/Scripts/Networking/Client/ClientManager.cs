@@ -63,6 +63,11 @@ public class ClientManager : IDisposable
         NetworkManager.Singleton.StartClient();
     }
 
+    public void Disconnect()
+    {
+        _networkClient.Disconnect();
+    }
+
     public void Dispose()
     {
         _networkClient?.Dispose();
