@@ -8,6 +8,7 @@ using System.Collections;
 public class PlayerVehicleVisualController : NetworkBehaviour
 {
     [SerializeField] private Transform _jeepVisualTransform;
+    [SerializeField] private CharacterSelectVisual _characterSelectVisual;
     [SerializeField] private Collider _playerCollider;
     [SerializeField] private Transform _wheelFrontLeft, _wheelFrontRight, _wheelBackLeft, _wheelBackRight;
     [SerializeField] private float _wheelsSpinSpeed, _wheelYWhenSpringMin, _wheelYWhenSpringMax;
@@ -29,6 +30,12 @@ public class PlayerVehicleVisualController : NetworkBehaviour
             { WheelType.BackLeft, 0.0f },
             { WheelType.BackRight, 0.0f }
         };
+
+    private void Start()
+    {
+        PlayerDataSerializable playerData = MultiplayerGameManager.Instance.GetPlayerDataFromClientId(OwnerClientId);
+        _characterSelectVisual.SetPlayerColor(MultiplayerGameManager.Instance.GetPlayerColor(playerData.ColorId));
+    }
 
     public override void OnNetworkSpawn()
     {

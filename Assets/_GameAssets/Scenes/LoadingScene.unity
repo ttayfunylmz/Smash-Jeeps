@@ -301,6 +301,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &389898732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 389898735}
+  - component: {fileID: 389898733}
+  - component: {fileID: 389898734}
+  m_Layer: 0
+  m_Name: MultiplayerGameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &389898733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389898732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 1810989310
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 8
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
+--- !u!114 &389898734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389898732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4159a919298f51a45b7d6e29ee82fcd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _playerColorList:
+  - {r: 1, g: 0.7764706, b: 0, a: 1}
+  - {r: 0.105882354, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.4117647, b: 0, a: 1}
+  - {r: 0, g: 0.8509804, b: 1, a: 1}
+  - {r: 0.69803923, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.2951482, b: 0.82033193, a: 1}
+  - {r: 0.9137466, g: 0.9137466, b: 0.9137466, a: 1}
+  - {r: 0.16576815, g: 0.18868658, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0.007967949, a: 1}
+  - {r: 0.13207531, g: 0.13207531, b: 0.13207531, a: 1}
+--- !u!4 &389898735
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389898732}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &639244083
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,5 +905,6 @@ SceneRoots:
   - {fileID: 1124067451}
   - {fileID: 133446212}
   - {fileID: 66137500}
+  - {fileID: 389898735}
   - {fileID: 639244084}
   - {fileID: 773469903}

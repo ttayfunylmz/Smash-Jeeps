@@ -95,7 +95,7 @@ public class HostManager : IDisposable
 
         NetworkServer.OnClientLeft += HandleClientLeft;
 
-        NetworkManager.Singleton.SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE, LoadSceneMode.Single);
+        NetworkManager.Singleton.SceneManager.LoadScene(Consts.SceneNames.CHARACTER_SELECT_SCENE, LoadSceneMode.Single);
     }
 
     private async void HandleClientLeft(string authId)
