@@ -485,6 +485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6753408774426771265}
+  - component: {fileID: 47140441531182769}
   - component: {fileID: 8627809495949199108}
   m_Layer: 0
   m_Name: CharacterSelectPlayer
@@ -509,6 +510,31 @@ Transform:
   - {fileID: 4737473243739680332}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &47140441531182769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5309231493888738779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 782748905
+  InScenePlacedSourceGlobalObjectIdHash: 460146810
+  DeferredDespawnTick: 0
+  Ownership: 8
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &8627809495949199108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,7 +547,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db16328890ebb3f478e69a4e15aaec53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   _playerIndex: 2
+  _playerNameText: {fileID: 1840379320675939604}
   _readyGameObject: {fileID: 613250114908442424}
   _characterSelectVisual: {fileID: 5610526326675785284}
   _kickButton: {fileID: 2693507468243206997}

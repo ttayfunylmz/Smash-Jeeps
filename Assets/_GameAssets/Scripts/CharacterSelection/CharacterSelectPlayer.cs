@@ -5,12 +5,15 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterSelectPlayer : MonoBehaviour
+public class CharacterSelectPlayer : NetworkBehaviour
 {
     [SerializeField] private int _playerIndex;
+    [SerializeField] private TMP_Text _playerNameText;
     [SerializeField] private GameObject _readyGameObject;
     [SerializeField] private CharacterSelectVisual _characterSelectVisual;
     [SerializeField] private Button _kickButton;
+
+    public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
 
     private void Awake()
     {
@@ -23,9 +26,15 @@ public class CharacterSelectPlayer : MonoBehaviour
             += MultiplayerGameManager_OnPlayerDataNetworkListChanged;
         CharacterSelectReady.Instance.OnReadyChanged += CharacterSelectReady_OnReadyChanged;
 
-        // _kickButton.gameObject.SetActive(NetworkManager.Singleton.IsServer);
-
         UpdatePlayer();
+
+        HandlePlayerNameChanged(string.Empty, PlayerName.Value);
+        PlayerName.OnValueChanged += HandlePlayerNameChanged;
+    }
+
+    private void HandlePlayerNameChanged(FixedString32Bytes oldName, FixedString32Bytes newName)
+    {
+        _playerNameText.text = newName.ToString();
     }
 
     private void OnKickButtonClicked()
@@ -56,6 +65,8 @@ public class CharacterSelectPlayer : MonoBehaviour
 
             _characterSelectVisual.SetPlayerColor(MultiplayerGameManager.Instance.GetPlayerColor(playerData.ColorId));
             HideKickButtonOnHost(playerData);
+            SetOwner(playerData.ClientId);
+            UpdatePlayerNameRpc();
         }
         else
         {
@@ -78,7 +89,25 @@ public class CharacterSelectPlayer : MonoBehaviour
         _kickButton.gameObject.SetActive(NetworkManager.Singleton.IsServer && playerData.ClientId != NetworkManager.Singleton.LocalClientId);
     }
 
-    private void OnDestroy()
+    [Rpc(SendTo.ClientsAndHost)]
+    private void UpdatePlayerNameRpc()
+    {
+        if(IsServer)
+        {
+            UserData userData = HostSingleton.Instance.HostManager.NetworkServer.GetUserDataByClientId(OwnerClientId);
+            PlayerName.Value = userData.UserName;
+        }
+    }
+
+    private void SetOwner(ulong clientId)
+    {
+        if (IsServer)
+        {
+            GetComponent<NetworkObject>().ChangeOwnership(clientId);
+        }
+    }
+
+    public override void OnDestroy()
     {
         MultiplayerGameManager.Instance.OnPlayerDataNetworkListChanged
             -= MultiplayerGameManager_OnPlayerDataNetworkListChanged;

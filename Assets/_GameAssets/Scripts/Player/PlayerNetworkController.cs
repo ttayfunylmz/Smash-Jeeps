@@ -27,7 +27,7 @@ public class PlayerNetworkController : NetworkBehaviour
 
     private PlayerVehicleController _playerVehicleController;
 
-    public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>(string.Empty, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
 
     public override void OnNetworkSpawn()
     {
