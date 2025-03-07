@@ -281,6 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _jeepVisualTransform: {fileID: 3442369558037732817}
+  _characterSelectVisual: {fileID: 2569222191980525017}
   _playerCollider: {fileID: 6663467821765859628}
   _wheelFrontLeft: {fileID: 5552004314922858055}
   _wheelFrontRight: {fileID: 6928456608931619067}
@@ -555,6 +556,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2569222191980525017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7724889653026838600, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
+  m_PrefabInstance: {fileID: 5229778467340283281}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd90ade1b84dc0946a7682bd435c701c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &3442369558037732817 stripped

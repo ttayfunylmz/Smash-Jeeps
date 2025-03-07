@@ -1,4 +1,6 @@
 using System;
+using TMPro;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,11 +19,11 @@ public class CharacterSelectPlayer : MonoBehaviour
 
     private void Start()
     {
-        MultiplayerGameManager.Instance.OnPlayerDataNetworkListChanged 
+        MultiplayerGameManager.Instance.OnPlayerDataNetworkListChanged
             += MultiplayerGameManager_OnPlayerDataNetworkListChanged;
         CharacterSelectReady.Instance.OnReadyChanged += CharacterSelectReady_OnReadyChanged;
 
-        _kickButton.gameObject.SetActive(NetworkManager.Singleton.IsServer);
+        // _kickButton.gameObject.SetActive(NetworkManager.Singleton.IsServer);
 
         UpdatePlayer();
     }
@@ -44,15 +46,16 @@ public class CharacterSelectPlayer : MonoBehaviour
 
     private void UpdatePlayer()
     {
-        if(MultiplayerGameManager.Instance.IsPlayerIndexConnected(_playerIndex))
+        if (MultiplayerGameManager.Instance.IsPlayerIndexConnected(_playerIndex))
         {
             Show();
 
-            PlayerDataSerializable playerData 
+            PlayerDataSerializable playerData
                 = MultiplayerGameManager.Instance.GetPlayerDataFromPlayerIndex(_playerIndex);
             _readyGameObject.SetActive(CharacterSelectReady.Instance.IsPlayerReady(playerData.ClientId));
 
             _characterSelectVisual.SetPlayerColor(MultiplayerGameManager.Instance.GetPlayerColor(playerData.ColorId));
+            HideKickButtonOnHost(playerData);
         }
         else
         {
@@ -70,9 +73,14 @@ public class CharacterSelectPlayer : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void HideKickButtonOnHost(PlayerDataSerializable playerData)
+    {
+        _kickButton.gameObject.SetActive(NetworkManager.Singleton.IsServer && playerData.ClientId != NetworkManager.Singleton.LocalClientId);
+    }
+
     private void OnDestroy()
     {
-        MultiplayerGameManager.Instance.OnPlayerDataNetworkListChanged 
+        MultiplayerGameManager.Instance.OnPlayerDataNetworkListChanged
             -= MultiplayerGameManager_OnPlayerDataNetworkListChanged;
     }
 }

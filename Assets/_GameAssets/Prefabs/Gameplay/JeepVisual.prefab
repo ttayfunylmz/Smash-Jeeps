@@ -816,6 +816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _baseMeshRenderer: {fileID: 5274992858462044905}
+  _playerNameText: {fileID: 4482388155253163893}
 --- !u!1 &4274050382383562530
 GameObject:
   m_ObjectHideFlags: 0

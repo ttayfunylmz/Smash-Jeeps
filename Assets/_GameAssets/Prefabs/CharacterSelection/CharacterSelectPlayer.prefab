@@ -521,7 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db16328890ebb3f478e69a4e15aaec53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerIndex: 0
+  _playerIndex: 2
   _readyGameObject: {fileID: 613250114908442424}
   _characterSelectVisual: {fileID: 5610526326675785284}
   _kickButton: {fileID: 2693507468243206997}
@@ -641,6 +641,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7724889653026838600, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
+      propertyPath: _playerNameText
+      value: 
+      objectReference: {fileID: 1840379320675939604}
     m_RemovedComponents:
     - {fileID: 7456511514071570249, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
     - {fileID: 5698270993881069408, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
