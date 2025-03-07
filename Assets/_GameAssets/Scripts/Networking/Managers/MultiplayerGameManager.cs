@@ -27,12 +27,27 @@ public class MultiplayerGameManager : NetworkBehaviour
     {
         if(IsServer)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientConnectedCallback;
-
+            NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_Server_OnClientConnectedCallback;
+        }
+        if(IsClient)
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_Client_OnClientConnectedCallback;
         }
     }
 
-    private void NetworkManager_OnClientConnectedCallback(ulong clientId)
+    private void NetworkManager_Server_OnClientConnectedCallback(ulong clientId)
+    {
+        for(int i = 0; i < _playerDataNetworkList.Count; ++i)
+        {
+            PlayerDataSerializable playerData = _playerDataNetworkList[i];
+            if(playerData.ClientId == clientId)
+            {
+                _playerDataNetworkList.RemoveAt(i);
+            }
+        }
+    }
+
+    private void NetworkManager_Client_OnClientConnectedCallback(ulong clientId)
     {
         _playerDataNetworkList.Add(new PlayerDataSerializable
         {
@@ -137,5 +152,11 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
 
         return -1;
+    }
+
+    public void KickPlayer(ulong clientId)
+    {
+        NetworkManager.Singleton.DisconnectClient(clientId);
+        NetworkManager_Server_OnClientConnectedCallback(clientId);
     }
 }

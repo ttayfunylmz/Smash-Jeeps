@@ -14,6 +14,7 @@ public class ClientManager : IDisposable
 {
     private JoinAllocation _joinAllocation;
     private NetworkClient _networkClient;
+    private string _joinCode;
 
     public async UniTask<bool> InitAsync()
     {
@@ -61,6 +62,16 @@ public class ClientManager : IDisposable
         NetworkManager.Singleton.NetworkConfig.ConnectionData = payloadBytes; 
 
         NetworkManager.Singleton.StartClient();
+    }
+
+    public void SetLobbyJoinCode(string joinCode)
+    {
+        _joinCode = joinCode;
+    }
+
+    public string GetJoinCode()
+    {
+        return _joinCode;
     }
 
     public void Disconnect()

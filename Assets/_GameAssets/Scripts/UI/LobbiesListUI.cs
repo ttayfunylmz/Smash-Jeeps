@@ -62,8 +62,6 @@ public class LobbiesListUI : MonoBehaviour
             Debug.LogError(lobbyServiceException);
         }
 
-
-
         _isRefreshing = false;
     }
 
@@ -77,6 +75,7 @@ public class LobbiesListUI : MonoBehaviour
         {
             Lobby joiningLobby = await LobbyService.Instance.JoinLobbyByIdAsync(lobby.Id);
             string joinCode = joiningLobby.Data["JoinCode"].Value;
+            ClientSingleton.Instance.ClientManager.SetLobbyJoinCode(joinCode);
 
             await ClientSingleton.Instance.ClientManager.StartClientAsync(joinCode);
         }

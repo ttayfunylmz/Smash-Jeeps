@@ -23,6 +23,11 @@ public class GameManager : NetworkBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     public override void OnNetworkSpawn()
     {
         if (IsServer)

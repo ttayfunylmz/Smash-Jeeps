@@ -125,7 +125,7 @@ public class SettingsUI : MonoBehaviour
     {
         if (_isAnimating) { return; }
 
-        _joinCodeText.text = HostSingleton.Instance.HostManager.GetJoinCode();
+        SetJoinCode();
         _isAnimating = true;
         _blackBackgroundImage.raycastTarget = true;
         _settingsMenuTransform.gameObject.SetActive(true);
@@ -141,5 +141,17 @@ public class SettingsUI : MonoBehaviour
         _isSoundActive = !_isSoundActive;
         _volumeImage.sprite = _isSoundActive ? _audioOnSprite : _audioOffSprite;
         _soundTick.SetActive(_isSoundActive);
+    }
+
+    private void SetJoinCode()
+    {
+        if(NetworkManager.Singleton.IsHost)
+        {
+            _joinCodeText.text = HostSingleton.Instance.HostManager.GetJoinCode();
+        }
+        else if(NetworkManager.Singleton.IsClient)
+        {
+            _joinCodeText.text = ClientSingleton.Instance.ClientManager.GetJoinCode();
+        }
     }
 }

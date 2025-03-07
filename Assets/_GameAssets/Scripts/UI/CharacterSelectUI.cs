@@ -31,7 +31,14 @@ public class CharacterSelectUI : MonoBehaviour
 
     private void OnEnable()
     {
-        _joinCodeText.text = HostSingleton.Instance.HostManager.GetJoinCode();
+        if(NetworkManager.Singleton.IsHost)
+        {
+            _joinCodeText.text = HostSingleton.Instance.HostManager.GetJoinCode();
+        }
+        else if(NetworkManager.Singleton.IsClient)
+        {
+            _joinCodeText.text = ClientSingleton.Instance.ClientManager.GetJoinCode();
+        }
     }
 
     private void OnCopyButtonClicked()
