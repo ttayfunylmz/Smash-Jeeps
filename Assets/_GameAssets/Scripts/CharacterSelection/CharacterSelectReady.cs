@@ -76,6 +76,7 @@ public class CharacterSelectReady : NetworkBehaviour
     private void SetPlayerUnreadyToAllRpc(ulong clientId)
     {
         _playerReadyDictionary[clientId] = false;
+        OnReadyChanged?.Invoke();
         OnUnreadyChanged?.Invoke();
     }
 

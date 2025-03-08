@@ -33,12 +33,23 @@ public class SpawnerManager : NetworkBehaviour
             _availableSpawnIndexList.Add(i);
         }
 
-        NetworkManager.OnClientConnectedCallback += SpawnPlayer;
+
+        SpawnAllPlayers();
 
         // CLIENT CONNECTED CALLBACK IS WORKING FOR NEWLY JOINING CLIENTS
-        if(IsHost)
+        // if(IsHost)
+        // {
+        //     SpawnPlayer(NetworkManager.LocalClientId);
+        // }
+    }
+
+    public void SpawnAllPlayers()
+    {
+        if (!IsServer) return;
+
+        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
         {
-            SpawnPlayer(NetworkManager.LocalClientId);
+            SpawnPlayer(client.ClientId);
         }
     }
 
