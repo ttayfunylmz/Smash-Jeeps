@@ -27,7 +27,7 @@ public class MultiplayerGameManager : NetworkBehaviour
     {
         if(IsServer)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_Server_OnClientConnectedCallback;
+            NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_Server_OnClientDisconnectedCallback;
         }
         if(IsClient)
         {
@@ -35,7 +35,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         }
     }
 
-    private void NetworkManager_Server_OnClientConnectedCallback(ulong clientId)
+    private void NetworkManager_Server_OnClientDisconnectedCallback(ulong clientId)
     {
         for(int i = 0; i < _playerDataNetworkList.Count; ++i)
         {
@@ -157,6 +157,6 @@ public class MultiplayerGameManager : NetworkBehaviour
     public void KickPlayer(ulong clientId)
     {
         NetworkManager.Singleton.DisconnectClient(clientId);
-        NetworkManager_Server_OnClientConnectedCallback(clientId);
+        NetworkManager_Server_OnClientDisconnectedCallback(clientId);
     }
 }

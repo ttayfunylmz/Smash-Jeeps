@@ -76,12 +76,12 @@ public class CharacterSelectPlayer : NetworkBehaviour
 
     private void Show()
     {
-        gameObject.SetActive(true);
+        gameObject?.SetActive(true);
     }
 
     private void Hide()
     {
-        gameObject.SetActive(false);
+        gameObject?.SetActive(false);
     }
 
     private void HideKickButtonOnHost(PlayerDataSerializable playerData)
