@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterSelectUI : MonoBehaviour
@@ -9,6 +10,7 @@ public class CharacterSelectUI : MonoBehaviour
     [Header("References")]
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Button _readyButton;
+    [SerializeField] private Button _startButton;
     [SerializeField] private Button _copyButton;
     [SerializeField] private TMP_Text _readyText;
     [SerializeField] private TMP_Text _joinCodeText;
@@ -26,7 +28,17 @@ public class CharacterSelectUI : MonoBehaviour
     {
         _mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
         _readyButton.onClick.AddListener(OnReadyButtonClicked);
+        _startButton.onClick.AddListener(OnStartButtonClicked);
         _copyButton.onClick.AddListener(OnCopyButtonClicked);
+    }
+
+    private void Start()
+    {
+        _startButton.gameObject.SetActive(NetworkManager.Singleton.IsServer);
+        _startButton.interactable = false;
+
+        CharacterSelectReady.Instance.OnAllPlayersReady += CharacterSelectReady_OnAllPlayersReady;
+        CharacterSelectReady.Instance.OnUnreadyChanged += CharacterSelectReady_OnUnreadyChanged;
     }
 
     private void OnEnable()
@@ -39,6 +51,21 @@ public class CharacterSelectUI : MonoBehaviour
         {
             _joinCodeText.text = ClientSingleton.Instance.ClientManager.GetJoinCode();
         }
+    }
+
+    private void CharacterSelectReady_OnUnreadyChanged()
+    {
+        _startButton.interactable = false;   
+    }
+
+    private void CharacterSelectReady_OnAllPlayersReady()
+    {
+        _startButton.interactable = true;
+    }
+
+    private void OnStartButtonClicked()
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE, LoadSceneMode.Single);
     }
 
     private void OnCopyButtonClicked()
