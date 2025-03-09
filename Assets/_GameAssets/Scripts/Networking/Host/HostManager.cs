@@ -16,7 +16,7 @@ using UnityEngine.SceneManagement;
 
 public class HostManager : IDisposable
 {
-    private const int MAX_CONNECTIONS = 6;
+    private const int MAX_CONNECTIONS = 4;
     
     public NetworkServer NetworkServer { get; private set; }
     
