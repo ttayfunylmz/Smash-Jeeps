@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CharacterSelectReady : NetworkBehaviour
 {
@@ -18,6 +17,23 @@ public class CharacterSelectReady : NetworkBehaviour
     {
         Instance = this;
         _playerReadyDictionary = new Dictionary<ulong, bool>();
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
+    }
+
+    private void OnClientConnectedCallback(ulong obj)
+    {
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            if(IsPlayerReady(clientId))
+            {
+                SetPlayerReady();
+                OnReadyChanged?.Invoke();
+            }
+        }
     }
 
     public void SetPlayerReady()
@@ -80,16 +96,16 @@ public class CharacterSelectReady : NetworkBehaviour
         OnUnreadyChanged?.Invoke();
     }
 
-    public bool AreAllPlayersReady()  
-    {  
-        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)  
-        {  
-            if (!_playerReadyDictionary.ContainsKey(clientId) || !_playerReadyDictionary[clientId])  
-            {  
-                return false;  
-            }  
-        }  
-        return true;  
+    public bool AreAllPlayersReady()
+    {
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            if (!_playerReadyDictionary.ContainsKey(clientId) || !_playerReadyDictionary[clientId])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public bool IsPlayerReady(ulong clientId)
