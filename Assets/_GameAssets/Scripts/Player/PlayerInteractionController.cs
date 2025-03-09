@@ -21,14 +21,6 @@ public class PlayerInteractionController : NetworkBehaviour
         _playerHealthController = GetComponent<PlayerHealthController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
-        SpawnerManager.Instance.OnPlayerRespawned += SpawnerManager_OnPlayerRespawned;
-    }
-
-    private void SpawnerManager_OnPlayerRespawned()
-    {
-        enabled = true;
-        _isCrashed = false;
-        _playerHealthController.RestartHealth();
     }
 
     private void PlayerVehicleController_OnVehicleCrashed()
@@ -89,12 +81,17 @@ public class PlayerInteractionController : NetworkBehaviour
     }
 
     public void SetShieldActive(bool isActive) => _isShieldActive = isActive;
+    public void OnPlayerRespawned()
+    {
+        enabled = true;
+        _isCrashed = false;
+        _playerHealthController.RestartHealth();
+    }
 
     public override void OnNetworkDespawn()
     {
         if(!IsOwner) { return;}
 
         _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
-        SpawnerManager.Instance.OnPlayerRespawned -= SpawnerManager_OnPlayerRespawned;
     }
 }

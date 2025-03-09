@@ -26,6 +26,8 @@ public class PlayerNetworkController : NetworkBehaviour
     [SerializeField] private float _animationDuration = 0.5f;
 
     private PlayerVehicleController _playerVehicleController;
+    private PlayerSkillController _playerSkillController;
+    private PlayerInteractionController _playerInteractionController;
 
     public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
 
@@ -46,14 +48,10 @@ public class PlayerNetworkController : NetworkBehaviour
         if(!IsOwner) return;
 
         _playerVehicleController = GetComponent<PlayerVehicleController>();
+        _playerSkillController = GetComponent<PlayerSkillController>();
+        _playerInteractionController = GetComponent<PlayerInteractionController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
-        SpawnerManager.Instance.OnPlayerRespawned += SpawnerManager_OnPlayerRespawned;
-    }
-
-    private void SpawnerManager_OnPlayerRespawned()
-    {
-        OnHealthBarChangedRpc(1f);
     }
 
     private void PlayerVehicleController_OnVehicleCrashed()
@@ -73,6 +71,15 @@ public class PlayerNetworkController : NetworkBehaviour
 
     public PlayerScoreController GetPlayerScoreController() => _playerScoreController;
 
+    public void OnPlayerRespawned()
+    {
+        _playerVehicleController.OnPlayerRespawned();
+        _playerSkillController.OnPlayerRespawned();
+        _playerInteractionController.OnPlayerRespawned();
+
+        OnHealthBarChangedRpc(1f);
+    }
+
     public override void OnNetworkDespawn()
     {
         if(IsServer)
@@ -83,7 +90,6 @@ public class PlayerNetworkController : NetworkBehaviour
         if(IsOwner)
         {
             _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
-            SpawnerManager.Instance.OnPlayerRespawned -= SpawnerManager_OnPlayerRespawned;
         }
     }
 }

@@ -50,7 +50,6 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         _steerAngle = _playerVehicleController.Settings.SteerAngle;
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
-        SpawnerManager.Instance.OnPlayerRespawned += SpawnerManager_OnPlayerRespawned;
     }
 
     private void Update()
@@ -62,14 +61,6 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         RotateWheels();
         SetSuspension();
         SetSkidMarksAndParticles();
-    }
-
-    private void SpawnerManager_OnPlayerRespawned()
-    {
-        foreach(TrailRenderer trail in _skidMarkTrails)
-        {
-            trail.gameObject.SetActive(true);
-        }
     }
 
     private void PlayerVehicleController_OnVehicleCrashed()
@@ -179,6 +170,11 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         SetJeepVisualActiveRpc(true);
         _playerCollider.enabled = true;
         enabled = true;
+
+        foreach(TrailRenderer trail in _skidMarkTrails)
+        {
+            trail.gameObject.SetActive(true);
+        }
     }
 
     public void SetVehicleVisualActive(float delay)
@@ -191,6 +187,5 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         if(!IsOwner) { return; }
 
         _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
-        SpawnerManager.Instance.OnPlayerRespawned -= SpawnerManager_OnPlayerRespawned;
     }
 }

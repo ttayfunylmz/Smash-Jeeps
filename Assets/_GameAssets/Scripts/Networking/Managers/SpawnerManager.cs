@@ -9,8 +9,6 @@ using UnityEngine;
 
 public class SpawnerManager : NetworkBehaviour
 {
-    public event Action OnPlayerRespawned;
-
     public static SpawnerManager Instance { get; private set; }
 
     [SerializeField] private List<Transform> _spawnPointTransformList;
@@ -33,14 +31,7 @@ public class SpawnerManager : NetworkBehaviour
             _availableSpawnIndexList.Add(i);
         }
 
-
         SpawnAllPlayers();
-
-        // CLIENT CONNECTED CALLBACK IS WORKING FOR NEWLY JOINING CLIENTS
-        // if(IsHost)
-        // {
-        //     SpawnPlayer(NetworkManager.LocalClientId);
-        // }
     }
 
     public void SpawnAllPlayers()
@@ -124,6 +115,9 @@ public class SpawnerManager : NetworkBehaviour
         playerRigidbody.isKinematic = false;
         playerNetworkTransform.Interpolate = true;
 
-        OnPlayerRespawned?.Invoke();
+        if(playerNetworkObject.TryGetComponent<PlayerNetworkController>(out var playerNetworkController))
+        {
+            playerNetworkController.OnPlayerRespawned();
+        }
     }
 }

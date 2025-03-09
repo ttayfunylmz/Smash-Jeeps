@@ -32,12 +32,6 @@ public class PlayerSkillController : NetworkBehaviour
         _playerInteractionController = GetComponent<PlayerInteractionController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
-        SpawnerManager.Instance.OnPlayerRespawned += SpawnerManager_OnPlayerRespawned;
-    }
-
-    private void SpawnerManager_OnPlayerRespawned()
-    {
-        enabled = true;
     }
 
     private void PlayerVehicleController_OnVehicleCrashed()
@@ -162,11 +156,12 @@ public class PlayerSkillController : NetworkBehaviour
         return _hasSkillAlready;
     }
 
+    public void OnPlayerRespawned() => enabled = true;
+
     public override void OnNetworkDespawn()
     {
         if(!IsOwner) { return; }
 
         _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
-        SpawnerManager.Instance.OnPlayerRespawned -= SpawnerManager_OnPlayerRespawned;
     }
 }
