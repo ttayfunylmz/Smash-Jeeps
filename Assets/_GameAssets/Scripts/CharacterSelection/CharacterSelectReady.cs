@@ -80,6 +80,18 @@ public class CharacterSelectReady : NetworkBehaviour
         OnUnreadyChanged?.Invoke();
     }
 
+    public bool AreAllPlayersReady()  
+    {  
+        foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)  
+        {  
+            if (!_playerReadyDictionary.ContainsKey(clientId) || !_playerReadyDictionary[clientId])  
+            {  
+                return false;  
+            }  
+        }  
+        return true;  
+    }
+
     public bool IsPlayerReady(ulong clientId)
     {
         return _playerReadyDictionary.ContainsKey(clientId) && _playerReadyDictionary[clientId];

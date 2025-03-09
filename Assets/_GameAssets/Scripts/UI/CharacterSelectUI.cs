@@ -39,6 +39,19 @@ public class CharacterSelectUI : MonoBehaviour
 
         CharacterSelectReady.Instance.OnAllPlayersReady += CharacterSelectReady_OnAllPlayersReady;
         CharacterSelectReady.Instance.OnUnreadyChanged += CharacterSelectReady_OnUnreadyChanged;
+        MultiplayerGameManager.Instance.OnPlayerDataNetworkListChanged += MultiplayerGameManager_OnPlayerDataNetworkListChanged;
+    }
+
+    private void MultiplayerGameManager_OnPlayerDataNetworkListChanged()
+    {
+        if(CharacterSelectReady.Instance.AreAllPlayersReady())
+        {
+            _startButton.interactable = true;
+        }
+        else
+        {
+            _startButton.interactable = false;
+        }
     }
 
     private void OnEnable()
