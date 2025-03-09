@@ -11,11 +11,16 @@ public class SpawnerManager : NetworkBehaviour
 {
     public static SpawnerManager Instance { get; private set; }
 
-    [SerializeField] private List<Transform> _spawnPointTransformList;
-    [SerializeField] private List<Transform> _respawnPointTransformList;
+    [Header("Player Prefab")]
     [SerializeField] private GameObject _playerPrefab;
 
-    private List<int> _availableSpawnIndexList = new List<int>();
+    [Header("Transform Lists")]
+    [SerializeField] private List<Transform> _spawnPointTransformList;
+    [SerializeField] private List<Transform> _respawnPointTransformList;
+
+    [Header("Index Lists")]
+    [SerializeField] private List<int> _availableSpawnIndexList = new List<int>();
+    [SerializeField] private List<int> _availableRespawnIndexList = new List<int>();
 
     private void Awake()
     {
@@ -24,11 +29,16 @@ public class SpawnerManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if(!IsServer) { return; }
+        if (!IsServer) { return; }
 
-        for(int i = 0; i < _spawnPointTransformList.Count; ++i)
+        for (int i = 0; i < _spawnPointTransformList.Count; ++i)
         {
             _availableSpawnIndexList.Add(i);
+        }
+
+        for (int i = 0; i < _respawnPointTransformList.Count; ++i)
+        {
+            _availableRespawnIndexList.Add(i);
         }
 
         SpawnAllPlayers();
@@ -46,7 +56,7 @@ public class SpawnerManager : NetworkBehaviour
 
     private void SpawnPlayer(ulong clientId)
     {
-        if(_availableSpawnIndexList.Count == 0)
+        if (_availableSpawnIndexList.Count == 0)
         {
             Debug.LogError("No available Spawn Points!");
             return;
@@ -82,8 +92,19 @@ public class SpawnerManager : NetworkBehaviour
             yield break;
         }
 
-        int randomIndex = UnityEngine.Random.Range(0, _respawnPointTransformList.Count);
-        Transform respawnPoint = _respawnPointTransformList[randomIndex];
+        if (_availableRespawnIndexList.Count == 0)
+        {
+            for (int i = 0; i < _respawnPointTransformList.Count; ++i)
+            {
+                _availableRespawnIndexList.Add(i);
+            }
+        }
+
+        int randomIndex = UnityEngine.Random.Range(0, _availableRespawnIndexList.Count);
+        int respawnIndex = _availableRespawnIndexList[randomIndex];
+        _availableRespawnIndexList.RemoveAt(randomIndex);
+
+        Transform respawnPoint = _respawnPointTransformList[respawnIndex];
 
         NetworkObject playerNetworkObject = NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject;
 
@@ -98,12 +119,12 @@ public class SpawnerManager : NetworkBehaviour
             playerRigidbody.isKinematic = true;
         }
 
-        if(playerNetworkObject.TryGetComponent<NetworkTransform>(out var playerNetworkTransform))
+        if (playerNetworkObject.TryGetComponent<NetworkTransform>(out var playerNetworkTransform))
         {
             playerNetworkTransform.Interpolate = false;
         }
 
-        if(playerNetworkObject.TryGetComponent<PlayerVehicleVisualController>(out var playerVehicleVisualController))
+        if (playerNetworkObject.TryGetComponent<PlayerVehicleVisualController>(out var playerVehicleVisualController))
         {
             playerVehicleVisualController.SetVehicleVisualActive(0.1f);
         }
@@ -115,7 +136,7 @@ public class SpawnerManager : NetworkBehaviour
         playerRigidbody.isKinematic = false;
         playerNetworkTransform.Interpolate = true;
 
-        if(playerNetworkObject.TryGetComponent<PlayerNetworkController>(out var playerNetworkController))
+        if (playerNetworkObject.TryGetComponent<PlayerNetworkController>(out var playerNetworkController))
         {
             playerNetworkController.OnPlayerRespawned();
         }
