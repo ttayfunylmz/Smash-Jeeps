@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0e290bd2604a54a4b9266f3164a611ba
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298887
+  packageName: Shaders Pack
+  packageVersion: 1.0
+  assetPath: Assets/Matthew Guz/Shaders Pack/Materials/HLSL/Interference VHS.mat
+  uploadId: 706041

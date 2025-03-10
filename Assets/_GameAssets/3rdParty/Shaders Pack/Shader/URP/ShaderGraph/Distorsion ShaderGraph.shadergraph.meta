@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 81c8058b04331f843a8b3e97292893e1
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298887
+  packageName: Shaders Pack
+  packageVersion: 1.0
+  assetPath: Assets/Matthew Guz/Shaders Pack/Shader/URP/ShaderGraph/Distorsion ShaderGraph.shadergraph
+  uploadId: 706041

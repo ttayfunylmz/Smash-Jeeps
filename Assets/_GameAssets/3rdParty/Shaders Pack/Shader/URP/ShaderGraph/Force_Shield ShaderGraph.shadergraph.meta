@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4d631979ab4c4d7419441f8c144cc7d6
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298887
+  packageName: Shaders Pack
+  packageVersion: 1.0
+  assetPath: Assets/Matthew Guz/Shaders Pack/Shader/URP/ShaderGraph/Force_Shield
+    ShaderGraph.shadergraph
+  uploadId: 706041

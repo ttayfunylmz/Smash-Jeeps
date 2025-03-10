@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 874e70a86d9441e448eed580c35c0dbd
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298887
+  packageName: Shaders Pack
+  packageVersion: 1.0
+  assetPath: Assets/Matthew Guz/Shaders Pack/Materials/Shader Graph/Outline ShaderGraph
+    1.mat
+  uploadId: 706041

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3694906eb7fe9ce43bbfac603cb931b6
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298887
+  packageName: Shaders Pack
+  packageVersion: 1.0
+  assetPath: Assets/Matthew Guz/Shaders Pack/Shader/URP/HLSL/Vanish_URP.shader
+  uploadId: 706041

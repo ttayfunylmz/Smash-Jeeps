@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0c17f6e75915f1f498960347dd8601ae
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298887
+  packageName: Shaders Pack
+  packageVersion: 1.0
+  assetPath: Assets/Matthew Guz/Shaders Pack/Materials/Shader Graph/Force Shield
+    ShaderGraph.mat
+  uploadId: 706041

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8dc8ffd63e3a0094797d6fe8fa4109d8
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298887
+  packageName: Shaders Pack
+  packageVersion: 1.0
+  assetPath: Assets/Matthew Guz/Shaders Pack/Shader/URP/HLSL/Interference_VHS_URP.shader
+  uploadId: 706041

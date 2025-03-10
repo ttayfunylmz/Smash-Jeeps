@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: aeb224a5697c8ff46a87bdc93b32801a
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298887
+  packageName: Shaders Pack
+  packageVersion: 1.0
+  assetPath: Assets/Matthew Guz/Shaders Pack/Shader/URP/HLSL/Transparent_URP.shader
+  uploadId: 706041
