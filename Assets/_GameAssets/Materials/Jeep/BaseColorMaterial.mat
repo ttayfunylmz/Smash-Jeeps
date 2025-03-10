@@ -33,7 +33,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _BaseColor _BaseMap _Shades
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -117,9 +117,9 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Max: 1.5
+    - _Max: 2
     - _Metallic: 0.1
-    - _Min: 1
+    - _Min: 1.5
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0

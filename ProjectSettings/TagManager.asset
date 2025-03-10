@@ -14,8 +14,8 @@ TagManager:
   - Ground
   - OwnerPlayer
   - Rocket
-  - 
-  - 
+  - Player
+  - Obstacle
   - 
   - 
   - 
