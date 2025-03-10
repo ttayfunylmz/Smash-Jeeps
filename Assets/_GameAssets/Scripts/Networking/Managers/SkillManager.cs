@@ -11,6 +11,8 @@ public class SkillManager : NetworkBehaviour
     public static SkillManager Instance { get; private set; }
 
     [SerializeField] private MysteryBoxSkillsSO[] mysteryBoxSkills;
+    [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private LayerMask _hillLayer;
 
     private Dictionary<SkillType, MysteryBoxSkillsSO> skillsDictionary;
 
@@ -87,7 +89,7 @@ public class SkillManager : NetworkBehaviour
             {
                 networkObject.TrySetParent(client.PlayerObject);
 
-                if(skillData.SkillData.ShouldBeAttachedToParent)
+                if (skillData.SkillData.ShouldBeAttachedToParent)
                 {
                     networkObject.transform.localPosition = Vector3.zero;
                 }
@@ -102,11 +104,12 @@ public class SkillManager : NetworkBehaviour
 
                 if (skillData.SkillType == SkillType.FakeBox)
                 {
-                    positionDataSerializable
-                        = new PositionDataSerializable(new Vector3(
-                            skillInstance.transform.position.x,
-                            0f + skillData.SkillData.SkillOffset.y,
-                            skillInstance.transform.position.z));
+                    float groundHeight = GetGroundHeight(skillData, skillInstance.position);
+
+                    positionDataSerializable = new PositionDataSerializable(new Vector3(
+                        skillInstance.transform.position.x,
+                        groundHeight,
+                        skillInstance.transform.position.z));
 
                     UpdateSkillPositionRpc(networkObject.NetworkObjectId, positionDataSerializable, true);
                 }
@@ -128,5 +131,19 @@ public class SkillManager : NetworkBehaviour
                 networkObject.transform.localPosition = positionDataSerializable.Position;
             }
         }
+    }
+
+    private float GetGroundHeight(MysteryBoxSkillsSO skillData, Vector3 position)
+    {
+        if(Physics.Raycast(new Vector3(position.x, position.y + 5f, position.z), Vector3.down, out RaycastHit hit2, 10f, _hillLayer))
+        {
+            return skillData.SkillData.FakeBoxHillOffset.y;
+        }
+        else if (Physics.Raycast(new Vector3(position.x, position.y + 5f, position.z), Vector3.down, out RaycastHit hit, 10f, _groundLayer))
+        {
+            return skillData.SkillData.SkillOffset.y;
+        }
+
+        return skillData.SkillData.SkillOffset.y;
     }
 }

@@ -10,6 +10,9 @@ public class SkillDataSO : ScriptableObject
     [SerializeField] private bool _shouldBeAttachedToParent;
     [SerializeField] private int _respawnTimer;
     [SerializeField] private int _damageAmount;
+
+    [Header("Fake Box Hill Offset")]
+    [SerializeField] private Vector3 _fakeBoxHillOffset;
     
     public Transform SkillPrefab => _skillPrefab;
     public Vector3 SkillOffset => _skillOffset;
@@ -17,4 +20,5 @@ public class SkillDataSO : ScriptableObject
     public bool ShouldBeAttachedToParent => _shouldBeAttachedToParent;
     public int RespawnTimer => _respawnTimer;
     public int DamageAmount => _damageAmount;
+    public Vector3 FakeBoxHillOffset => _fakeBoxHillOffset;
 }

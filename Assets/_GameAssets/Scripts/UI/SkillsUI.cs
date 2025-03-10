@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SkillsUI : MonoBehaviour
 {
-    public static SkillsUI Instance { get; private set;}
+    public static SkillsUI Instance { get; private set; }
 
     [Header("References")]
     [SerializeField] private Image _skillImage;
@@ -18,7 +18,7 @@ public class SkillsUI : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _scaleDuration;
 
-    private void Awake() 
+    private void Awake()
     {
         Instance = this;
     }
@@ -37,7 +37,7 @@ public class SkillsUI : MonoBehaviour
         _skillImage.sprite = skillSprite;
         _skillNameText.text = skillName;
 
-        if(skillUsageType == SkillUsageType.Timer || skillUsageType == SkillUsageType.Amount)
+        if (skillUsageType == SkillUsageType.Timer || skillUsageType == SkillUsageType.Amount)
         {
             SetTimerCounterAnimation(timerCounter);
         }
@@ -45,7 +45,7 @@ public class SkillsUI : MonoBehaviour
 
     private void SetTimerCounterAnimation(int timerCounter)
     {
-        if(_timerCounterBackgroundTransform.gameObject.activeInHierarchy) { return; }
+        if (_timerCounterBackgroundTransform.gameObject.activeInHierarchy) { return; }
         _timerCounterBackgroundTransform.gameObject.SetActive(true);
         _timerCounterBackgroundTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack);
         _timerCounterText.text = timerCounter.ToString();
@@ -55,13 +55,10 @@ public class SkillsUI : MonoBehaviour
     {
         _skillNameText.text = string.Empty;
         _skillParent.SetActive(false);
-        
-        if(_timerCounterBackgroundTransform.gameObject.activeInHierarchy)
+
+        if (_timerCounterBackgroundTransform.gameObject.activeInHierarchy)
         {
-            _timerCounterBackgroundTransform.DOScale(0f, _scaleDuration).SetEase(Ease.InBack).OnComplete(() =>
-            {
-                _timerCounterBackgroundTransform.gameObject.SetActive(false);
-            });
+            _timerCounterBackgroundTransform.gameObject.SetActive(false);
         }
     }
 
