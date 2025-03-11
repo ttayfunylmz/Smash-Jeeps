@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1900976983
+  GlobalObjectIdHash: 3951405467
   InScenePlacedSourceGlobalObjectIdHash: 3951405467
   DeferredDespawnTick: 0
   Ownership: 8
@@ -330,9 +330,6 @@ MonoBehaviour:
   _wheelsSpinSpeed: 70
   _wheelYWhenSpringMin: 0.6
   _wheelYWhenSpringMax: 0.3
-  _skidMarkTrails:
-  - {fileID: 9021226213306000096}
-  - {fileID: 455962664074079000}
 --- !u!114 &867195426651295143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,15 +570,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8844893836073271083}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1855055982704080655, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
---- !u!96 &455962664074079000 stripped
-TrailRenderer:
-  m_CorrespondingSourceObject: {fileID: 5674536003892938377, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
-  m_PrefabInstance: {fileID: 5229778467340283281}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1092396820479660162 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5168758877679336723, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
@@ -653,10 +646,5 @@ MonoBehaviour:
 --- !u!4 &8707718580413562044 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3480121596831830317, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
-  m_PrefabInstance: {fileID: 5229778467340283281}
-  m_PrefabAsset: {fileID: 0}
---- !u!96 &9021226213306000096 stripped
-TrailRenderer:
-  m_CorrespondingSourceObject: {fileID: 3864707228259192689, guid: 155c55f6475d4c84780fd2363ed1acaf, type: 3}
   m_PrefabInstance: {fileID: 5229778467340283281}
   m_PrefabAsset: {fileID: 0}
