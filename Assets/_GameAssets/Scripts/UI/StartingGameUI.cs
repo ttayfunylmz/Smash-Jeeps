@@ -17,7 +17,8 @@ public class StartingGameUI : NetworkBehaviour
     [Header("Settings")]
     [SerializeField] private float _animationDuration = 0.5f;
 
-    [SerializeField] private NetworkVariable<int> _playersLoaded = new NetworkVariable<int>
+    [SerializeField]
+    private NetworkVariable<int> _playersLoaded = new NetworkVariable<int>
             (0,
             NetworkVariableReadPermission.Everyone,
             NetworkVariableWritePermission.Owner);
@@ -37,6 +38,7 @@ public class StartingGameUI : NetworkBehaviour
 
         if (IsServer)
         {
+            OnSinglePlayerConnected();
             _playersLoaded.OnValueChanged += OnPlayersLoadedChanged;
         }
     }
@@ -61,6 +63,16 @@ public class StartingGameUI : NetworkBehaviour
     {
         OnAllPlayersConnected?.Invoke();
         StartCoroutine(CountdownCoroutine());
+    }
+
+    private void OnSinglePlayerConnected()
+    {
+        if (NetworkManager.Singleton.ConnectedClientsList.Count == 1)
+        {
+            Debug.Log("Single Player Connected");
+            WaitingForPlayersUI.Instance.Hide();
+            StartCoroutine(CountdownCoroutine());
+        }
     }
 
     private IEnumerator CountdownCoroutine()

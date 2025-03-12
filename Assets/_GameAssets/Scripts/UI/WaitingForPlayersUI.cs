@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class WaitingForPlayersUI : MonoBehaviour
 {
+    public static WaitingForPlayersUI Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         Show();
@@ -20,7 +27,7 @@ public class WaitingForPlayersUI : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    private void Hide()
+    public void Hide()
     {
         gameObject.SetActive(false);
     }

@@ -73,6 +73,7 @@ public class PlayerVehicleController : NetworkBehaviour
     private void FixedUpdate()
     {
         if(!IsOwner) return;
+        if(GameManager.Instance.GetGameState() == GameState.GameOver) { return; }
 
         UpdateSuspension();
         UpdateSteering();
