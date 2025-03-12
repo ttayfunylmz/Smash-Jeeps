@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
-    public event Action<GameState> OnGameStateChanged;
-
     public static GameManager Instance { get; private set; }
+
+    public event Action<GameState> OnGameStateChanged;
 
     [SerializeField] private GameDataSO _gameData;
 
@@ -33,7 +33,7 @@ public class GameManager : NetworkBehaviour
         if (IsServer)
         {
             _gameTimer.Value = _gameData.GameTimer;
-            OnTimerChanged(0, _gameTimer.Value);
+            SetTimerTextRpc();
             InvokeRepeating(nameof(DecreaseTimer), 1f, 1f);
         }
 
@@ -50,9 +50,15 @@ public class GameManager : NetworkBehaviour
         }
     }
 
+    [Rpc(SendTo.ClientsAndHost)]
+    private void SetTimerTextRpc()
+    {
+        TimerUI.Instance.SetTimerUI(_gameTimer.Value);
+    }
+
     private void DecreaseTimer()
     {
-        if (IsServer)
+        if (IsServer && _currentGameState == GameState.Playing)
         {
             _gameTimer.Value--;
 
