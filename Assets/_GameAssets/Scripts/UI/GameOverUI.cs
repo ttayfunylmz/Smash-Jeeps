@@ -4,6 +4,7 @@ using TMPro;
 using DG.Tweening;
 using Unity.Netcode;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -97,15 +98,24 @@ public class GameOverUI : MonoBehaviour
             .OrderByDescending(x => x.Score)
             .ToList();
 
+        HashSet<ulong> existingClientIds = new HashSet<ulong>();
+
         for (int i = 0; i < leaderboardData.Count; i++)
         {
             var entry = leaderboardData[i];
-            ScoreTablePlayer scoreTableInstance = Instantiate(_scoreTablePlayerPrefab, _contentTransform);
 
+            if (existingClientIds.Contains(entry.ClientId))
+            {
+                continue;
+            }
+
+            ScoreTablePlayer scoreTableInstance = Instantiate(_scoreTablePlayerPrefab, _contentTransform);
             bool isOwner = entry.ClientId == NetworkManager.Singleton.LocalClientId;
 
-            int rank = i + 1; 
+            int rank = i + 1;
             scoreTableInstance.SetScoreTableData(rank.ToString(), entry.PlayerName, entry.Score.ToString(), isOwner);
+
+            existingClientIds.Add(entry.ClientId);
         }
 
         SetWinnersName();

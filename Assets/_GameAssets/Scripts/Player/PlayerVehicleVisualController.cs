@@ -54,7 +54,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
     private void Update()
     {
         if (!IsOwner) return;
-        if(GameManager.Instance.GetGameState() != GameState.Playing) { return; }
+        if (GameManager.Instance.GetGameState() != GameState.Playing) { return; }
 
         UpdateVisualStates();
         RotateWheels();
@@ -129,6 +129,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         _springsCurrentLength[WheelType.BackRight] = _playerVehicleController.GetSpringCurrentLength(WheelType.BackRight);
     }
 
+
     [Rpc(SendTo.ClientsAndHost)]
     private void SetJeepVisualActiveRpc(bool isActive)
     {
@@ -154,7 +155,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
 
     public override void OnNetworkDespawn()
     {
-        if(!IsOwner) { return; }
+        if (!IsOwner) { return; }
 
         _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
     }
