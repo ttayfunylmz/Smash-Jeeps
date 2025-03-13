@@ -13,7 +13,7 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
     [Header("Settings")]
     [SerializeField] private float _respawnTimer;
 
-    public void Collect(PlayerSkillController playerSkillController)
+    public void Collect(PlayerSkillController playerSkillController, CameraShake cameraShake)
     {
         if(playerSkillController.HasSkillAlready()) { return; }
 
@@ -23,6 +23,8 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
         playerSkillController.SetupSkill(skill);
         _wowParticleSystem.Play();
         OnCollectRpc();
+
+        cameraShake.ShakeCamera(.8f, .4f);
     }
 
     [Rpc(SendTo.ClientsAndHost)]
@@ -54,4 +56,5 @@ public class MysteryBoxCollectible : NetworkBehaviour, ICollectible
     {
         _collider.enabled = enabled;
     }
+
 }
