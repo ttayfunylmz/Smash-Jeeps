@@ -35,11 +35,13 @@ public class MainMenuUI : MonoBehaviour
 
     private async void StartHost()
     {
+        _hostButton.interactable = false;
         await HostSingleton.Instance.HostManager.StartHostAsync();
     }
 
     private async void StartClient()
     {
+        _clientButton.interactable = false;
         await ClientSingleton.Instance.ClientManager.StartClientAsync(_joinCodeInputField.text);
     }
 
