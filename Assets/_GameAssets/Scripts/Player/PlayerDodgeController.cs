@@ -12,6 +12,8 @@ public class PlayerDodgeController : NetworkBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody _vehicleRigidbody;
     [SerializeField] private BoxCollider _vehicleCollider;
+    [SerializeField] private ParticleSystem _dodgeParticles;
+    [SerializeField] private CameraShake _cameraShake;
 
     [Header("Settings")]
     [SerializeField] private float _dodgeTimer;
@@ -43,9 +45,21 @@ public class PlayerDodgeController : NetworkBehaviour
 
         OnDodgeStarted?.Invoke();
 
+        _dodgeParticles.Play();
+
+        if(NetworkManager.Singleton.LocalClientId == OwnerClientId)
+        {
+            _cameraShake.ShakeCamera(1f, .5f);
+        }
+
         _vehicleCollider.enabled = false;
         _vehicleRigidbody.useGravity = false;
-        _vehicleRigidbody.isKinematic = true;
+
+        if(NetworkManager.Singleton.LocalClientId == OwnerClientId)
+        {
+            _vehicleRigidbody.isKinematic = true;
+        }
+
         _canDodge = false;
 
         transform.DOMove(new Vector3(transform.position.x, transform.position.y + _upwardMovementDistance, transform.position.z), _animationDuration)
@@ -60,7 +74,11 @@ public class PlayerDodgeController : NetworkBehaviour
                                 OnDodgeFinished?.Invoke();
                                 _vehicleCollider.enabled = true;
                                 _vehicleRigidbody.useGravity = true;
-                                _vehicleRigidbody.isKinematic = false;
+
+                                if(NetworkManager.Singleton.LocalClientId == OwnerClientId)
+                                {
+                                    _vehicleRigidbody.isKinematic = false;
+                                }
                                 _isDodgeCompleted = true;
                             });
                 });
