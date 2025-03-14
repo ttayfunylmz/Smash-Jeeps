@@ -8,12 +8,20 @@ public class SkillsUI : MonoBehaviour
 {
     public static SkillsUI Instance { get; private set; }
 
-    [Header("References")]
+    [Header("Skill References")]
     [SerializeField] private Image _skillImage;
     [SerializeField] private GameObject _skillParent;
     [SerializeField] private Transform _timerCounterBackgroundTransform;
     [SerializeField] private TMP_Text _skillNameText;
     [SerializeField] private TMP_Text _timerCounterText;
+
+    [Header("Dodge References")]
+    [SerializeField] private Image _dodgeOutlineImage;
+    [SerializeField] private Image _dodgeBackgroundImage;
+
+    [Header("Sprites")]
+    [SerializeField] private Sprite _blueBackgroundSprite;
+    [SerializeField] private Sprite _yellowBackgroundSprite;
 
     [Header("Settings")]
     [SerializeField] private float _scaleDuration;
@@ -26,6 +34,7 @@ public class SkillsUI : MonoBehaviour
     private void Start()
     {
         SetSkillToNone();
+        SetDodgeToReady();
 
         _timerCounterBackgroundTransform.localScale = Vector3.zero;
         _timerCounterBackgroundTransform.gameObject.SetActive(false);
@@ -65,5 +74,18 @@ public class SkillsUI : MonoBehaviour
     public void SetTimerCounterText(int timerCounter)
     {
         _timerCounterText.text = timerCounter.ToString();
+    }
+
+    public void SetDodge(float timerMax)
+    {
+        _dodgeBackgroundImage.sprite = _blueBackgroundSprite;
+        _dodgeOutlineImage.fillAmount = 0f;
+        _dodgeOutlineImage.DOFillAmount(1f, timerMax).SetEase(Ease.Linear);
+    }
+
+    public void SetDodgeToReady()
+    {
+        _dodgeBackgroundImage.sprite = _yellowBackgroundSprite;
+        _dodgeOutlineImage.fillAmount = 1f;
     }
 }

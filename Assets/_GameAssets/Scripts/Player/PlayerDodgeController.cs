@@ -70,14 +70,15 @@ public class PlayerDodgeController : NetworkBehaviour
                             .SetEase(_animationEase)
                             .OnComplete(() =>
                             {
-                                DOTween.KillAll();
                                 OnDodgeFinished?.Invoke();
                                 _vehicleCollider.enabled = true;
                                 _vehicleRigidbody.useGravity = true;
 
                                 if(NetworkManager.Singleton.LocalClientId == OwnerClientId)
                                 {
+                                    DOTween.KillAll();
                                     _vehicleRigidbody.isKinematic = false;
+                                    SkillsUI.Instance.SetDodge(_dodgeTimerMax);
                                 }
                                 _isDodgeCompleted = true;
                             });
@@ -95,6 +96,7 @@ public class PlayerDodgeController : NetworkBehaviour
                 _dodgeTimer = 0f;
                 _isDodgeCompleted = false;
                 _canDodge = true;
+                SkillsUI.Instance.SetDodgeToReady();
             }
         }
     }
