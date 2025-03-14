@@ -10,6 +10,7 @@ public class PlayerInteractionController : NetworkBehaviour
     private PlayerVehicleController _playerVehicleController;
     private PlayerSkillController _playerSkillController;
     private PlayerHealthController _playerHealthController;
+    private PlayerDodgeController _playerDodgeController;
 
     private bool _isShieldActive;
     private bool _isCrashed;
@@ -21,8 +22,21 @@ public class PlayerInteractionController : NetworkBehaviour
         _playerVehicleController = GetComponent<PlayerVehicleController>();
         _playerSkillController = GetComponent<PlayerSkillController>();
         _playerHealthController = GetComponent<PlayerHealthController>();
+        _playerDodgeController = GetComponent<PlayerDodgeController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
+        _playerDodgeController.OnDodgeStarted += PlayerDodgeController_OnDodgeStarted;
+        _playerDodgeController.OnDodgeFinished += PlayerDodgeController_OnDodgeFinished;
+    }
+
+    private void PlayerDodgeController_OnDodgeFinished()
+    {
+        enabled = true;
+    }
+
+    private void PlayerDodgeController_OnDodgeStarted()
+    {
+        enabled = false;
     }
 
     private void PlayerVehicleController_OnVehicleCrashed()
@@ -96,5 +110,7 @@ public class PlayerInteractionController : NetworkBehaviour
         if(!IsOwner) { return;}
 
         _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
+        _playerDodgeController.OnDodgeStarted -= PlayerDodgeController_OnDodgeStarted;
+        _playerDodgeController.OnDodgeFinished -= PlayerDodgeController_OnDodgeFinished;
     }
 }

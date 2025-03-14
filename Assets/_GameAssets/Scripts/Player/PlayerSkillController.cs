@@ -17,6 +17,7 @@ public class PlayerSkillController : NetworkBehaviour
     private MysteryBoxSkillsSO _mysteryBoxSkill;
     private PlayerVehicleController _playerVehicleController;
     private PlayerInteractionController _playerInteractionController;
+    private PlayerDodgeController _playerDodgeController;
 
     private bool _isSkillUsed;
     private bool _hasTimerStarted;
@@ -30,8 +31,21 @@ public class PlayerSkillController : NetworkBehaviour
 
         _playerVehicleController = GetComponent<PlayerVehicleController>();
         _playerInteractionController = GetComponent<PlayerInteractionController>();
+        _playerDodgeController = GetComponent<PlayerDodgeController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
+        _playerDodgeController.OnDodgeStarted += PlayerDodgeController_OnDodgeStarted;
+        _playerDodgeController.OnDodgeFinished += PlayerDodgeController_OnDodgeFinished;
+    }
+
+    private void PlayerDodgeController_OnDodgeFinished()
+    {
+        enabled = true;
+    }
+
+    private void PlayerDodgeController_OnDodgeStarted()
+    {
+        enabled = false;
     }
 
     private void PlayerVehicleController_OnVehicleCrashed()
@@ -163,5 +177,7 @@ public class PlayerSkillController : NetworkBehaviour
         if(!IsOwner) { return; }
 
         _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
+        _playerDodgeController.OnDodgeStarted -= PlayerDodgeController_OnDodgeStarted;
+        _playerDodgeController.OnDodgeFinished -= PlayerDodgeController_OnDodgeFinished;
     }
 }
