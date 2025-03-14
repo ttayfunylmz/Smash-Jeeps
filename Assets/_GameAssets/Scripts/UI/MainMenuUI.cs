@@ -15,16 +15,31 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private GameObject _lobbiesParentGameObject;
     [SerializeField] private RectTransform _lobbiesBackgroundTransform;
     [SerializeField] private TMP_Text _welcomeText;
+    [SerializeField] private TMP_Text _warningText;
 
     [Header("Settings")]
     [SerializeField] private float _animationDuration = 1f;
+    [SerializeField] private float _textAnimationDuration;
+    [SerializeField] private float _fadeDuration;
+
+    private RectTransform _warningTransform;
+    private bool _isAnimating;
 
     private void Awake()
     {
+        _warningTransform = _warningText.GetComponent<RectTransform>();
+
         _hostButton.onClick.AddListener(StartHost);
         _clientButton.onClick.AddListener(StartClient);
         _lobbiesButton.onClick.AddListener(OpenLobbies);
         _closeButton.onClick.AddListener(CloseLobbies);
+    }
+
+    private void Start()
+    {
+        _warningText.text = string.Empty;
+        _warningText.alpha = 0f;
+        _warningTransform.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -41,7 +56,13 @@ public class MainMenuUI : MonoBehaviour
 
     private async void StartClient()
     {
-        _clientButton.interactable = false;
+        if(_joinCodeInputField.text == string.Empty || _joinCodeInputField.text.Contains(" "))
+        {
+            _warningText.text = "Enter a valid Join Code!";
+            AnimateWarningText();
+            return;
+        }
+
         await ClientSingleton.Instance.ClientManager.StartClientAsync(_joinCodeInputField.text);
     }
 
@@ -58,6 +79,24 @@ public class MainMenuUI : MonoBehaviour
         _lobbiesBackgroundTransform.DOAnchorPosX(900f, _animationDuration).SetEase(Ease.InBack).OnComplete(() =>
         {
             _lobbiesParentGameObject.SetActive(false);
+        });
+    }
+
+    private void AnimateWarningText()
+    {
+        if(_isAnimating) { return; }
+
+        _isAnimating = true;
+        _warningTransform.gameObject.SetActive(true);
+        _warningText.DOFade(1f, _fadeDuration);
+        _warningTransform.DOAnchorPosY(200f, _textAnimationDuration).SetEase(Ease.OutSine).OnComplete(() =>
+        {
+            _warningText.DOFade(0f, _fadeDuration).OnComplete(() =>
+            {
+                _warningTransform.anchoredPosition = Vector3.zero;
+                _warningTransform.gameObject.SetActive(false);
+                _isAnimating = false;
+            });
         });
     }
 }
