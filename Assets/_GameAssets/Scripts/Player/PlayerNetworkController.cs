@@ -28,6 +28,7 @@ public class PlayerNetworkController : NetworkBehaviour
     private PlayerVehicleController _playerVehicleController;
     private PlayerSkillController _playerSkillController;
     private PlayerInteractionController _playerInteractionController;
+    private PlayerDodgeController _playerDodgeController;
 
     public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
 
@@ -50,6 +51,7 @@ public class PlayerNetworkController : NetworkBehaviour
         _playerVehicleController = GetComponent<PlayerVehicleController>();
         _playerSkillController = GetComponent<PlayerSkillController>();
         _playerInteractionController = GetComponent<PlayerInteractionController>();
+        _playerDodgeController = GetComponent<PlayerDodgeController>();
 
         _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
     }
@@ -76,6 +78,7 @@ public class PlayerNetworkController : NetworkBehaviour
         _playerVehicleController.OnPlayerRespawned();
         _playerSkillController.OnPlayerRespawned();
         _playerInteractionController.OnPlayerRespawned();
+        _playerDodgeController.OnPlayerRespawned();
 
         OnHealthBarChangedRpc(1f);
     }

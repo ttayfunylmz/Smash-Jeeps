@@ -26,6 +26,8 @@ public class SkillsUI : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _scaleDuration;
 
+    private Tween _outlineFillTween;
+
     private void Awake()
     {
         Instance = this;
@@ -80,11 +82,12 @@ public class SkillsUI : MonoBehaviour
     {
         _dodgeBackgroundImage.sprite = _blueBackgroundSprite;
         _dodgeOutlineImage.fillAmount = 0f;
-        _dodgeOutlineImage.DOFillAmount(1f, timerMax).SetEase(Ease.Linear);
+        _outlineFillTween = _dodgeOutlineImage.DOFillAmount(1f, timerMax).SetEase(Ease.Linear);
     }
 
     public void SetDodgeToReady()
     {
+        _outlineFillTween?.Kill();
         _dodgeBackgroundImage.sprite = _yellowBackgroundSprite;
         _dodgeOutlineImage.fillAmount = 1f;
     }

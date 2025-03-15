@@ -22,12 +22,28 @@ public class PlayerDodgeController : NetworkBehaviour
     [SerializeField] private float _animationDuration;
     [SerializeField] private Ease _animationEase;
 
+    private PlayerVehicleController _playerVehicleController;
+
     private bool _canDodge = true;
     private bool _isDodgeCompleted;
 
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) return;
+
+        _playerVehicleController = GetComponent<PlayerVehicleController>();
+
+        _playerVehicleController.OnVehicleCrashed += PlayerVehicleController_OnVehicleCrashed;
+    }
+
+    private void PlayerVehicleController_OnVehicleCrashed()
+    {
+        enabled = false;
+    }
+
     private void Update()
     {
-        if(!IsOwner) return;
+        if (!IsOwner) return;
         if (GameManager.Instance.GetGameState() != GameState.Playing) { return; }
 
         if (Input.GetKeyDown(KeyCode.R))
@@ -47,7 +63,7 @@ public class PlayerDodgeController : NetworkBehaviour
 
         _dodgeParticles.Play();
 
-        if(NetworkManager.Singleton.LocalClientId == OwnerClientId)
+        if (NetworkManager.Singleton.LocalClientId == OwnerClientId)
         {
             _cameraShake.ShakeCamera(1f, .5f);
         }
@@ -55,7 +71,7 @@ public class PlayerDodgeController : NetworkBehaviour
         _vehicleCollider.enabled = false;
         _vehicleRigidbody.useGravity = false;
 
-        if(NetworkManager.Singleton.LocalClientId == OwnerClientId)
+        if (NetworkManager.Singleton.LocalClientId == OwnerClientId)
         {
             _vehicleRigidbody.isKinematic = true;
         }
@@ -74,7 +90,7 @@ public class PlayerDodgeController : NetworkBehaviour
                                 _vehicleCollider.enabled = true;
                                 _vehicleRigidbody.useGravity = true;
 
-                                if(NetworkManager.Singleton.LocalClientId == OwnerClientId)
+                                if (NetworkManager.Singleton.LocalClientId == OwnerClientId)
                                 {
                                     DOTween.KillAll();
                                     _vehicleRigidbody.isKinematic = false;
@@ -87,11 +103,11 @@ public class PlayerDodgeController : NetworkBehaviour
 
     private void SetDodgeTimer()
     {
-        if(_isDodgeCompleted)
+        if (_isDodgeCompleted)
         {
             _dodgeTimer += Time.deltaTime;
 
-            if(_dodgeTimer >= _dodgeTimerMax)
+            if (_dodgeTimer >= _dodgeTimerMax)
             {
                 _dodgeTimer = 0f;
                 _isDodgeCompleted = false;
@@ -99,5 +115,14 @@ public class PlayerDodgeController : NetworkBehaviour
                 SkillsUI.Instance.SetDodgeToReady();
             }
         }
+    }
+
+    public void OnPlayerRespawned()
+    {
+        enabled = true;
+        _dodgeTimer = 0f;
+        _isDodgeCompleted = false;
+        _canDodge = true;
+        SkillsUI.Instance.SetDodgeToReady();
     }
 }
