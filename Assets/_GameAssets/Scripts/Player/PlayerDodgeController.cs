@@ -58,25 +58,19 @@ public class PlayerDodgeController : NetworkBehaviour
     private void DodgeRpc()
     {
         if (!_canDodge) { return; }
-
-        OnDodgeStarted?.Invoke();
+        _canDodge = false;
 
         _dodgeParticles.Play();
 
-        if (NetworkManager.Singleton.LocalClientId == OwnerClientId)
-        {
-            _cameraShake.ShakeCamera(1f, .5f);
-        }
-
         _vehicleCollider.enabled = false;
-        _vehicleRigidbody.useGravity = false;
 
         if (NetworkManager.Singleton.LocalClientId == OwnerClientId)
         {
+            OnDodgeStarted?.Invoke();
+            _vehicleRigidbody.useGravity = false;
+            _cameraShake.ShakeCamera(1f, .5f);
             _vehicleRigidbody.isKinematic = true;
         }
-
-        _canDodge = false;
 
         transform.DOMove(new Vector3(transform.position.x, transform.position.y + _upwardMovementDistance, transform.position.z), _animationDuration)
                 .SetEase(_animationEase)
@@ -86,16 +80,17 @@ public class PlayerDodgeController : NetworkBehaviour
                             .SetEase(_animationEase)
                             .OnComplete(() =>
                             {
-                                OnDodgeFinished?.Invoke();
                                 _vehicleCollider.enabled = true;
-                                _vehicleRigidbody.useGravity = true;
 
                                 if (NetworkManager.Singleton.LocalClientId == OwnerClientId)
                                 {
+                                    OnDodgeFinished?.Invoke();
+                                    _vehicleRigidbody.useGravity = true;
                                     DOTween.KillAll();
                                     _vehicleRigidbody.isKinematic = false;
                                     SkillsUI.Instance.SetDodge(_dodgeTimerMax);
                                 }
+
                                 _isDodgeCompleted = true;
                             });
                 });
@@ -110,19 +105,24 @@ public class PlayerDodgeController : NetworkBehaviour
             if (_dodgeTimer >= _dodgeTimerMax)
             {
                 _dodgeTimer = 0f;
-                _isDodgeCompleted = false;
-                _canDodge = true;
+                SetDodgeBooleansRpc();
                 SkillsUI.Instance.SetDodgeToReady();
             }
         }
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void SetDodgeBooleansRpc()
+    {
+        _isDodgeCompleted = false;
+        _canDodge = true;
     }
 
     public void OnPlayerRespawned()
     {
         enabled = true;
         _dodgeTimer = 0f;
-        _isDodgeCompleted = false;
-        _canDodge = true;
+        SetDodgeBooleansRpc();
         SkillsUI.Instance.SetDodgeToReady();
     }
 }

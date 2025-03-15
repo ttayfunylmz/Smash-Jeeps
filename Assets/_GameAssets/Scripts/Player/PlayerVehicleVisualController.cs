@@ -12,6 +12,7 @@ public class PlayerVehicleVisualController : NetworkBehaviour
     [SerializeField] private Collider _playerCollider;
     [SerializeField] private Transform _wheelFrontLeft, _wheelFrontRight, _wheelBackLeft, _wheelBackRight;
     [SerializeField] private float _wheelsSpinSpeed, _wheelYWhenSpringMin, _wheelYWhenSpringMax;
+    [SerializeField] private ParticleSystem[] _smokeParticles;
 
     private PlayerVehicleController _playerVehicleController;
     private Quaternion _wheelFrontLeftRoll;
@@ -146,6 +147,17 @@ public class PlayerVehicleVisualController : NetworkBehaviour
         SetJeepVisualActiveRpc(true);
         _playerCollider.enabled = true;
         enabled = true;
+        RestartSmokeParticlesRpc();
+    }
+
+    [Rpc(SendTo.ClientsAndHost)]
+    private void RestartSmokeParticlesRpc()
+    {
+        foreach (ParticleSystem smokeParticle in _smokeParticles)
+        {
+            smokeParticle.Stop();
+            smokeParticle.Play();
+        }
     }
 
     public void SetVehicleVisualActive(float delay)
