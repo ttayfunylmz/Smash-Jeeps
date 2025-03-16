@@ -33,7 +33,7 @@ public class RocketDamageable : NetworkBehaviour, IDamageable
 
         if (other.TryGetComponent(out HittableWall hittableWall))
         {
-            DestroyRpc(true, hittableWall.transform.position);
+            DestroyRpc(true, transform.position);
         }
     }
 

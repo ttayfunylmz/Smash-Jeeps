@@ -15,6 +15,7 @@ public class PlayerNetworkController : NetworkBehaviour
     [Header("References")]
     [SerializeField] private CinemachineCamera _playerCinemachineCamera;
     [SerializeField] private PlayerScoreController _playerScoreController;
+    [SerializeField] private Transform _rocketLaunchPoint;
 
     [Header("Canvas References")]
     [SerializeField] private Canvas _playerCanvas;
@@ -72,6 +73,7 @@ public class PlayerNetworkController : NetworkBehaviour
     }
 
     public PlayerScoreController GetPlayerScoreController() => _playerScoreController;
+    public Vector3 GetRocketLaunchPoint() => _rocketLaunchPoint.position;
 
     public void OnPlayerRespawned()
     {

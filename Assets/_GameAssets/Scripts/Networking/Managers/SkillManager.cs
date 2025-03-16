@@ -87,7 +87,16 @@ public class SkillManager : NetworkBehaviour
 
             if (NetworkManager.Singleton.ConnectedClients.TryGetValue(spawnerClientId, out var client))
             {
-                networkObject.TrySetParent(client.PlayerObject);
+                if(skillData.SkillType != SkillType.Rocket)
+                {
+                    networkObject.TrySetParent(client.PlayerObject);
+                }
+                else
+                {
+                    PlayerNetworkController playerNetworkController = client.PlayerObject.GetComponent<PlayerNetworkController>();
+                    networkObject.transform.localPosition = playerNetworkController.GetRocketLaunchPoint();
+                    return;
+                }
 
                 if (skillData.SkillData.ShouldBeAttachedToParent)
                 {
