@@ -13,6 +13,7 @@ public class PlayerInteractionController : NetworkBehaviour
     private PlayerDodgeController _playerDodgeController;
 
     private bool _isShieldActive;
+    private bool _isSpikeActive;
     private bool _isCrashed;
 
     public override void OnNetworkSpawn()
@@ -61,11 +62,20 @@ public class PlayerInteractionController : NetworkBehaviour
         if (_isCrashed) { return; }
         if (GameManager.Instance.GetGameState() != GameState.Playing) { return; }
 
+        CheckCollectibleCollision(other);
+        CheckDamageableCollision(other);
+    }
+
+    private void CheckCollectibleCollision(Collider other)
+    {
         if (other.gameObject.TryGetComponent(out ICollectible collectible))
         {
             collectible.Collect(_playerSkillController, _cameraShake);
         }
+    }
 
+    private void CheckDamageableCollision(Collider other)
+    {
         if (other.gameObject.TryGetComponent(out IDamageable damageable))
         {
             if (_isShieldActive)
@@ -74,15 +84,20 @@ public class PlayerInteractionController : NetworkBehaviour
                 return;
             }
 
-            var playerName = GetComponent<PlayerNetworkController>().PlayerName.Value;
-
-            _cameraShake.ShakeCamera(3f, .8f);
-            SetKillerUIClientRpc(damageable.GetKillerClientId(), playerName.ToString(), RpcTarget.Single(damageable.GetKillerClientId(), RpcTargetUse.Temp));
-            damageable.Damage(_playerVehicleController, damageable.GetKillerName());
-            _playerHealthController.TakeDamage(damageable.GetDamageAmount());
-            int respawnTimer = damageable.GetRespawnTimer();
-            SpawnerManager.Instance.RespawnPlayer(respawnTimer, OwnerClientId);
+            CrashTheVehicle(damageable);
         }
+    }
+
+    private void CrashTheVehicle(IDamageable damageable)
+    {
+        var playerName = GetComponent<PlayerNetworkController>().PlayerName.Value;
+
+        _cameraShake.ShakeCamera(3f, .8f);
+        SetKillerUIClientRpc(damageable.GetKillerClientId(), playerName.ToString(), RpcTarget.Single(damageable.GetKillerClientId(), RpcTargetUse.Temp));
+        damageable.Damage(_playerVehicleController, damageable.GetKillerName());
+        _playerHealthController.TakeDamage(damageable.GetDamageAmount());
+        int respawnTimer = damageable.GetRespawnTimer();
+        SpawnerManager.Instance.RespawnPlayer(respawnTimer, OwnerClientId);
     }
 
     [Rpc(SendTo.SpecifiedInParams)]
@@ -96,6 +111,8 @@ public class PlayerInteractionController : NetworkBehaviour
     }
 
     public void SetShieldActive(bool isActive) => _isShieldActive = isActive;
+    public void SetSpikeActive(bool isActive) => _isSpikeActive = isActive;
+
     public void OnPlayerRespawned()
     {
         enabled = true;

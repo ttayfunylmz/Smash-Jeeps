@@ -1,3 +1,5 @@
+using System.Collections;
+using Cysharp.Threading.Tasks;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -20,6 +22,12 @@ public class SpikeDamageable : NetworkBehaviour, IDamageable
 
     private void PlayerVehicleController_OnVehicleCrashed()
     {
+        DelayedDestroy();
+    }
+
+    private async void DelayedDestroy()
+    {
+        await UniTask.DelayFrame(5);
         DestroyRpc();
     }
 

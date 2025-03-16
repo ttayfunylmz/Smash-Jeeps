@@ -55,6 +55,7 @@ public class PlayerSkillController : NetworkBehaviour
         _hasSkillAlready = false;
         enabled = false;
         SetRocketLauncherActiveRpc(false);
+        _playerInteractionController.SetSpikeActive(false);
     }
 
     private void Update() 
@@ -83,6 +84,11 @@ public class PlayerSkillController : NetworkBehaviour
                 if(_mysteryBoxSkill.SkillType == SkillType.Shield)
                 {
                     _playerInteractionController.SetShieldActive(false);
+                }
+
+                if(_mysteryBoxSkill.SkillType == SkillType.Spike)
+                {
+                    _playerInteractionController.SetSpikeActive(false);
                 }
             }
         }
@@ -123,6 +129,11 @@ public class PlayerSkillController : NetworkBehaviour
         if(_mysteryBoxSkill.SkillType == SkillType.Shield)
         {
             _playerInteractionController.SetShieldActive(true);
+        }
+
+        if(_mysteryBoxSkill.SkillType == SkillType.Spike)
+        {
+            _playerInteractionController.SetSpikeActive(true);
         }
     }
 
