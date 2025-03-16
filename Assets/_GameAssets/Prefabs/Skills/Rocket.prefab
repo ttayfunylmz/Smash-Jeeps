@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 4068894361933437231}
   - component: {fileID: 6268477750406069445}
   - component: {fileID: 9161319869557429034}
+  - component: {fileID: 76441152957185537}
   m_Layer: 8
   m_Name: Rocket
   m_TagString: Untagged
@@ -239,7 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   _rocketCollider: {fileID: 6268477750406069445}
-  _movementSpeed: 25
+  _movementSpeed: 40
   _rotationSpeed: 300
 --- !u!114 &4068894361933437231
 MonoBehaviour:
@@ -304,6 +305,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &76441152957185537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7972374259047879277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  NetworkRigidbodyBaseExpanded: 0
+  UseRigidBodyForMotion: 0
+  AutoUpdateKinematicState: 1
+  AutoSetKinematicOnDespawn: 1
 --- !u!1001 &6800076305461878875
 PrefabInstance:
   m_ObjectHideFlags: 0

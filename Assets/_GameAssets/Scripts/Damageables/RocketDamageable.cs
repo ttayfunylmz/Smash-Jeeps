@@ -28,12 +28,12 @@ public class RocketDamageable : NetworkBehaviour, IDamageable
     {
         if (other.TryGetComponent(out ShieldController shieldController))
         {
-            DestroyRpc(true);
+            DestroyRpc(true, shieldController.transform.position);
         }
 
         if (other.TryGetComponent(out HittableWall hittableWall))
         {
-            DestroyRpc(true);
+            DestroyRpc(true, hittableWall.transform.position);
         }
     }
 
@@ -42,7 +42,7 @@ public class RocketDamageable : NetworkBehaviour, IDamageable
         playerVehicleController.CrashVehicle();
 
         KillScreenUI.Instance.SetSmashedUI(playerName, _mysteryBoxSkill.SkillData.RespawnTimer);
-        DestroyRpc(true);
+        DestroyRpc(true, playerVehicleController.transform.position);
     }
 
     public int GetRespawnTimer()
@@ -51,11 +51,11 @@ public class RocketDamageable : NetworkBehaviour, IDamageable
     }
 
     [Rpc(SendTo.Server)]
-    private void DestroyRpc(bool isExploded)
+    private void DestroyRpc(bool isExploded, Vector3 vehiclePosition = default)
     {
         if(isExploded)
         {
-            GameObject explosionParticlesInstance = Instantiate(_explosionParticlesPrefab, transform.position, Quaternion.identity);
+            GameObject explosionParticlesInstance = Instantiate(_explosionParticlesPrefab, vehiclePosition, Quaternion.identity);
             explosionParticlesInstance.GetComponent<NetworkObject>().Spawn();
         }
 
