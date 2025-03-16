@@ -51,6 +51,7 @@ public class PlayerSkillController : NetworkBehaviour
     private void PlayerVehicleController_OnVehicleCrashed()
     {
         SkillsUI.Instance.SetSkillToNone();
+        _hasTimerStarted = false;
         _hasSkillAlready = false;
         enabled = false;
         SetRocketLauncherActiveRpc(false);

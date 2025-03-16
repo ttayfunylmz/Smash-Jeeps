@@ -17,7 +17,7 @@ public class PlayerInteractionController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if(!IsOwner) return;
+        if (!IsOwner) return;
 
         _playerVehicleController = GetComponent<PlayerVehicleController>();
         _playerSkillController = GetComponent<PlayerSkillController>();
@@ -45,7 +45,7 @@ public class PlayerInteractionController : NetworkBehaviour
         _isCrashed = true;
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
         CheckCollision(other);
     }
@@ -57,18 +57,18 @@ public class PlayerInteractionController : NetworkBehaviour
 
     private void CheckCollision(Collider other)
     {
-        if(!IsOwner) { return; }
-        if(_isCrashed) { return; }
-        if(GameManager.Instance.GetGameState() != GameState.Playing) { return; }
+        if (!IsOwner) { return; }
+        if (_isCrashed) { return; }
+        if (GameManager.Instance.GetGameState() != GameState.Playing) { return; }
 
-        if(other.gameObject.TryGetComponent(out ICollectible collectible))
+        if (other.gameObject.TryGetComponent(out ICollectible collectible))
         {
             collectible.Collect(_playerSkillController, _cameraShake);
         }
 
-        if(other.gameObject.TryGetComponent(out IDamageable damageable))
+        if (other.gameObject.TryGetComponent(out IDamageable damageable))
         {
-            if(_isShieldActive)
+            if (_isShieldActive)
             {
                 Debug.Log("Shield Active: Damage Blocked");
                 return;
@@ -77,7 +77,7 @@ public class PlayerInteractionController : NetworkBehaviour
             var playerName = GetComponent<PlayerNetworkController>().PlayerName.Value;
 
             _cameraShake.ShakeCamera(3f, .8f);
-            SetKillerUIClientRpc(damageable.GetKillerClientId(), playerName.ToString());
+            SetKillerUIClientRpc(damageable.GetKillerClientId(), playerName.ToString(), RpcTarget.Single(damageable.GetKillerClientId(), RpcTargetUse.Temp));
             damageable.Damage(_playerVehicleController, damageable.GetKillerName());
             _playerHealthController.TakeDamage(damageable.GetDamageAmount());
             int respawnTimer = damageable.GetRespawnTimer();
@@ -85,12 +85,10 @@ public class PlayerInteractionController : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.ClientsAndHost)]
-    private void SetKillerUIClientRpc(ulong killerClientId, FixedString32Bytes playerName)
+    [Rpc(SendTo.SpecifiedInParams)]
+    private void SetKillerUIClientRpc(ulong killerClientId, FixedString32Bytes playerName, RpcParams rpcParams)
     {
-        if(IsOwner) return;
-
-        if(NetworkManager.Singleton.ConnectedClients.TryGetValue(killerClientId, out var killerClient))
+        if (NetworkManager.Singleton.ConnectedClients.TryGetValue(killerClientId, out var killerClient))
         {
             KillScreenUI.Instance.SetSmashUI(playerName.ToString());
             killerClient.PlayerObject.GetComponent<PlayerScoreController>().AddScore(1);
@@ -107,7 +105,7 @@ public class PlayerInteractionController : NetworkBehaviour
 
     public override void OnNetworkDespawn()
     {
-        if(!IsOwner) { return;}
+        if (!IsOwner) { return; }
 
         _playerVehicleController.OnVehicleCrashed -= PlayerVehicleController_OnVehicleCrashed;
         _playerDodgeController.OnDodgeStarted -= PlayerDodgeController_OnDodgeStarted;
