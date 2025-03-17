@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 2265796870044290382}
   - component: {fileID: 208785849024670409}
   - component: {fileID: 6711396028521782714}
-  - component: {fileID: 3173932339035180970}
   - component: {fileID: 5225911587855457300}
   - component: {fileID: 4068894361933437231}
   - component: {fileID: 6268477750406069445}
@@ -188,21 +187,6 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &3173932339035180970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7972374259047879277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowTopMostFoldoutHeaderGroup: 1
-  TransitionStateInfoList: []
-  m_Animator: {fileID: 0}
 --- !u!114 &5225911587855457300
 MonoBehaviour:
   m_ObjectHideFlags: 0
