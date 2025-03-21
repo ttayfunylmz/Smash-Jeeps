@@ -53,7 +53,7 @@ public class CharacterSelectPlayer : NetworkBehaviour
         UpdatePlayer();
     }
 
-    public void UpdatePlayer()
+    private void UpdatePlayer()
     {
         if (MultiplayerGameManager.Instance.IsPlayerIndexConnected(_playerIndex))
         {

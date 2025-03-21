@@ -28,7 +28,7 @@ public class CharacterSelectReady : NetworkBehaviour
     {
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
-            if(IsPlayerReady(clientId))
+            if (IsPlayerReady(clientId))
             {
                 SetPlayerReady();
                 OnReadyChanged?.Invoke();

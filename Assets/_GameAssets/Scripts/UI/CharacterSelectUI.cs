@@ -38,7 +38,7 @@ public class CharacterSelectUI : MonoBehaviour
     private void Start()
     {
         _startButton.gameObject.SetActive(NetworkManager.Singleton.IsServer);
-        _startButton.interactable = false;
+        SetStartButtonInteractable(false);
 
         CharacterSelectReady.Instance.OnAllPlayersReady += CharacterSelectReady_OnAllPlayersReady;
         CharacterSelectReady.Instance.OnUnreadyChanged += CharacterSelectReady_OnUnreadyChanged;
@@ -47,23 +47,23 @@ public class CharacterSelectUI : MonoBehaviour
 
     private void MultiplayerGameManager_OnPlayerDataNetworkListChanged()
     {
-        if(CharacterSelectReady.Instance.AreAllPlayersReady())
+        if (CharacterSelectReady.Instance.AreAllPlayersReady())
         {
-            _startButton.interactable = true;
+            SetStartButtonInteractable(true);
         }
         else
         {
-            _startButton.interactable = false;
+            SetStartButtonInteractable(false);
         }
     }
 
     private void OnEnable()
     {
-        if(NetworkManager.Singleton.IsHost)
+        if (NetworkManager.Singleton.IsHost)
         {
             _joinCodeText.text = HostSingleton.Instance.HostManager.GetJoinCode();
         }
-        else if(NetworkManager.Singleton.IsClient)
+        else if (NetworkManager.Singleton.IsClient)
         {
             _joinCodeText.text = ClientSingleton.Instance.ClientManager.GetJoinCode();
         }
@@ -71,12 +71,12 @@ public class CharacterSelectUI : MonoBehaviour
 
     private void CharacterSelectReady_OnUnreadyChanged()
     {
-        _startButton.interactable = false;   
+        SetStartButtonInteractable(false);
     }
 
     private void CharacterSelectReady_OnAllPlayersReady()
     {
-        _startButton.interactable = true;
+        SetStartButtonInteractable(true);
     }
 
     private async void OnStartButtonClicked()
@@ -114,22 +114,50 @@ public class CharacterSelectUI : MonoBehaviour
         GUIUtility.systemCopyBuffer = _joinCodeText.text;
     }
 
+    private void SetStartButtonInteractable(bool isActive)
+    {
+        if(_startButton != null)
+        {
+            _startButton.interactable = isActive;
+        }
+    }
+
+    private void SetMainMenuButtonInteractable(bool isActive)
+    {
+        if (_mainMenuButton != null)
+        {
+            _mainMenuButton.interactable = isActive;
+        }
+    }
+
     private void OnReadyButtonClicked()
     {
         _isPlayerReady = !_isPlayerReady;
 
-        if(_isPlayerReady)
+        if (_isPlayerReady)
         {
-            CharacterSelectReady.Instance.SetPlayerReady();
-            _readyText.text = "Ready";
-            _readyButton.image.sprite = _greenButtonSprite;
+            SetPlayerReady();
+            SetMainMenuButtonInteractable(false);
         }
         else
         {
-            CharacterSelectReady.Instance.SetPlayerUnready();
-            _readyText.text = "Not Ready";
-            _readyButton.image.sprite = _redButtonSprite;
+            SetPlayerUnready();
+            SetMainMenuButtonInteractable(true);
         }
+    }
+
+    private void SetPlayerReady()
+    {
+        CharacterSelectReady.Instance.SetPlayerReady();
+        _readyText.text = "Ready";
+        _readyButton.image.sprite = _greenButtonSprite;
+    }
+
+    private void SetPlayerUnready()
+    {
+        CharacterSelectReady.Instance.SetPlayerUnready();
+        _readyText.text = "Not Ready";
+        _readyButton.image.sprite = _redButtonSprite;
     }
 
     private void OnMainMenuButtonClicked()
