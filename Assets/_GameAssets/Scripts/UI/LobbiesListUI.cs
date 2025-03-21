@@ -81,7 +81,9 @@ public class LobbiesListUI : MonoBehaviour
         }
         catch (LobbyServiceException lobbyServiceException)
         {
-            Debug.LogError(lobbyServiceException);
+            Debug.Log(lobbyServiceException);
+            MainMenuUI.Instance.AnimateWarningText("Game has started!");
+            RefreshList();
         }
 
         _isJoining = false;

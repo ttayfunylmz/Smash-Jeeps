@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class MainMenuUI : MonoBehaviour
 {
+    public static MainMenuUI Instance { get; private set; }
+
     [Header("References")]
     [SerializeField] private LobbiesListUI _lobbiesListUI;
     [SerializeField] private Button _hostButton;
@@ -27,6 +29,8 @@ public class MainMenuUI : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         _warningTransform = _warningText.GetComponent<RectTransform>();
 
         _hostButton.onClick.AddListener(StartHost);
@@ -58,8 +62,7 @@ public class MainMenuUI : MonoBehaviour
     {
         if(_joinCodeInputField.text == string.Empty || _joinCodeInputField.text.Contains(" "))
         {
-            _warningText.text = "Enter a valid Join Code!";
-            AnimateWarningText();
+            AnimateWarningText("Enter a valid Join Code!");
             return;
         }
 
@@ -82,9 +85,11 @@ public class MainMenuUI : MonoBehaviour
         });
     }
 
-    private void AnimateWarningText()
+    public void AnimateWarningText(string message)
     {
         if(_isAnimating) { return; }
+
+        _warningText.text = message;
 
         _isAnimating = true;
         _warningTransform.gameObject.SetActive(true);

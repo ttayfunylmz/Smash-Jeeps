@@ -62,6 +62,13 @@ public class HostManager : IDisposable
                         visibility: DataObject.VisibilityOptions.Member,
                         value: _joinCode
                     )
+                },
+                {
+                    "GameStarted", new DataObject
+                    (
+                        visibility: DataObject.VisibilityOptions.Public,
+                        value: "false"
+                    )
                 }
             };
 
@@ -152,5 +159,10 @@ public class HostManager : IDisposable
     public string GetJoinCode()
     {
         return _joinCode;
+    }
+
+    public string GetLobbyId()
+    {
+        return _lobbyId;
     }
 }

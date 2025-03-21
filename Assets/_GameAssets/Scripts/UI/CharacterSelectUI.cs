@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
+using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -76,9 +79,33 @@ public class CharacterSelectUI : MonoBehaviour
         _startButton.interactable = true;
     }
 
-    private void OnStartButtonClicked()
+    private async void OnStartButtonClicked()
     {
-        NetworkManager.Singleton.SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE, LoadSceneMode.Single);
+        if (NetworkManager.Singleton.IsHost)
+        {
+            try
+            {
+                await LobbyService.Instance.UpdateLobbyAsync(HostSingleton.Instance.HostManager.GetLobbyId(), new UpdateLobbyOptions
+                {
+                    Data = new Dictionary<string, DataObject>
+                    {
+                        {
+                            "GameStarted", new DataObject(
+                                visibility: DataObject.VisibilityOptions.Public,
+                                value: "true")
+                        }
+                    }
+                });
+
+                await LobbyService.Instance.DeleteLobbyAsync(HostSingleton.Instance.HostManager.GetLobbyId());
+            }
+            catch (LobbyServiceException lobbyServiceException)
+            {
+                Debug.LogError($"Failed to update or delete lobby: {lobbyServiceException}");
+            }
+
+            NetworkManager.Singleton.SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE, LoadSceneMode.Single);
+        }
     }
 
     private void OnCopyButtonClicked()
