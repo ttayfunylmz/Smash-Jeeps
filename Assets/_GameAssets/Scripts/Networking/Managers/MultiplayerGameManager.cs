@@ -25,35 +25,46 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        if(IsServer)
+        if (IsServer)
         {
+            _playerDataNetworkList.Clear();
             NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_Server_OnClientDisconnectedCallback;
-        }
-        if(IsClient)
-        {
-            NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_Client_OnClientConnectedCallback;
+            NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_Server_OnClientConnectedCallback;
         }
     }
 
     private void NetworkManager_Server_OnClientDisconnectedCallback(ulong clientId)
     {
-        for(int i = 0; i < _playerDataNetworkList.Count; ++i)
+        for (int i = 0; i < _playerDataNetworkList.Count; ++i)
         {
             PlayerDataSerializable playerData = _playerDataNetworkList[i];
-            if(playerData.ClientId == clientId)
+            if (playerData.ClientId == clientId)
             {
                 _playerDataNetworkList.RemoveAt(i);
+            }
+            if(playerData.ClientId == 0)
+            {
+                _playerDataNetworkList.Clear();
             }
         }
     }
 
-    private void NetworkManager_Client_OnClientConnectedCallback(ulong clientId)
+    private void NetworkManager_Server_OnClientConnectedCallback(ulong clientId)
     {
+        for (int i = 0; i < _playerDataNetworkList.Count; ++i)
+        {
+            if (_playerDataNetworkList[i].ClientId == clientId)
+            {
+                _playerDataNetworkList.RemoveAt(i);
+                break;
+            }
+        }
+
         _playerDataNetworkList.Add(new PlayerDataSerializable
         {
             ClientId = clientId,
             ColorId = GetFirstUnusedColorId()
-        }); 
+        });
     }
 
     private void PlayerDataNetworkList_OnListChanged(NetworkListEvent<PlayerDataSerializable> changeEvent)
@@ -68,9 +79,9 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     public PlayerDataSerializable GetPlayerDataFromClientId(ulong clientId)
     {
-        foreach(PlayerDataSerializable playerData in _playerDataNetworkList)
+        foreach (PlayerDataSerializable playerData in _playerDataNetworkList)
         {
-            if(playerData.ClientId == clientId)
+            if (playerData.ClientId == clientId)
             {
                 return playerData;
             }
@@ -81,9 +92,9 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     public int GetPlayerDataIndexFromClientId(ulong clientId)
     {
-        for(int i = 0; i < _playerDataNetworkList.Count; ++i)
+        for (int i = 0; i < _playerDataNetworkList.Count; ++i)
         {
-            if(_playerDataNetworkList[i].ClientId == clientId)
+            if (_playerDataNetworkList[i].ClientId == clientId)
             {
                 return i;
             }
@@ -115,7 +126,7 @@ public class MultiplayerGameManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     private void ChangePlayerColorRpc(int colorId, RpcParams rpcParams = default)
     {
-        if(!IsColorAvailable(colorId))
+        if (!IsColorAvailable(colorId))
         {
             // COLOR NOT AVAILABLE
             return;
@@ -129,9 +140,9 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     private bool IsColorAvailable(int colorId)
     {
-        foreach(PlayerDataSerializable playerData in _playerDataNetworkList)
+        foreach (PlayerDataSerializable playerData in _playerDataNetworkList)
         {
-            if(playerData.ColorId == colorId)
+            if (playerData.ColorId == colorId)
             {
                 // ALREADY USING
                 return false;
@@ -143,9 +154,9 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     private int GetFirstUnusedColorId()
     {
-        for(int i = 0; i < _playerColorList.Count; ++i)
+        for (int i = 0; i < _playerColorList.Count; ++i)
         {
-            if(IsColorAvailable(i))
+            if (IsColorAvailable(i))
             {
                 return i;
             }

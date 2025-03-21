@@ -103,7 +103,12 @@ public class CharacterSelectPlayer : NetworkBehaviour
     {
         if (IsServer)
         {
-            GetComponent<NetworkObject>().ChangeOwnership(clientId);
+            var networkObject = GetComponent<NetworkObject>();
+            
+            if(networkObject.OwnerClientId != clientId)
+            {
+                networkObject.ChangeOwnership(clientId);
+            }
         }
     }
 
@@ -111,5 +116,7 @@ public class CharacterSelectPlayer : NetworkBehaviour
     {
         MultiplayerGameManager.Instance.OnPlayerDataNetworkListChanged
             -= MultiplayerGameManager_OnPlayerDataNetworkListChanged;
+        CharacterSelectReady.Instance.OnReadyChanged -= CharacterSelectReady_OnReadyChanged;
+        PlayerName.OnValueChanged -= HandlePlayerNameChanged;
     }
 }

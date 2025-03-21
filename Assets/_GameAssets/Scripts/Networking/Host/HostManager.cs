@@ -113,7 +113,7 @@ public class HostManager : IDisposable
         }
         catch(LobbyServiceException lobbyServiceException)
         {
-            Debug.LogError(lobbyServiceException);
+            Debug.Log(lobbyServiceException);
         }
     }
 
@@ -145,7 +145,7 @@ public class HostManager : IDisposable
             }
             catch(LobbyServiceException lobbyServiceException)
             {
-                Debug.LogError(lobbyServiceException);
+                Debug.Log(lobbyServiceException);
             }
 
             _lobbyId = string.Empty;
