@@ -10,6 +10,8 @@ using UnityEngine.UI;
 
 public class CharacterSelectUI : MonoBehaviour
 {
+    public static CharacterSelectUI Instance { get; private set; }
+
     [Header("References")]
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Button _readyButton;
@@ -29,6 +31,8 @@ public class CharacterSelectUI : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
+
         _mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
         _readyButton.onClick.AddListener(OnReadyButtonClicked);
         _startButton.onClick.AddListener(OnStartButtonClicked);
@@ -168,5 +172,10 @@ public class CharacterSelectUI : MonoBehaviour
         }
 
         ClientSingleton.Instance.ClientManager.Disconnect();
+    }
+
+    public bool IsPlayerReady()
+    {
+        return _isPlayerReady;
     }
 }

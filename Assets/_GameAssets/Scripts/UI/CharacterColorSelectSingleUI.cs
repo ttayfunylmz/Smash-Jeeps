@@ -12,7 +12,10 @@ public class CharacterColorSelectSingleUI : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            MultiplayerGameManager.Instance.ChangePlayerColor(_colorId);
+            if(!CharacterSelectUI.Instance.IsPlayerReady())
+            {
+                MultiplayerGameManager.Instance.ChangePlayerColor(_colorId);
+            }
         });
     }
 
