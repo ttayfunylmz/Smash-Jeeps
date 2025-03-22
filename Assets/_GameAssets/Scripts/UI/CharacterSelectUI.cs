@@ -42,7 +42,10 @@ public class CharacterSelectUI : MonoBehaviour
     private void Start()
     {
         _startButton.gameObject.SetActive(NetworkManager.Singleton.IsServer);
+        _mainMenuButton.gameObject.SetActive(!NetworkManager.Singleton.IsServer);
         SetStartButtonInteractable(false);
+
+        _copiedImage.sprite = _crossSprite;
 
         CharacterSelectReady.Instance.OnAllPlayersReady += CharacterSelectReady_OnAllPlayersReady;
         CharacterSelectReady.Instance.OnUnreadyChanged += CharacterSelectReady_OnUnreadyChanged;
@@ -126,14 +129,6 @@ public class CharacterSelectUI : MonoBehaviour
         }
     }
 
-    private void SetMainMenuButtonInteractable(bool isActive)
-    {
-        if (_mainMenuButton != null)
-        {
-            _mainMenuButton.interactable = isActive;
-        }
-    }
-
     private void OnReadyButtonClicked()
     {
         _isPlayerReady = !_isPlayerReady;
@@ -141,12 +136,10 @@ public class CharacterSelectUI : MonoBehaviour
         if (_isPlayerReady)
         {
             SetPlayerReady();
-            SetMainMenuButtonInteractable(false);
         }
         else
         {
             SetPlayerUnready();
-            SetMainMenuButtonInteractable(true);
         }
     }
 

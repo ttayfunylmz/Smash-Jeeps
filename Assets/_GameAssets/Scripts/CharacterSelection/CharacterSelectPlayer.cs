@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Cysharp.Threading.Tasks;
 using TMPro;
 using Unity.Collections;
 using Unity.Netcode;
@@ -62,7 +64,6 @@ public class CharacterSelectPlayer : NetworkBehaviour
             PlayerDataSerializable playerData
                 = MultiplayerGameManager.Instance.GetPlayerDataFromPlayerIndex(_playerIndex);
             _readyGameObject.SetActive(CharacterSelectReady.Instance.IsPlayerReady(playerData.ClientId));
-
             _characterSelectVisual.SetPlayerColor(MultiplayerGameManager.Instance.GetPlayerColor(playerData.ColorId));
             HideKickButtonOnHost(playerData);
             SetOwner(playerData.ClientId);
@@ -76,12 +77,12 @@ public class CharacterSelectPlayer : NetworkBehaviour
 
     private void Show()
     {
-        gameObject?.SetActive(true);
+        gameObject.SetActive(true);
     }
 
     private void Hide()
     {
-        gameObject?.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void HideKickButtonOnHost(PlayerDataSerializable playerData)
@@ -119,4 +120,5 @@ public class CharacterSelectPlayer : NetworkBehaviour
         CharacterSelectReady.Instance.OnReadyChanged -= CharacterSelectReady_OnReadyChanged;
         PlayerName.OnValueChanged -= HandlePlayerNameChanged;
     }
+    
 }

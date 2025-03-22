@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -11,15 +12,13 @@ public class MultiplayerGameManager : NetworkBehaviour
 
     [SerializeField] private List<Color> _playerColorList;
 
-    private NetworkList<PlayerDataSerializable> _playerDataNetworkList;
+    private NetworkList<PlayerDataSerializable> _playerDataNetworkList = new NetworkList<PlayerDataSerializable>();
 
     private void Awake()
     {
         Instance = this;
-
         DontDestroyOnLoad(gameObject);
 
-        _playerDataNetworkList = new NetworkList<PlayerDataSerializable>();
         _playerDataNetworkList.OnListChanged += PlayerDataNetworkList_OnListChanged;
     }
 
@@ -28,6 +27,7 @@ public class MultiplayerGameManager : NetworkBehaviour
         if (IsServer)
         {
             _playerDataNetworkList.Clear();
+
             NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_Server_OnClientDisconnectedCallback;
             NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_Server_OnClientConnectedCallback;
         }
@@ -42,10 +42,6 @@ public class MultiplayerGameManager : NetworkBehaviour
             {
                 _playerDataNetworkList.RemoveAt(i);
             }
-            if(playerData.ClientId == 0)
-            {
-                _playerDataNetworkList.Clear();
-            }
         }
     }
 
@@ -56,7 +52,6 @@ public class MultiplayerGameManager : NetworkBehaviour
             if (_playerDataNetworkList[i].ClientId == clientId)
             {
                 _playerDataNetworkList.RemoveAt(i);
-                break;
             }
         }
 
@@ -169,5 +164,14 @@ public class MultiplayerGameManager : NetworkBehaviour
     {
         NetworkManager.Singleton.DisconnectClient(clientId);
         NetworkManager_Server_OnClientDisconnectedCallback(clientId);
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsServer)
+        {
+            NetworkManager.Singleton.OnClientDisconnectCallback -= NetworkManager_Server_OnClientDisconnectedCallback;
+            NetworkManager.Singleton.OnClientConnectedCallback -= NetworkManager_Server_OnClientConnectedCallback;
+        }
     }
 }

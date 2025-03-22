@@ -22,16 +22,25 @@ public class CharacterSelectReady : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnectCallback;
     }
 
-    private void OnClientConnectedCallback(ulong obj)
+    private void OnClientDisconnectCallback(ulong clientId)
+    {
+        if (_playerReadyDictionary.ContainsKey(clientId))
+        {
+            _playerReadyDictionary.Remove(clientId);
+            OnUnreadyChanged?.Invoke();
+        }
+    }
+
+    private void OnClientConnectedCallback(ulong connectedClientId)
     {
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             if (IsPlayerReady(clientId))
             {
-                SetPlayerReady();
-                OnReadyChanged?.Invoke();
+                SetPlayerReadyToAllRpc(clientId);
             }
         }
     }
