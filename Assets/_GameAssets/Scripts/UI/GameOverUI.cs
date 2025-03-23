@@ -5,6 +5,7 @@ using DG.Tweening;
 using Unity.Netcode;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -14,10 +15,9 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private RectTransform _scoreTableTransform;
     [SerializeField] private TMP_Text _winnerText;
     [SerializeField] private GameObject _confettiParticles;
-    
+
     [Header("Buttons")]
     [SerializeField] private Button _mainMenuButton;
-    [SerializeField] private Button _oneMoreButton;
 
     [Header("Score Table References")]
     [SerializeField] private Transform _contentTransform;
@@ -29,14 +29,24 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private float _scaleDuration = 0.5f;
 
     private RectTransform _mainMenuButtonTransform;
-    private RectTransform _oneMoreButtonTransform;
     private RectTransform _winnerTransform;
 
     private void Awake()
     {
+        _mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
+        
         _mainMenuButtonTransform = _mainMenuButton.GetComponent<RectTransform>();
-        _oneMoreButtonTransform = _oneMoreButton.GetComponent<RectTransform>();
         _winnerTransform = _winnerText.GetComponent<RectTransform>();
+    }
+
+    private void OnMainMenuButtonClicked()
+    {
+        if (NetworkManager.Singleton.IsHost)
+        {
+            HostSingleton.Instance.HostManager.Shutdown();
+        }
+
+        ClientSingleton.Instance.ClientManager.Disconnect();
     }
 
     private void Start()
@@ -72,14 +82,11 @@ public class GameOverUI : MonoBehaviour
         _scoreTableTransform.gameObject.SetActive(true);
         _scoreTableTransform.DOScale(0.8f, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
         {
-            _mainMenuButtonTransform.DOScale(1f,_scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+            _mainMenuButtonTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
             {
-                _oneMoreButtonTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
+                _winnerTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
                 {
-                    _winnerTransform.DOScale(1f, _scaleDuration).SetEase(Ease.OutBack).OnComplete(() =>
-                    {
-                        _confettiParticles.SetActive(true);
-                    });
+                    _confettiParticles.SetActive(true);
                 });
             });
         });
